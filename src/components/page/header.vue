@@ -1,9 +1,10 @@
 <template>
   <div class="header">
-    <div class="fenxi">
-      分析功能
+    <!-- <div class="fenxi">
+      <i class="iconfont icon-fenxi"></i>
       <Footer />
-    </div>
+    </div> -->
+
     <img
       src="../../assets/img/top-bg.e2cfef35.png"
       style="width: 100%; height: 100%"
@@ -112,7 +113,7 @@ export default {
 };
 </script>
 
-<style lang='less' >
+<style lang='less'>
 .time_weather {
   color: #fff;
   position: absolute;
@@ -219,13 +220,13 @@ export default {
   right: 294px;
   top: 108px;
   font-size: 44px;
-  width: 400px;
-  height: 109px;
+  // width: 400px;
+  // height: 109px;
   color: #fff;
   z-index: 9;
   cursor: pointer;
   background-color: rgba(2, 15, 43, 0.7);
-  // padding: 20px 40px;
+  padding: 20px 40px;
   border-radius: 20px;
   user-select: none;
   display: flex;

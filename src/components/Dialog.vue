@@ -7,7 +7,7 @@
     <div>
       <div class="rainpipe-con">
         <div v-for="(item, index) in attrList" :key="index">
-          <span>{{ item.key }}</span>
+          <span>{{ item.key }}：</span>
           <span>{{ item.value }}</span>
         </div>
       </div>
@@ -16,13 +16,24 @@
         <img src="../assets/img/ip_more_bg.png" alt="" />
       </div>
       <div class="video">
-        <img v-if="img && !video" :src="img" alt="" />
-        <video
+        <!-- <img v-if="img && !video" :src="img" alt="" /> -->
+        <!-- <img src="../assets/img/44011200041320100007.c5579eeb.png" alt="">
+        <img src="../assets/img/44011200041320100007.c5579eeb.png" alt="">
+        <img src="../assets/img/44011200041320100007.c5579eeb.png" alt=""> -->
+        <div v-for="(item, index) in imgList" :key="index">
+          <el-image
+            style="width: 100%; height: 100%"
+            :src="item"
+            :preview-src-list="imgList"
+          >
+          </el-image>
+        </div>
+        <!-- <video
           v-if="video && !img"
           @click="play"
           ref="video"
           :src="video"
-        ></video>
+        ></video> -->
       </div>
     </div>
     <!-- <div></div> -->
@@ -33,53 +44,53 @@
 /**
  * 传入数据attrList，数组，每个元素都是对象，由key-value组成
  * 点击关闭可以触发自定义时间‘close’
- * 传入参数img显示图片
- * 传入参数video显示视频
- * img和video只能传入一个
+ * 传入参数imgList显示图片
  */
 export default {
   name: "Dialog",
   data() {
     return {
-      pipeList: [
-        {
-          key: "类型",
-          value: "雨水管线",
-        },
-        {
-          key: "管线材质",
-          value: "砼",
-        },
-        {
-          key: "管径",
-          value: "1200",
-        },
-        {
-          key: "道路名称",
-          value: "无名路",
-        },
-        {
-          key: "埋设方式",
-          value: "直埋",
-        },
-        {
-          key: "埋设日期",
-          value: "2017/09/21",
-        },
-        {
-          key: "权属单位代码",
-          value: "廉江市水务局",
-        },
-        {
-          key: "普查侧区编号",
-          value: "",
-        },
-      ],
-      isShowVideo: false,
+      // pipeList: [
+      //   {
+      //     key: "类型",
+      //     value: "雨水管线",
+      //   },
+      //   {
+      //     key: "管线材质",
+      //     value: "砼",
+      //   },
+      //   {
+      //     key: "管径",
+      //     value: "1200",
+      //   },
+      //   {
+      //     key: "道路名称",
+      //     value: "无名路",
+      //   },
+      //   {
+      //     key: "埋设方式",
+      //     value: "直埋",
+      //   },
+      //   {
+      //     key: "埋设日期",
+      //     value: "2017/09/21",
+      //   },
+      //   {
+      //     key: "权属单位代码",
+      //     value: "廉江市水务局",
+      //   },
+      //   {
+      //     key: "普查侧区编号",
+      //     value: "",
+      //   },
+      // ],
+      // isShowVideo: false,
       isPaly: false,
+      // srcList: [require("../assets/img/44011200041320100013.648f09fa.png")],
+      // url: require("../assets/img/44011200041320100013.648f09fa.png"),
     };
   },
-  props: ["attrList", "img", "video"],
+  props: ["attrList", "imgList"],
   methods: {
     play() {
       if (this.isPaly === false) {
@@ -99,9 +110,9 @@ export default {
 <style lang='less' scoped>
 .rainpipe {
   position: absolute;
-  right: 3%;
-  top: 300px;
-  width: 2000px;
+  right: 27%;
+    top: 270px;
+  width: 1500px;
   font-size: 50px;
   color: #fff;
 
@@ -172,21 +183,24 @@ export default {
     > span {
       width: 40%;
     }
+    > span:first-of-type {
+      text-align: right;
+    }
   }
 }
 .video {
   // padding: ;
-  > img,
-  > video {
-    margin: 40px auto 0;
+  display: flex;
+  justify-content: space-evenly;
+  > div {
+    // margin: 40px auto 0;
+    margin-top: 40px;
+    margin-bottom: 40px;
     display: block;
-    width: 90%;
-    height: 800px;
+    width: 28%;
+    height: 300px;
     border: none;
     object-fit: fill;
-  }
-  > video {
-    cursor: pointer;
   }
 }
 </style>

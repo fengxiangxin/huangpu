@@ -7,7 +7,14 @@
         :class="active === index && 'active'"
         @click="updateActive(index)"
       >
-        {{ item }}
+        <!-- {{ item }} -->
+        <i v-if="index === 1" class="iconfont icon-hongshui"></i>
+        <i v-if="index === 2" class="iconfont icon-iconishijue"></i>
+        <i v-if="index === 3" class="iconfont icon-poumianfenxi"></i>
+        <i
+          v-if="index === 4"
+          class="iconfont icon-iconfonttubiao_tianjixian"
+        ></i>
       </div>
     </div>
 
@@ -143,9 +150,9 @@ export default {
 .footer {
   position: absolute;
   z-index: 10;
-  bottom: 0;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  // transform: translateX(-50%);
   width: 2000px;
   height: 150px;
   display: flex;
@@ -157,7 +164,7 @@ export default {
 .dynamicwater {
   position: absolute;
   left: -90%;
-  top: -1900px;
+  // top: -1900px;
   width: 100px;
   height: 1800px;
   display: flex;
@@ -168,7 +175,7 @@ export default {
 .footer-con {
   position: absolute;
   z-index: 10;
-  top: -1000px;
+  // top: -1000px;
   height: 580px;
   flex-direction: column;
   display: flex;

@@ -1,18 +1,19 @@
 <template>
   <div class="fun">
     <!-- Dialog使用示例 -->
-    <Dialog
+    <!-- <Dialog
       v-if="isShow"
       :attrList="pipeList"
-      :video="video"
+      :imgList="imgList"
       @close="isShow = false"
-    />
+    /> -->
+    <VideoDialog :video="video" />
   </div>
 </template>
 
 <script>
-// import PlayVideo from "../../components/comFun/PlayVideo";
 import Dialog from "../../components/Dialog";
+import VideoDialog from "../../components/VideoDialog";
 export default {
   name: "Fun",
   data() {
@@ -51,8 +52,14 @@ export default {
           value: "",
         },
       ],
+
       video: require("../../assets/video/videoDemo.mp4"),
       isShow: true,
+      imgList: [
+        require("../../assets/img/44011261001320611200.d5c057f3.png"),
+        require("../../assets/img/44011261001320611200.d5c057f3.png"),
+        require("../../assets/img/44011262001320620043.706e1c59.png"),
+      ],
     };
   },
   methods: {
@@ -99,6 +106,7 @@ export default {
   components: {
     // PlayVideo,
     Dialog,
+    VideoDialog,
   },
 };
 </script>
