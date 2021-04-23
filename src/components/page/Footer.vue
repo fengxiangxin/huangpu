@@ -32,9 +32,10 @@
         vertical
         height="1600px"
         :step="1"
-        show-stops
+        :show-stops="false"
         :max="30"
         tooltip-class="tooltip"
+        :marks="marks"
         @input="updateDynamicWater"
       >
       </el-slider>
@@ -58,6 +59,39 @@ export default {
       ],
       active: -1,
       value: 0,
+      marks: {
+        0: "0",
+        1: "1",
+        2: "2",
+        3: "3",
+        4: "4",
+        5: "5",
+        6: "6",
+        7: "7",
+        8: "8",
+        9: "9",
+        10: "10",
+        11: "11",
+        12: "12",
+        13: "13",
+        14: "14",
+        15: "15",
+        16: "16",
+        17: "17",
+        18: "18",
+        19: "19",
+        20: "20",
+        21: "21",
+        22: "22",
+        23: "23",
+        24: "24",
+        25: "25",
+        26: "26",
+        27: "27",
+        28: "28",
+        29: "29",
+        30: "30",
+      },
     };
   },
   methods: {
@@ -219,7 +253,7 @@ export default {
 }
 .dynamicwater {
   position: absolute;
-  left: -135%;
+  left: -10%;
   // top: -1900px;
   bottom: -380px;
   width: 100px;
@@ -271,5 +305,12 @@ export default {
 }
 /deep/.el-slider.is-vertical .el-slider__bar {
   width: 30px;
+}
+/deep/.el-slider__marks-text {
+  font-size: 40px;
+  color: aqua;
+}
+/deep/.el-slider.is-vertical .el-slider__marks-text {
+  left: 70px;
 }
 </style>

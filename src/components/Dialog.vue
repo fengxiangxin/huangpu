@@ -210,4 +210,5 @@ export default {
     object-fit: fill;
   }
 }
+
 </style>
