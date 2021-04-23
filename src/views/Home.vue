@@ -304,11 +304,18 @@
     <VideoDialog v-if="showVideoDialog" />
     <AddTag />
     <div class="fenxi">
-      <i
-        :class="isShowFenxi && 'active'"
-        @click="isShowFenxi = !isShowFenxi"
-        class="iconfont icon-fenxi"
-      ></i>
+      <el-tooltip
+        class="item"
+        effect="dark"
+        content="分析功能"
+        placement="left"
+      >
+        <i
+          :class="isShowFenxi && 'active'"
+          @click="isShowFenxi = !isShowFenxi"
+          class="iconfont icon-fenxi"
+        ></i>
+      </el-tooltip>
       <transition name="fenxi">
         <Footer v-if="isShowFenxi" />
       </transition>
@@ -376,6 +383,7 @@ export default {
         },
       ],
       isShowFenxi: false,
+      isHover: false,
     };
   },
   computed: {
@@ -1023,6 +1031,15 @@ export default {
     color: #4f9efd;
   }
 }
+// .item {
+//   margin-right: 24px;
+// }
+// .hover {
+//   position: absolute;
+//   color: #fff;
+//   white-space: nowrap;
+//   right: 170px;
+// }
 
 .el-carousel {
   width: 90%;
