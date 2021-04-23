@@ -92,7 +92,7 @@ export default {
               o.url = "";
               o.imageSize = [28, 28];
               o.text = item.name;
-              o.range = [1, 800000.0];
+              o.range = [1, 800000.1];
               o.textRange = 300000;
               o.showLine = true;
               o.textColor = Color.Black;

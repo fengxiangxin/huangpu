@@ -49,6 +49,7 @@ export default {
   name: "Footer",
   data() {
     return {
+      flag: false,
       list: [
         "水淹分析",
         "视域分析",
@@ -95,6 +96,30 @@ export default {
     };
   },
   methods: {
+    // 倾斜数据单体化
+    buildingAlone() {
+      this.flag = !this.flag;
+      if (this.flag) {
+        this.$store.commit("goBuildingAlone", true);
+
+        __g.camera.set(
+          56004.625,
+          226275.4375,
+          127.108826,
+          -48.101784,
+          -95.589127,
+          0
+        );
+        //此处可以用枚举，也可以直接设置数字，数字含义如下：
+        //7: click, move, hover: 全开
+        //0: click, move, hover: 全关
+        // let mask = MousePickMask.MouseClick | MousePickMask.MouseMove | MousePickMask.MouseHover;
+        __g.misc.setMousePickMask(MousePickMask.MouseClick);
+      } else {
+        __g.misc.setMousePickMask(0);
+        this.$store.commit("goBuildingAlone", false);
+      }
+    },
     updateActive(index) {
       if (index === this.active) {
         this.active = -1;
@@ -208,7 +233,8 @@ export default {
         case 4:
           this.heatMap();
           break;
-        case 4:
+        case 5:
+          this.buildingAlone();
           break;
         default:
           break;
@@ -233,7 +259,7 @@ export default {
 };
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .iconfont {
   font-size: 70px;
 }

@@ -7,7 +7,7 @@
     <div>
       <div class="rainpipe-con">
         <div
-          v-for="(value, key, index) in $store.state.tagdata.data"
+          v-for="(value, key, index) in $store.state.BuildingAloneData"
           :key="index"
         >
           <span>{{ key }}：</span>
@@ -18,29 +18,29 @@
         <!-- <span> 更多 </span> -->
         <img src="../assets/img/ip_more_bg.png" alt="" />
       </div>
-      <div v-if="$store.state.tagdata.imgList.length > 0" class="video">
-        <!-- <img v-if="img && !video" :src="img" alt="" /> -->
-        <!-- <img src="../assets/img/44011200041320100007.c5579eeb.png" alt="">
+      <!-- <div v-if="$store.state.tagdata.imgList.length > 0" class="video"> -->
+      <!-- <img v-if="img && !video" :src="img" alt="" /> -->
+      <!-- <img src="../assets/img/44011200041320100007.c5579eeb.png" alt="">
         <img src="../assets/img/44011200041320100007.c5579eeb.png" alt="">
         <img src="../assets/img/44011200041320100007.c5579eeb.png" alt=""> -->
-        <div v-for="(item, index) in $store.state.tagdata.imgList" :key="index">
+      <!-- <div v-for="(item, index) in $store.state.tagdata.imgList" :key="index">
           <el-image
             style="width: 100%; height: 100%"
             :src="item"
             :preview-src-list="$store.state.tagdata.imgList"
           >
           </el-image>
-        </div>
-        <!-- <video
+        </div> -->
+      <!-- <video
           v-if="video && !img"
           @click="play"
           ref="video"
           :src="video"
         ></video> -->
-      </div>
     </div>
-    <!-- <div></div> -->
   </div>
+  <!-- <div></div> -->
+  <!-- </div> -->
 </template>
 
 <script>
@@ -96,7 +96,7 @@ export default {
   props: ["attrList", "imgList"],
   methods: {
     close() {
-      this.$store.commit("tagdata", {});
+      this.$store.commit("BuildingAloneData", {});
     },
     play() {
       if (this.isPaly === false) {

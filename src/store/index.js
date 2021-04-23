@@ -9,7 +9,8 @@ export default new Vuex.Store({
     isPlayVideo: false,
     showVideoDialog: false,
     tagdata: {},
-    sheciangIsShow: false,
+    goBuildingAlone: false,
+    BuildingAloneData: {},
   },
   mutations: {
     showVideoDialog(state, flag) {
@@ -17,6 +18,12 @@ export default new Vuex.Store({
     },
     tagdata(state, flag) {
       state.tagdata = flag;
+    },
+    goBuildingAlone(state, flag) {
+      state.goBuildingAlone = flag;
+    },
+    BuildingAloneData(state, data) {
+      state.BuildingAloneData = data;
     },
   },
   actions: {},

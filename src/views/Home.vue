@@ -300,6 +300,7 @@
       </div>
     </div>
     <!-- Dialog -->
+    <BuildingDialog v-if="$store.state.BuildingAloneData.地址" />
     <Dialog v-if="$store.state.tagdata.data" />
     <VideoDialog v-if="showVideoDialog" />
     <AddTag />
@@ -329,6 +330,7 @@ import Dialog from "../components/Dialog";
 import VideoDialog from "../components/VideoDialog";
 import Footer from "../components/page/Footer";
 import AddTag from "./tag";
+import BuildingDialog from "../components/BuildingDialog";
 import { mapState } from "vuex";
 export default {
   name: "Home",
@@ -338,6 +340,7 @@ export default {
     VideoDialog,
     Footer,
     AddTag,
+    BuildingDialog,
   },
   data() {
     return {
@@ -384,6 +387,9 @@ export default {
       ],
       isShowFenxi: false,
       isHover: false,
+      polygon3D: false,
+      polygon3DIds: [],
+      polygon3DTagIds: [],
     };
   },
   computed: {
@@ -404,25 +410,37 @@ export default {
     });
   },
   methods: {
-    // 摄像头
+    //
+    //  let coords = [[489877.9375, 2493053.5, 6.6659374237060547], [489850.5, 2492181.75, 5.6631250381469727], [488457.03125, 2493013.5, 0]];
+    // let color = [1, 0, 1, 1];   //颜色值
+    // let height = 500;           //3D多边形的高度
+    // let intensity = 4.0;        //亮度
+    // let type = 1;               //3DPolygon的样式
+    // let o = new Polygon3DData('1', type, coords, color, height, intensity);
+    // __g.polygon3d.add(o, fn);
 
+    // 摄像头
     shooting() {
       console.log(123);
       if (this.zhongdian) {
-        __g.infoTree.hide("988B47564FF230961D079D871E3DB86C");
+        // __g.infoTree.hide("988B47564FF230961D079D871E3DB86C");
+        __g.infoTree.hide("171A4A1D43C8043F1CDEC696D7A44CF8");
         this.zhongdian = false;
       } else {
-        __g.infoTree.show("988B47564FF230961D079D871E3DB86C");
+        // __g.infoTree.show("988B47564FF230961D079D871E3DB86C");
+        __g.infoTree.show("171A4A1D43C8043F1CDEC696D7A44CF8");
         this.zhongdian = true;
       }
     },
     // 展示路线
     showluxian() {
       if (this.zhuganxianShow) {
-        __g.infoTree.hide("664CA76441EE56C2853F3CB8DC1E3D96");
+        // __g.infoTree.hide("664CA76441EE56C2853F3CB8DC1E3D96");
+        __g.infoTree.hide("FE3522AD41F0E3C702D00FB7D6D12E82");
         this.zhuganxianShow = false;
       } else {
-        __g.infoTree.show("664CA76441EE56C2853F3CB8DC1E3D96");
+        // __g.infoTree.show("664CA76441EE56C2853F3CB8DC1E3D96");
+        __g.infoTree.show("FE3522AD41F0E3C702D00FB7D6D12E82");
         this.zhuganxianShow = true;
       }
     },
