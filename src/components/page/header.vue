@@ -53,11 +53,13 @@
 
 <script>
 import TimeControl from "../comHeader/TimeControl";
+import Footer from "./Footer";
 export default {
   data() {
     return {
       time: "",
       date: "",
+      isShowFenxi: true,
     };
   },
   methods: {
@@ -101,6 +103,7 @@ export default {
   },
   components: {
     TimeControl,
+    Footer,
   },
 };
 </script>

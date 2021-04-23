@@ -9,6 +9,7 @@ import '../public/airCity/ac_conf'
 import '../public/airCity/ac_int_test'
 import '../public/airCity/ac_api.min'
 import * as echarts from 'echarts'
+import './assets/font/iconfont.css'
 
 //vue-awesome-swiper'
 //import 'swiper/dist/css/swiper.css'

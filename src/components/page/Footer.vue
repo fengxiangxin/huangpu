@@ -1,14 +1,25 @@
 <template>
   <div class="footer">
-    <div
-      v-for="(item, index) in list"
-      :key="index"
-      :class="active === index && 'active'"
-      @click="updateActive(index)"
-    >
-      {{ item }}
+    <div class="footer-con">
+      <div
+        v-for="(item, index) in list"
+        :key="index"
+        :class="active === index && 'active'"
+        @click="updateActive(index)"
+      >
+        <!-- {{ item }} -->
+        <i v-if="index === 0" class="iconfont icon-hongshui"></i>
+        <i v-if="index === 1" class="iconfont icon-iconishijue"></i>
+        <i v-if="index === 2" class="iconfont icon-poumianfenxi"></i>
+        <i
+          v-if="index === 3"
+          class="iconfont icon-iconfonttubiao_tianjixian"
+        ></i>
+      </div>
     </div>
-    <div v-if="active === 0 && $route.path === '/shuiyan'" class="dynamicwater">
+
+    <!-- v-if="active === 0 && $route.path === '/shuiyan'" -->
+    <div v-if="active === 0" class="dynamicwater">
       <el-slider
         v-model="value"
         vertical
@@ -108,7 +119,7 @@ export default {
 
       switch (newVal) {
         case 0:
-          this.$router.push("/shuiyan");
+          // this.$router.push("/shuiyan");
           this.addDynamicWater();
           break;
         case 1:
@@ -131,17 +142,26 @@ export default {
     // },
   },
   mounted() {},
-  destroyed() {},
+  destroyed() {
+    __g.dynamicWater.delete("dy1");
+    __g.tools.stopViewshedAnalysis();
+    __g.tools.stopSkylineAnalysis();
+    __g.tools.stopPlaneClip();
+  },
   components: {},
 };
 </script>
 
 <style lang='less' scoped>
+.iconfont {
+  font-size: 70px;
+}
 .footer {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 10;
+  top: -375px;
+  left: 0;
+  // transform: translateX(-50%);
   width: 2000px;
   height: 150px;
   display: flex;
@@ -149,6 +169,27 @@ export default {
   align-items: center;
   color: #ccc;
   font-size: 70px;
+}
+.dynamicwater {
+  position: absolute;
+  left: -135%;
+  // top: -1900px;
+  bottom: -380px;
+  width: 100px;
+  height: 1800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-con {
+  position: absolute;
+  z-index: 10;
+  // top: -1000px;
+  height: 580px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
   > div {
     cursor: pointer;
     background-color: rgba(2, 15, 43, 0.7);
@@ -160,16 +201,6 @@ export default {
     color: #fff;
     background-color: rgba(2, 15, 43, 0.9);
   }
-}
-.dynamicwater {
-  position: absolute;
-  left: -90%;
-  top: -1900px;
-  width: 100px;
-  height: 1800px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 /deep/.el-slider.is-vertical .el-slider__runway {
   width: 30px;

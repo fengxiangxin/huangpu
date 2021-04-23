@@ -209,7 +209,7 @@
     </div>
 
     <div class="right">
-      <div class="right-layout">
+      <div class="right-layout1">
         <div>
           <Title title="城市体征"></Title>
           <div class="city">
@@ -299,15 +299,35 @@
         </div>
       </div>
     </div>
+    <!-- Dialog -->
+    <!-- <Dialog /> -->
+    <!-- <VideoDialog /> -->
+    <div class="fenxi">
+      <i
+        :class="isShowFenxi && 'active'"
+        @click="isShowFenxi = !isShowFenxi"
+        class="iconfont icon-fenxi"
+      ></i>
+      <transition name="fenxi">
+        <Footer v-if="isShowFenxi" />
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
 import Title from "../components/comJoint/Title";
+import Dialog from "../components/Dialog";
+import VideoDialog from "../components/VideoDialog";
+import Footer from "../components/page/Footer";
+
 export default {
   name: "Home",
   components: {
     Title,
+    Dialog,
+    VideoDialog,
+    Footer,
   },
   data() {
     return {
@@ -352,6 +372,7 @@ export default {
           name: "监管预警",
         },
       ],
+      isShowFenxi: false,
     };
   },
   created() {
@@ -958,6 +979,43 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.fenxi-enter-active,
+.fenxi-leave-active {
+  transition: all 0.3s linear;
+}
+.fenxi-enter,
+.fenxi-leave-to {
+  opacity: 0;
+}
+.fenxi-leave,
+.fenxi-enter-to {
+  opacity: 1;
+}
+.fenxi {
+  position: absolute;
+  right: 1710px;
+  bottom: 70px;
+  font-size: 44px;
+  // width: 400px;
+  // height: 109px;
+  color: #fff;
+  z-index: 9;
+  cursor: pointer;
+  background-color: rgba(2, 15, 43, 0.7);
+  padding: 20px 40px;
+  border-radius: 20px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .iconfont {
+    font-size: 70px;
+  }
+  > .active {
+    color: #4f9efd;
+  }
+}
+
 .el-carousel {
   width: 90%;
   margin: 0 auto;
@@ -1003,9 +1061,9 @@ export default {
   position: absolute;
   width: 1700px;
   height: 2066px;
-  right: 80px;
+  right: 0;
   top: 264px;
-  .right-layout {
+  .right-layout1 {
     width: 100%;
     height: 100%;
     display: flex;
@@ -1152,7 +1210,7 @@ export default {
   height: 2066px;
   top: 300px;
   position: absolute;
-  left: 80px;
+  left: 0px;
   .red-tag {
     position: relative;
     height: 341px;
