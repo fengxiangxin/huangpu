@@ -324,7 +324,7 @@ function onEvent(data) {
     if (data.eventtype == 'LeftMouseButtonClick') {
         if (data.Type == 'TileLayer') {
             __currentTileLayerActor = {
-                'id': data.Id,
+                'id': data.ID,
                 'objectId': data.ObjectID
             };
 
@@ -963,6 +963,12 @@ function test_tileLayer_actor_setStyle() {
     checkTileLayerId() &&
         __g.tileLayer.setStyle(__currentTileLayerActor.id, style, Color.Red);
 }
+
+function test_tileLayer_actor_setCollision() {
+    checkTileLayerId() &&
+        __g.tileLayer.setCollision(__currentTileLayerActor.id, true);
+}
+
 
 
 /*-------------------------------------------------

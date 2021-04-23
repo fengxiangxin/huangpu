@@ -38,6 +38,7 @@ export default {
   methods: {
     change(arr) {
       let _this = this;
+
       console.log(arr);
       //   e.forEach((item) => {
       if (arr.indexOf("商店") !== -1) {
@@ -46,6 +47,7 @@ export default {
           let pointPoiArr = [];
           shop.pois.forEach((item, index) => {
             let newc84 = this.getcroo(item.location.split(","));
+
             __g.coord.gcs2pcs([newc84[1], newc84[0]], (res) => {
               let aaa = res.coordinates[0];
               let coord = [aaa[0] + 40000, aaa[1] - 2330000, 20];
@@ -363,25 +365,37 @@ export default {
   position: absolute;
   top: 300px;
   left: 1800px;
-  width: 200px;
+  width: 100px;
   height: 1000px;
+
   .el-checkbox-group {
     width: 100%;
-    height: 1000px;
+    height: 800px;
     font-size: 50px;
     .el-checkbox-button {
-      width: 100%;
-      height: 25%;
+      // width: 100%;
+      // height: 25%;
+      height: 140px;
     }
   }
 }
 /deep/ .el-checkbox-button__inner {
   font-size: 50px;
-
+  padding: 0 !important;
+  background: rgba(2, 15, 43, 0.7);
   text-align: center;
-  line-height: 150px;
+  line-height: 100px;
+  color: #fff;
+  border: none;
   display: block;
-  width: 250px !important;
-  height: 150px !important;
+  width: 200px !important;
+  height: 100px !important;
+}
+/deep/ .el-checkbox-button:first-child .el-checkbox-button__inner {
+  border: none;
+}
+/deep/ .el-checkbox-button.is-checked .el-checkbox-button__inner {
+  background: rgba(2, 15, 43, 0.911);
+  color: aqua;
 }
 </style>
