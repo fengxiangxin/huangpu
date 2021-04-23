@@ -104,7 +104,7 @@ export default {
   height: 2066px;
   background-color: rgba(2, 15, 43, 0.7);
   top: 264px;
-  left: 80px;
+  left: 0px;
 }
 .toplist {
   height: 291px;

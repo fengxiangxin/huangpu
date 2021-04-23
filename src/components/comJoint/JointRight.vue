@@ -300,7 +300,7 @@ export default {
   height: 2066px;
   position: absolute;
   top: 264px;
-  right: 80px;
+  right: 0px;
   flex-direction: column;
   display: flex;
   justify-content: space-between;

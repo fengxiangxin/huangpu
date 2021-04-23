@@ -1,6 +1,7 @@
 <template>
   <div class="rainpipe">
     <div>
+      <!-- <img  class="bg" src="" alt=""> -->
       <span>属性查询</span>
       <span @click="close">关闭</span>
     </div>
