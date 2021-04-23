@@ -142,6 +142,7 @@ export default {
 <style lang='less' scoped>
 .footer {
   position: absolute;
+  z-index: 10;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -166,6 +167,7 @@ export default {
 
 .footer-con {
   position: absolute;
+  z-index: 10;
   top: -1000px;
   height: 580px;
   flex-direction: column;

@@ -99,7 +99,7 @@ export default {
 <style lang='less' scoped>
 .rainpipe {
   position: absolute;
-  left: 67%;
+  right: 3%;
   top: 300px;
   width: 2000px;
   font-size: 50px;
@@ -113,7 +113,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 20px 10px 0 50px;
+    padding: 20px 20px 0 50px;
 
     > span:last-of-type {
       color: #8f9cff;
@@ -138,14 +138,14 @@ export default {
         bottom: 0;
         width: 100%;
       }
-      > span {
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 12px;
-        color: #00e0ff;
-      }
+      //   > span {
+      //     position: absolute;
+      //     bottom: 0;
+      //     left: 50%;
+      //     transform: translateX(-50%);
+      //     font-size: 12px;
+      //     color: #00e0ff;
+      //   }
     }
   }
   //   > div:nth-of-type(3) {

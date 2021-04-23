@@ -1,5 +1,9 @@
 <template>
   <div class="header">
+    <div class="fenxi">
+      分析功能
+      <Footer />
+    </div>
     <img
       src="../../assets/img/top-bg.e2cfef35.png"
       style="width: 100%; height: 100%"
@@ -53,11 +57,13 @@
 
 <script>
 import TimeControl from "../comHeader/TimeControl";
+import Footer from "./Footer";
 export default {
   data() {
     return {
       time: "",
       date: "",
+      isShowFenxi: true,
     };
   },
   methods: {
@@ -101,6 +107,7 @@ export default {
   },
   components: {
     TimeControl,
+    Footer,
   },
 };
 </script>
@@ -205,6 +212,25 @@ export default {
   color: #fff !important;
   border: none !important;
   top: 213px !important;
+}
+
+.fenxi {
+  position: absolute;
+  right: 294px;
+  top: 108px;
+  font-size: 44px;
+  width: 400px;
+  height: 109px;
+  color: #fff;
+  z-index: 9;
+  cursor: pointer;
+  background-color: rgba(2, 15, 43, 0.7);
+  // padding: 20px 40px;
+  border-radius: 20px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /deep/.el-popper[x-placement^="bottom"] .popper__arrow::after {
