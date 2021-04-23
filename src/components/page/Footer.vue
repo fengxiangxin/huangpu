@@ -18,7 +18,8 @@
       </div>
     </div>
 
-    <div v-if="active === 0 && $route.path === '/shuiyan'" class="dynamicwater">
+    <!-- v-if="active === 0 && $route.path === '/shuiyan'" -->
+    <div v-if="active === 0" class="dynamicwater">
       <el-slider
         v-model="value"
         vertical
@@ -118,7 +119,7 @@ export default {
 
       switch (newVal) {
         case 0:
-          this.$router.push("/shuiyan");
+          // this.$router.push("/shuiyan");
           this.addDynamicWater();
           break;
         case 1:
@@ -142,7 +143,10 @@ export default {
   },
   mounted() {},
   destroyed() {
-    this.active = -1;
+    __g.dynamicWater.delete("dy1");
+    __g.tools.stopViewshedAnalysis();
+    __g.tools.stopSkylineAnalysis();
+    __g.tools.stopPlaneClip();
   },
   components: {},
 };
@@ -168,8 +172,9 @@ export default {
 }
 .dynamicwater {
   position: absolute;
-  left: -90%;
+  left: -135%;
   // top: -1900px;
+  bottom: -380px;
   width: 100px;
   height: 1800px;
   display: flex;
