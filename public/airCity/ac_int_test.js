@@ -200,11 +200,15 @@ function init(withPlayer, withInterface) {
         __editor.setValue(str);
     }
 
+    //2021.04.16 解析参数
+    let bitrate = getQueryVariable('bitrate');
+
     if (location.search.indexOf('ms') != -1) { //页面地址加参数： http://192.168.1.222/int.html?ms
         getMatchServerConfig(HostConfig.MatchServer, function (o) {
             if (o.result == 0) {
                 if (withPlayer) {
-                    new AirCityPlayer(o.instanceId, 'player', HostConfig.Token, true);
+                    let acp = new AirCityPlayer(o.instanceId, 'player', HostConfig.Token, true);
+                    bitrate && acp.setBitrate(bitrate);  //2021.04.16 Add 设置码率
                 }
                 if (withInterface) {
                     var ace = new AirCityAPI(o.instanceId, onReady, log);
@@ -230,6 +234,7 @@ function init(withPlayer, withInterface) {
             //AirCityPlayer对象增加方法enableAutoAdjustResolution，可以设置启用或关闭视频窗口缩放时
             //自动调整分辨率的功能。这个功能默认是启用的，如果想关闭此功能，可以在初始化的时候调用enableAutoAdjustResolution(false)
             //acp.enableAutoAdjustResolution(false);
+            bitrate && acp.setBitrate(bitrate);  //2021.04.16 Add 设置码率
         }
         if (withInterface) {
             let host = HostConfig.instanceId ? HostConfig.instanceId : HostConfig.AirCityAPI;
@@ -2052,10 +2057,13 @@ function test_misc_setMainUIVisibility() {
     __g.misc.setMainUIVisibility(__uiVisible);
 }
 
-let __queryEnabled = false;
-function test_misc_setQueryToolState() {
-    __queryEnabled = !__queryEnabled;
-    __g.misc.setQueryToolState(__queryEnabled);
+
+function test_misc_setMousePickMask() {
+    //此处可以用枚举，也可以直接设置数字，数字含义如下：
+    //7: click, move, hover: 全开 
+    //0: click, move, hover: 全关 
+    let mask = MousePickMask.MouseClick | MousePickMask.MouseMove | MousePickMask.MouseHover;
+    __g.misc.setMousePickMask(mask);
 }
 
 function test_misc_playVideo() {
@@ -2184,7 +2192,13 @@ function test_misc_startSkylineAnalysis() {
         windowSize: [400, 200],
         skylineColor: Color.Green,
         backgroundColor: Color.Gray,
-        height: 50.0
+        height: 50.0,
+        tileLayers: [
+            {
+                color: Color.Blue,
+                ids: ['B1C4E5BD4888DA841D690AA396B061C3', 'A659DF0E404D806CB3511C9DAC22D160']
+            }
+        ]
     }
     __g.tools.startSkylineAnalysis(options);
 }

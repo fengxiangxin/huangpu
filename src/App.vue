@@ -9,7 +9,7 @@
     </div>
     <div id="player"></div>
     <Header></Header>
-    <Footer />
+    <!-- <Footer /> -->
     <!-- <div class="container"> -->
     <transition name="router">
       <router-view />

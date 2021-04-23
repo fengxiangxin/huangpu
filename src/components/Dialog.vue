@@ -1,0 +1,166 @@
+<template>
+  <div class="rainpipe">
+    <div>
+      <span>属性查询</span>
+      <span>关闭</span>
+    </div>
+    <div>
+      <div class="rainpipe-con">
+        <div v-for="(item, index) in pipeList" :key="index">
+          <span>{{ item.key }}</span>
+          <span>{{ item.value }}</span>
+        </div>
+      </div>
+      <div class="more">
+        <!-- <span> 更多 </span> -->
+        <img src="../assets/img/ip_more_bg.png" alt="" />
+      </div>
+      <div class="video">
+        <img
+          v-if="isShowVideo"
+          src="../assets/img/44011200041320100007.c5579eeb.png"
+          alt=""
+        />
+        <video v-else src="../assets/video/videoDemo.mp4"></video>
+      </div>
+    </div>
+    <!-- <div></div> -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: "RainPipe",
+  data() {
+    return {
+      pipeList: [
+        {
+          key: "类型",
+          value: "雨水管线",
+        },
+        {
+          key: "管线材质",
+          value: "砼",
+        },
+        {
+          key: "管径",
+          value: "1200",
+        },
+        {
+          key: "道路名称",
+          value: "无名路",
+        },
+        {
+          key: "埋设方式",
+          value: "直埋",
+        },
+        {
+          key: "埋设日期",
+          value: "2017/09/21",
+        },
+        {
+          key: "权属单位代码",
+          value: "廉江市水务局",
+        },
+        {
+          key: "普查侧区编号",
+          value: "",
+        },
+      ],
+      isShowVideo: false,
+    };
+  },
+  props: ["attrList"],
+};
+</script>
+
+<style lang='less' scoped>
+.rainpipe {
+  position: absolute;
+  left: 63%;
+  top: 400px;
+  width: 2000px;
+  font-size: 50px;
+  color: #fff;
+
+  > div:nth-of-type(1) {
+    height: 100px;
+    background: url("../assets/img/traffic_map_video_bg1.png");
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px 10px 0 50px;
+
+    > span:last-of-type {
+      color: #8f9cff;
+      cursor: pointer;
+    }
+  }
+  > div:nth-of-type(2) {
+    position: relative;
+    // width: 268px;
+    // height: 274px;
+    width: 99%;
+    padding: 50px 0;
+    background: rgba(0, 0, 0, 0.57);
+    margin: 0 auto;
+
+    .more {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      > img {
+        position: absolute;
+        bottom: 0;
+      }
+      > span {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        color: #00e0ff;
+      }
+    }
+  }
+  //   > div:nth-of-type(3) {
+  //     position: absolute;
+  //     width: 100%;
+  //     bottom: -100px;
+  //     left: 2px;
+  //     height: 100px;
+  //     background: url("../assets/img/traffic_map_video_bg2.png");
+  //     background-size: cover;
+  //     z-index: 5;
+  //   }
+}
+.rainpipe-con {
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-evenly;
+  > div {
+    display: flex;
+    justify-content: space-around;
+    opacity: 0.8;
+    margin: 10px 0;
+    > span {
+      width: 40%;
+    }
+  }
+}
+.video {
+  // padding: ;
+  > img,
+  > video {
+    margin: 40px auto 0;
+    display: block;
+    width: 90%;
+    height: 800px;
+    border: none;
+    object-fit: fill;
+  }
+}
+</style>

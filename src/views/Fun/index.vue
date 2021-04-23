@@ -1,11 +1,13 @@
 <template>
   <div class="fun">
-    <PlayVideo v-if="$store.state.isPlayVideo" />
+    <!-- <PlayVideo v-if="$store.state.isPlayVideo" /> -->
+    <Dialog />
   </div>
 </template>
 
 <script>
 import PlayVideo from "../../components/comFun/PlayVideo";
+import Dialog from "../../components/Dialog";
 export default {
   name: "Fun",
   data() {
@@ -48,13 +50,14 @@ export default {
     },
   },
   mounted() {
-    this.addTag();
+    // this.addTag();
   },
   beforeDestroy() {
     __g.tag.delete(["tag1"]);
   },
   components: {
     PlayVideo,
+    Dialog,
   },
 };
 </script>
