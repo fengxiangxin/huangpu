@@ -34,6 +34,12 @@
 </template>
 
 <script>
+/**
+ * 传入数据attrList，数组，每个元素都是对象，由key-value组成
+ * 点击关闭可以触发自定义时间‘close’
+ * 传入参数img显示图片
+ * 传入参数video显示视频
+ */
 export default {
   name: "Dialog",
   data() {
@@ -76,7 +82,7 @@ export default {
       isPaly: false,
     };
   },
-  props: ["attrList"],
+  props: ["attrList", "img", "video"],
   methods: {
     play() {
       if (this.isPaly === false) {
@@ -180,6 +186,9 @@ export default {
     height: 800px;
     border: none;
     object-fit: fill;
+  }
+  > video {
+    cursor: pointer;
   }
 }
 </style>
