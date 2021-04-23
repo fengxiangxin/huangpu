@@ -206,11 +206,11 @@ export default {
 .footer {
   position: absolute;
   z-index: 10;
-  top: -435px;
+  top: -510px;
   left: 0;
   // transform: translateX(-50%);
-  // width: 2000px;
-  // height: 150px;
+  width: 2000px;
+  height: 150px;
   display: flex;
   justify-content: space-between;
   align-items: center;
