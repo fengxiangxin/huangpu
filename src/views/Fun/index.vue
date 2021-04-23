@@ -17,7 +17,7 @@
       >
         <i
           :class="isShowFenxi && 'active'"
-          @click="isShowFenxi = !isShowFenxi"
+          @click="startOrStop"
           class="iconfont icon-Dchanpindonghuayanshi"
         ></i>
       </el-tooltip>
@@ -70,6 +70,10 @@ export default {
           __g.camera.stopAnimation();
           break;
       }
+    },
+    startOrStop() {
+      this.isShowFenxi = !this.isShowFenxi;
+      __g.camera.stopAnimation();
     },
   },
   watch: {},
