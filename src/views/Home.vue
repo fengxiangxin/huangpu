@@ -301,6 +301,16 @@
     <!-- Dialog -->
     <!-- <Dialog /> -->
     <!-- <VideoDialog /> -->
+    <div class="fenxi">
+      <i
+        :class="isShowFenxi && 'active'"
+        @click="isShowFenxi = !isShowFenxi"
+        class="iconfont icon-fenxi"
+      ></i>
+      <transition name="fenxi">
+        <Footer v-if="isShowFenxi" />
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -308,6 +318,7 @@
 import Title from "../components/comJoint/Title";
 import Dialog from "../components/Dialog";
 import VideoDialog from "../components/VideoDialog";
+import Footer from "../components/page/Footer";
 
 export default {
   name: "Home",
@@ -315,6 +326,7 @@ export default {
     Title,
     Dialog,
     VideoDialog,
+    Footer,
   },
   data() {
     return {
@@ -357,6 +369,7 @@ export default {
           name: "监管预警",
         },
       ],
+      isShowFenxi: false,
     };
   },
   created() {
@@ -941,6 +954,43 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.fenxi-enter-active,
+.fenxi-leave-active {
+  transition: all 0.3s linear;
+}
+.fenxi-enter,
+.fenxi-leave-to {
+  opacity: 0;
+}
+.fenxi-leave,
+.fenxi-enter-to {
+  opacity: 1;
+}
+.fenxi {
+  position: absolute;
+  right: 1710px;
+  bottom: 70px;
+  font-size: 44px;
+  // width: 400px;
+  // height: 109px;
+  color: #fff;
+  z-index: 9;
+  cursor: pointer;
+  background-color: rgba(2, 15, 43, 0.7);
+  padding: 20px 40px;
+  border-radius: 20px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .iconfont {
+    font-size: 70px;
+  }
+  > .active {
+    color: #4f9efd;
+  }
+}
+
 .el-carousel {
   width: 90%;
   margin: 0 auto;

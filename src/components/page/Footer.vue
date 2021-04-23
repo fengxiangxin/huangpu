@@ -8,11 +8,11 @@
         @click="updateActive(index)"
       >
         <!-- {{ item }} -->
-        <i v-if="index === 1" class="iconfont icon-hongshui"></i>
-        <i v-if="index === 2" class="iconfont icon-iconishijue"></i>
-        <i v-if="index === 3" class="iconfont icon-poumianfenxi"></i>
+        <i v-if="index === 0" class="iconfont icon-hongshui"></i>
+        <i v-if="index === 1" class="iconfont icon-iconishijue"></i>
+        <i v-if="index === 2" class="iconfont icon-poumianfenxi"></i>
         <i
-          v-if="index === 4"
+          v-if="index === 3"
           class="iconfont icon-iconfonttubiao_tianjixian"
         ></i>
       </div>
@@ -141,17 +141,22 @@ export default {
     // },
   },
   mounted() {},
-  destroyed() {},
+  destroyed() {
+    this.active = -1;
+  },
   components: {},
 };
 </script>
 
 <style lang='less' scoped>
+.iconfont {
+  font-size: 70px;
+}
 .footer {
   position: absolute;
   z-index: 10;
-  top: 0;
-  left: 50%;
+  top: -375px;
+  left: 0;
   // transform: translateX(-50%);
   width: 2000px;
   height: 150px;

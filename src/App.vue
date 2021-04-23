@@ -32,8 +32,8 @@ export default {
     };
   },
   created() {
-    // window.addEventListener("load", this.onLoad, true);
-    // window.addEventListener("resize", this.onResize, true);
+    window.addEventListener("load", this.onLoad, true);
+    window.addEventListener("resize", this.onResize, true);
   },
   methods: {
     //监听三维交互的返回事件
