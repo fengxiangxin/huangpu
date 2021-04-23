@@ -423,10 +423,13 @@ export default {
     shooting() {
       console.log(123);
       if (this.zhongdian) {
+        // 服务器1
         // __g.infoTree.hide("988B47564FF230961D079D871E3DB86C");
+        // 服务器2
         __g.infoTree.hide("171A4A1D43C8043F1CDEC696D7A44CF8");
         this.zhongdian = false;
       } else {
+        // 服务器1
         // __g.infoTree.show("988B47564FF230961D079D871E3DB86C");
         __g.infoTree.show("171A4A1D43C8043F1CDEC696D7A44CF8");
         this.zhongdian = true;
@@ -435,11 +438,15 @@ export default {
     // 展示路线
     showluxian() {
       if (this.zhuganxianShow) {
+        // 服务器1
         // __g.infoTree.hide("664CA76441EE56C2853F3CB8DC1E3D96");
+        // 服务器2
         __g.infoTree.hide("FE3522AD41F0E3C702D00FB7D6D12E82");
         this.zhuganxianShow = false;
       } else {
+        // 服务器1
         // __g.infoTree.show("664CA76441EE56C2853F3CB8DC1E3D96");
+        // 服务器2
         __g.infoTree.show("FE3522AD41F0E3C702D00FB7D6D12E82");
         this.zhuganxianShow = true;
       }
