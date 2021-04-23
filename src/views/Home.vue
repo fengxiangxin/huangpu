@@ -1139,6 +1139,7 @@ export default {
     font-size: 60px;
     color: #fff;
     line-height: 100px;
+    cursor: pointer;
     &:hover {
       color: #4f9efd;
     }
