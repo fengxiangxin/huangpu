@@ -22,7 +22,7 @@
         ></i>
       </el-tooltip>
       <transition name="fenxi">
-        <div class="footer">
+        <div v-if="isShowFenxi" class="footer">
           <div class="footer-con">
             <div
               v-for="index in 3"
@@ -58,6 +58,7 @@ export default {
   name: "Fun",
   data() {
     return {
+      isShowFenxi:false
       // pipeList: [
       //   {
       //     key: "类型",
