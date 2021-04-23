@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1079513",
+      "name": "娱乐",
+      "font_class": "yule",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "1272737",
+      "name": "商店",
+      "font_class": "store",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "1761457",
+      "name": "医院",
+      "font_class": "yiyuan",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "2199072",
+      "name": "学校",
+      "font_class": "xuexiao",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "8783191",
+      "name": "社区",
+      "font_class": "dibudaohanglan-",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
       "icon_id": "9960707",
       "name": "iconfont图标_单体化",
       "font_class": "iconfonttubiao_dantihua",

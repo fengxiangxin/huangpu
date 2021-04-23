@@ -1,10 +1,30 @@
 <template>
   <div class="showtag">
-    <div>
+    <div @click="isShow = !isShow" :class="isShow && 'active'">POI</div>
+    <div v-if="isShow">
       <el-checkbox-group @change="change" v-model="checkboxGroup1">
-        <el-checkbox-button v-for="city in cities" :label="city" :key="city">{{
-          city
-        }}</el-checkbox-button>
+        <el-checkbox-button
+          v-for="(city, index) in cities"
+          :label="city"
+          :key="index"
+        >
+          <!-- {{ city }} -->
+          <el-tooltip
+            class="item"
+            effect="dark"
+            :content="city"
+            placement="right"
+          >
+            <span v-if="index == 0" class="iconfont icon-store"></span>
+            <span
+              v-if="index == 1"
+              class="iconfont icon-dibudaohanglan-"
+            ></span>
+            <span v-if="index == 2" class="iconfont icon-xuexiao"></span>
+            <span v-if="index == 3" class="iconfont icon-yiyuan"></span>
+            <span v-if="index == 4" class="iconfont icon-yule"></span>
+          </el-tooltip>
+        </el-checkbox-button>
       </el-checkbox-group>
     </div>
   </div>
@@ -31,6 +51,7 @@ export default {
       poi3IDs: [],
       poi4IDs: [],
       poi5IDs: [],
+      isShow: false,
     };
   },
   computed: {},
@@ -361,12 +382,32 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.iconfont {
+  width: 100%;
+  height: 100%;
+  font-size: 70px;
+}
 .showtag {
   position: absolute;
   top: 300px;
   left: 1800px;
   width: 100px;
   height: 1000px;
+
+  > div:first-of-type {
+    background: rgba(2, 15, 43, 0.7);
+    font-size: 70px;
+    color: #fff;
+    text-align: center;
+    width: 150px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    user-select: none;
+    &.active {
+      background: rgba(2, 15, 43, 0.911);
+      color: aqua;
+    }
+  }
 
   .el-checkbox-group {
     width: 100%;
@@ -388,7 +429,7 @@ export default {
   color: #fff;
   border: none;
   display: block;
-  width: 200px !important;
+  width: 150px !important;
   height: 100px !important;
 }
 /deep/ .el-checkbox-button:first-child .el-checkbox-button__inner {
