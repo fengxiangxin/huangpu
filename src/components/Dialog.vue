@@ -6,7 +6,7 @@
     </div>
     <div>
       <div class="rainpipe-con">
-        <div v-for="(item, index) in pipeList" :key="index">
+        <div v-for="(item, index) in attrList" :key="index">
           <span>{{ item.key }}</span>
           <span>{{ item.value }}</span>
         </div>

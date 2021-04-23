@@ -1,7 +1,12 @@
 <template>
   <div class="fun">
-    <!-- <PlayVideo v-if="$store.state.isPlayVideo" /> -->
-    <Dialog />
+    <!-- Dialog使用示例 -->
+    <Dialog
+      v-if="isShow"
+      :attrList="pipeList"
+      :video="video"
+      @close="isShow = false"
+    />
   </div>
 </template>
 
@@ -11,7 +16,44 @@ import Dialog from "../../components/Dialog";
 export default {
   name: "Fun",
   data() {
-    return {};
+    return {
+      pipeList: [
+        {
+          key: "类型",
+          value: "雨水管线",
+        },
+        {
+          key: "管线材质",
+          value: "砼",
+        },
+        {
+          key: "管径",
+          value: "1200",
+        },
+        {
+          key: "道路名称",
+          value: "无名路",
+        },
+        {
+          key: "埋设方式",
+          value: "直埋",
+        },
+        {
+          key: "埋设日期",
+          value: "2017/09/21",
+        },
+        {
+          key: "权属单位代码",
+          value: "廉江市水务局",
+        },
+        {
+          key: "普查侧区编号",
+          value: "",
+        },
+      ],
+      video: require("../../assets/video/videoDemo.mp4"),
+      isShow: true,
+    };
   },
   methods: {
     async addTag() {
