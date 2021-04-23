@@ -2,29 +2,32 @@
   <div class="rainpipe">
     <div>
       <span>属性查询</span>
-      <span @click="$emit('close')">关闭</span>
+      <span @click="close">关闭</span>
     </div>
     <div>
       <div class="rainpipe-con">
-        <div v-for="(item, index) in attrList" :key="index">
-          <span>{{ item.key }}：</span>
-          <span>{{ item.value }}</span>
+        <div
+          v-for="(value, key, index) in $store.state.tagdata.data"
+          :key="index"
+        >
+          <span>{{ key }}：</span>
+          <span>{{ value }}</span>
         </div>
       </div>
       <div class="more">
         <!-- <span> 更多 </span> -->
         <img src="../assets/img/ip_more_bg.png" alt="" />
       </div>
-      <div class="video">
+      <div v-if="$store.state.tagdata.imgList.length > 0" class="video">
         <!-- <img v-if="img && !video" :src="img" alt="" /> -->
         <!-- <img src="../assets/img/44011200041320100007.c5579eeb.png" alt="">
         <img src="../assets/img/44011200041320100007.c5579eeb.png" alt="">
         <img src="../assets/img/44011200041320100007.c5579eeb.png" alt=""> -->
-        <div v-for="(item, index) in imgList" :key="index">
+        <div v-for="(item, index) in $store.state.tagdata.imgList" :key="index">
           <el-image
             style="width: 100%; height: 100%"
             :src="item"
-            :preview-src-list="imgList"
+            :preview-src-list="$store.state.tagdata.imgList"
           >
           </el-image>
         </div>
@@ -92,6 +95,9 @@ export default {
   },
   props: ["attrList", "imgList"],
   methods: {
+    close() {
+      this.$store.commit("tagdata", {});
+    },
     play() {
       if (this.isPaly === false) {
         this.$refs.video.play().then(() => {
@@ -107,11 +113,11 @@ export default {
 };
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .rainpipe {
   position: absolute;
   right: 27%;
-    top: 270px;
+  top: 270px;
   width: 1500px;
   font-size: 50px;
   color: #fff;
