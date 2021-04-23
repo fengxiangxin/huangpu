@@ -170,10 +170,10 @@ export default {
           __g.weather.setCloudDensity(0.8);
           break;
         case 3:
-          __g.weather.setRainParam(8, 800, 800);
+          __g.weather.setRainParam(80, 80, 80);
           break;
         case 4:
-          __g.weather.setSnowParam(800, 800,800);
+          __g.weather.setSnowParam(80, 80,80);
           break;
         default:
           break;
