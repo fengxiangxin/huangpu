@@ -8,12 +8,7 @@
         @click="updateActive(index)"
       >
         <!-- {{ item }} -->
-        <el-tooltip
-          class="item"
-          effect="dark"
-          :content="item"
-          placement="left"
-        >
+        <el-tooltip class="item" effect="dark" :content="item" placement="left">
           <i v-if="index === 0" class="iconfont icon-hongshui"></i>
           <i v-if="index === 1" class="iconfont icon-iconishijue"></i>
           <i v-if="index === 2" class="iconfont icon-poumianfenxi"></i>
@@ -22,6 +17,10 @@
             class="iconfont icon-iconfonttubiao_tianjixian"
           ></i>
           <i v-if="index === 4" class="iconfont icon-relitu"></i>
+          <i
+            v-if="index === 5"
+            class="iconfont icon-iconfonttubiao_dantihua"
+          ></i>
         </el-tooltip>
       </div>
     </div>
@@ -49,7 +48,14 @@ export default {
   name: "Footer",
   data() {
     return {
-      list: ["水淹分析", "视域分析", "剖面分析", "天际线分析", "热力图"],
+      list: [
+        "水淹分析",
+        "视域分析",
+        "剖面分析",
+        "天际线分析",
+        "热力图",
+        "单体查询",
+      ],
       active: -1,
       value: 0,
     };
@@ -122,8 +128,8 @@ export default {
       await __g.tag.clear();
       await __g.heatmap.clear();
 
-  /* [61148.578125, 255377.953125, 51.6875] */
-  /* [72798.296875, 246008.078125, 113.31624603271484] */
+      /* [61148.578125, 255377.953125, 51.6875] */
+      /* [72798.296875, 246008.078125, 113.31624603271484] */
       let bbox = [61148, 246008, -100, 72798, 255377, 100];
       let range = [0, 100];
       let data = [];
@@ -168,6 +174,8 @@ export default {
         case 4:
           this.heatMap();
           break;
+        case 4:
+          break;
         default:
           break;
       }
@@ -198,7 +206,7 @@ export default {
 .footer {
   position: absolute;
   z-index: 10;
-  top: -360px;
+  top: -435px;
   left: 0;
   // transform: translateX(-50%);
   // width: 2000px;
@@ -225,7 +233,7 @@ export default {
   position: absolute;
   z-index: 10;
   // top: -1000px;
-  height: 700px;
+  height: 850px;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
