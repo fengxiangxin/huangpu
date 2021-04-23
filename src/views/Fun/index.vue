@@ -7,63 +7,63 @@
       :imgList="imgList"
       @close="isShow = false"
     /> -->
-    <VideoDialog :video="video" />
+    <!-- <VideoDialog :video="video" /> -->
   </div>
 </template>
 
 <script>
-import Dialog from "../../components/Dialog";
-import VideoDialog from "../../components/VideoDialog";
+// import Dialog from "../../components/Dialog";
+// import VideoDialog from "../../components/VideoDialog";
 export default {
   name: "Fun",
   data() {
     return {
-      pipeList: [
-        {
-          key: "类型",
-          value: "雨水管线",
-        },
-        {
-          key: "管线材质",
-          value: "砼",
-        },
-        {
-          key: "管径",
-          value: "1200",
-        },
-        {
-          key: "道路名称",
-          value: "无名路",
-        },
-        {
-          key: "埋设方式",
-          value: "直埋",
-        },
-        {
-          key: "埋设日期",
-          value: "2017/09/21",
-        },
-        {
-          key: "权属单位代码",
-          value: "廉江市水务局",
-        },
-        {
-          key: "普查侧区编号",
-          value: "",
-        },
-      ],
+      // pipeList: [
+      //   {
+      //     key: "类型",
+      //     value: "雨水管线",
+      //   },
+      //   {
+      //     key: "管线材质",
+      //     value: "砼",
+      //   },
+      //   {
+      //     key: "管径",
+      //     value: "1200",
+      //   },
+      //   {
+      //     key: "道路名称",
+      //     value: "无名路",
+      //   },
+      //   {
+      //     key: "埋设方式",
+      //     value: "直埋",
+      //   },
+      //   {
+      //     key: "埋设日期",
+      //     value: "2017/09/21",
+      //   },
+      //   {
+      //     key: "权属单位代码",
+      //     value: "廉江市水务局",
+      //   },
+      //   {
+      //     key: "普查侧区编号",
+      //     value: "",
+      //   },
+      // ],
 
-      video: require("../../assets/video/videoDemo.mp4"),
-      isShow: true,
-      imgList: [
-        require("../../assets/img/44011261001320611200.d5c057f3.png"),
-        require("../../assets/img/44011261001320611200.d5c057f3.png"),
-        require("../../assets/img/44011262001320620043.706e1c59.png"),
-      ],
+      // video: require("../../assets/video/videoDemo.mp4"),
+      // isShow: true,
+      // imgList: [
+      //   require("../../assets/img/44011261001320611200.d5c057f3.png"),
+      //   require("../../assets/img/44011261001320611200.d5c057f3.png"),
+      //   require("../../assets/img/44011262001320620043.706e1c59.png"),
+      // ],
     };
   },
   methods: {
-    async addTag() {
+    // async addTag() {
       // __g.tag.clear();
       // let o = new TagData("tag1");
       // o.coordinate = [56867.73828125, 227770.65625, 8.577655792236328];
@@ -95,7 +95,7 @@ export default {
       // await __g.ctag.clear();
       // await __g.ctag.add(o);
       // __g.ctag.focus(o.id, 50, 0.2);
-    },
+    // },
   },
   mounted() {
     // this.addTag();
@@ -105,8 +105,8 @@ export default {
   },
   components: {
     // PlayVideo,
-    Dialog,
-    VideoDialog,
+    // Dialog,
+    // VideoDialog,
   },
 };
 </script>
