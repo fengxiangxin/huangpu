@@ -118,6 +118,7 @@ export default {
       } else {
         __g.misc.setMousePickMask(0);
         this.$store.commit("goBuildingAlone", false);
+        this.$store.commit("BuildingAloneData", {});
       }
     },
     updateActive(index) {
@@ -215,7 +216,9 @@ export default {
       this.$store.state.statusPlaneClip = false;
       __g.tools.stopPlaneClip();
       __g.heatmap.clear();
-
+      __g.misc.setMousePickMask(0);
+      this.$store.commit("goBuildingAlone", false);
+      this.$store.commit("BuildingAloneData", {});
       switch (newVal) {
         case 0:
           // this.$router.push("/shuiyan");
