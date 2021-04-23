@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "9833320",
+      "name": "预警",
+      "font_class": "yujing",
+      "unicode": "e918",
+      "unicode_decimal": 59672
+    },
+    {
       "icon_id": "1079513",
       "name": "娱乐",
       "font_class": "yule",

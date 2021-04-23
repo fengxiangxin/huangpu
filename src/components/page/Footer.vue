@@ -21,6 +21,7 @@
             v-if="index === 5"
             class="iconfont icon-iconfonttubiao_dantihua"
           ></i>
+          <i v-if="index === 6" class="iconfont icon-yujing"></i>
         </el-tooltip>
       </div>
     </div>
@@ -57,6 +58,7 @@ export default {
         "天际线分析",
         "热力图",
         "单体查询",
+        "预警信息",
       ],
       active: -1,
       value: 0,
@@ -236,6 +238,9 @@ export default {
         case 5:
           this.buildingAlone();
           break;
+        case 6:
+          // this.buildingAlone();
+          break;
         default:
           break;
       }
@@ -266,7 +271,7 @@ export default {
 .footer {
   position: absolute;
   z-index: 10;
-  top: -510px;
+  top: -580px;
   left: 0;
   // transform: translateX(-50%);
   width: 2000px;
@@ -293,7 +298,7 @@ export default {
   position: absolute;
   z-index: 10;
   // top: -1000px;
-  height: 850px;
+  height: 990px;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
