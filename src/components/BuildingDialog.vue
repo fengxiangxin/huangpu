@@ -1,7 +1,7 @@
 <template>
   <div class="rainpipe">
     <div>
-      <span>属性查询</span>
+      <span>建筑详情</span>
       <span @click="close">关闭</span>
     </div>
     <div>

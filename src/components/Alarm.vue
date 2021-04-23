@@ -1,43 +1,29 @@
 <template>
   <div class="rainpipe">
     <div>
-      <span>属性查询</span>
-      <span @click="close">关闭</span>
+      <span>报警信息</span>
+      <span @click="$emit('close')">关闭</span>
     </div>
     <div>
       <div class="rainpipe-con">
-        <div
-          v-for="(value, key, index) in $store.state.tagdata.data"
-          :key="index"
-        >
-          <span>{{ key }}：</span>
-          <span>{{ value }}</span>
+        <div v-for="(item, index) in attrList" :key="index">
+          <span>{{ item.key }}：</span>
+          <span>{{ item.value }}</span>
         </div>
       </div>
       <div class="more">
-        <!-- <span> 更多 </span> -->
         <img src="../assets/img/ip_more_bg.png" alt="" />
       </div>
-      <div v-if="$store.state.tagdata.imgList.length > 0" class="video">
-        <!-- <img v-if="img && !video" :src="img" alt="" /> -->
-        <!-- <img src="../assets/img/44011200041320100007.c5579eeb.png" alt="">
-        <img src="../assets/img/44011200041320100007.c5579eeb.png" alt="">
-        <img src="../assets/img/44011200041320100007.c5579eeb.png" alt=""> -->
-        <div v-for="(item, index) in $store.state.tagdata.imgList" :key="index">
+      <!-- <div class="video">
+        <div v-for="(item, index) in imgList" :key="index">
           <el-image
             style="width: 100%; height: 100%"
             :src="item"
-            :preview-src-list="$store.state.tagdata.imgList"
+            :preview-src-list="imgList"
           >
           </el-image>
         </div>
-        <!-- <video
-          v-if="video && !img"
-          @click="play"
-          ref="video"
-          :src="video"
-        ></video> -->
-      </div>
+      </div> -->
     </div>
     <!-- <div></div> -->
   </div>
@@ -53,6 +39,36 @@ export default {
   name: "Dialog",
   data() {
     return {
+      attrList: [
+        {
+          key: "",
+          value: "",
+        },
+        {
+          key: "",
+          value: "",
+        },
+        {
+          key: "",
+          value: "",
+        },
+        {
+          key: "",
+          value: "",
+        },
+        {
+          key: "",
+          value: "",
+        },
+        {
+          key: "",
+          value: "",
+        },
+        {
+          key: "",
+          value: "",
+        },
+      ],
       // pipeList: [
       //   {
       //     key: "类型",
@@ -93,11 +109,8 @@ export default {
       // url: require("../assets/img/44011200041320100013.648f09fa.png"),
     };
   },
-  props: ["attrList", "imgList"],
+  // props: ["attrList", "imgList"],
   methods: {
-    close() {
-      this.$store.commit("tagdata", {});
-    },
     play() {
       if (this.isPaly === false) {
         this.$refs.video.play().then(() => {
@@ -113,7 +126,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang='less' scoped>
 .rainpipe {
   position: absolute;
   right: 27%;
@@ -143,7 +156,7 @@ export default {
     // height: 274px;
     width: 99%;
     padding: 50px 0;
-    background-color: rgba(2, 15, 43, 0.7);
+    background: rgba(0, 0, 0, 0.57);
     margin: 0 auto;
 
     .more {
@@ -186,11 +199,10 @@ export default {
     justify-content: space-around;
     opacity: 0.8;
     margin: 10px 0;
-    > span:last-of-type {
-      width: 30%;
+    > span {
+      width: 40%;
     }
     > span:first-of-type {
-      width: 65%;
       text-align: right;
     }
   }
