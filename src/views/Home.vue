@@ -226,7 +226,7 @@
                   </div>
                 </div>
               </div>
-              <div @click="addPolygonAndTag" class="sub-title">宏观经济</div>
+              <div class="sub-title">宏观经济</div>
               <el-carousel
                 :interval="5000"
                 arrow="always"
