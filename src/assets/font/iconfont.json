@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3825809",
+      "name": "3D产品动画演示",
+      "font_class": "Dchanpindonghuayanshi",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
       "icon_id": "2959066",
       "name": "热力图",
       "font_class": "relitu",

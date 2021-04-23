@@ -122,7 +122,9 @@ export default {
       await __g.tag.clear();
       await __g.heatmap.clear();
 
-      let bbox = [1898, 155499, -100, 126413, 337064, 100];
+  /* [61148.578125, 255377.953125, 51.6875] */
+  /* [72798.296875, 246008.078125, 113.31624603271484] */
+      let bbox = [61148, 246008, -100, 72798, 255377, 100];
       let range = [0, 100];
       let data = [];
       let tagData = [];
@@ -131,7 +133,7 @@ export default {
         let y = getRandNumBetween(bbox[1], bbox[4]); //minY ~ maxY
         let z = 0;
         let coord = [x, y, z]; //热力点的坐标
-        let radius = Math.random() * 800; //热力点影像半径范围
+        let radius = Math.random() * 550; //热力点影像半径范围
         let heatValue = Math.random() * 100; //热力值
         let o = new HeatMapPointData(i, coord, radius, heatValue);
         data.push(o);
