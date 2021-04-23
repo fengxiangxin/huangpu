@@ -52,6 +52,7 @@ export default {
     updateActive(index) {
       if (this.active === index) {
         this.active = -1;
+        __g.camera.stopAnimation();
         return;
       }
       this.active = index;
