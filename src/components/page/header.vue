@@ -13,7 +13,7 @@
         <div class="left-flex">
           <div class="btn" @click="navTo('JointConstruction')">智慧党建</div>
           <div class="btn" @click="navTo('fun')">令行禁止</div>
-          <div class="btn">有呼必应</div>
+          <div class="btn" @click="navTo('wadong')">有呼必应</div>
         </div>
       </div>
       <div class="right-layout">
@@ -108,7 +108,7 @@ export default {
 };
 </script>
 
-<style lang='less'>
+<style lang="less">
 .time_weather {
   color: #fff;
   position: absolute;
