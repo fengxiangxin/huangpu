@@ -213,9 +213,10 @@
         <div>
           <Title title="城市体征"></Title>
           <div class="city">
+            <div @click.stop="showluxian" class="button">开启/关闭主路线</div>
             <div class="right-back"></div>
             <div class="city-layout">
-              <div class="sub-title">重点监测</div>
+              <div @click.stop="shooting" class="sub-title">重点监测</div>
               <div class="list">
                 <div class="item" v-for="(item, index) in sjList" :key="index">
                   <img :src="item.img" style="width: 127px; height: 127px" />
@@ -310,6 +311,8 @@ export default {
   },
   data() {
     return {
+      zhuganxianShow: false,
+      zhongdian: false,
       lingList: [
         { name: "专项工作" },
         { name: "上级交办" },
@@ -355,7 +358,7 @@ export default {
     // this.getdata()
   },
   mounted() {
-    this.$nextTick(function () {
+    this.$nextTick(function() {
       console.log(this.$echarts);
       // this.echartsBarInit()
       this.echartsPieInit();
@@ -364,6 +367,28 @@ export default {
     });
   },
   methods: {
+    // 摄像头
+
+    shooting() {
+      console.log(123);
+      if (this.zhongdian) {
+        __g.infoTree.hide("988B47564FF230961D079D871E3DB86C");
+        this.zhongdian = false;
+      } else {
+        __g.infoTree.show("988B47564FF230961D079D871E3DB86C");
+        this.zhongdian = true;
+      }
+    },
+    // 展示路线
+    showluxian() {
+      if (this.zhuganxianShow) {
+        __g.infoTree.hide("664CA76441EE56C2853F3CB8DC1E3D96");
+        this.zhuganxianShow = false;
+      } else {
+        __g.infoTree.show("664CA76441EE56C2853F3CB8DC1E3D96");
+        this.zhuganxianShow = true;
+      }
+    },
     zInit() {
       var chartDom = document.getElementById("bar");
       var myChart = this.$echarts.init(chartDom);
@@ -1020,6 +1045,21 @@ export default {
     bottom: 0;
 
     background: rgba(2, 15, 43, 0.7);
+  }
+  .button {
+    position: absolute;
+    top: -100px;
+    right: 0;
+    z-index: 100;
+    width: 500px;
+    height: 100px;
+    font-size: 60px;
+    color: #fff;
+    line-height: 100px;
+    &:hover {
+      color: #4f9efd;
+    }
+    background: rgba(0, 0, 0, 0.068);
   }
   .city {
     padding-top: 60px;

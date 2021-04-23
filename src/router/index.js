@@ -1,38 +1,42 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import JointConstruction from '../views/JointConstruction'
-import Fun from '../views/Fun'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import JointConstruction from "../views/JointConstruction";
+import Fun from "../views/Fun";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 //获取原型对象上的push函数
-const originalPush = VueRouter.prototype.push
+const originalPush = VueRouter.prototype.push;
 //修改原型对象中的push方法
 VueRouter.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
+  return originalPush.call(this, location).catch((err) => err);
+};
 
-
-
-const routes = [{
-    path: '/',
-    name: 'Home',
-    component: Home
+const routes = [
+  {
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/jointconstruction',
-    name: 'JointConstruction',
-    component: JointConstruction
+    path: "/jointconstruction",
+    name: "JointConstruction",
+    component: JointConstruction,
   },
   {
-    path: '/fun',
-    name: 'Fun',
-    component: Fun
+    path: "/fun",
+    name: "Fun",
+    component: Fun,
   },
-]
+  {
+    path: "/wadong",
+    name: "Wadong",
+    component: () => import("../views/wadongmax"),
+  },
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
