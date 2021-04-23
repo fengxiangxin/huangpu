@@ -59,6 +59,10 @@ export default {
     //监听三维交互的返回事件
     onEvent(e) {
       console.log(e);
+      if (e.Id == "E4021A414121DCB8ACF30D85A2C358BF") {
+        this.$store.commit("showAlarm", true);
+        return;
+      }
       if (this.$store.state.statusPlaneClip) {
         __g.tools.startPlaneClip(e.MouseClickPoint, [0, 0, 0]);
         this.$store.state.statusPlaneClip = false;
@@ -83,11 +87,7 @@ export default {
         this.$store.commit("BuildingAloneData", BuildingAloneData);
         console.log(BuildingAloneData, 9887877868);
       }
-      if (
-        e.Type === "tag" &&
-        e.Id.slice(0, 3) !== "zxd" &&
-        !e.Id == "E4021A414121DCB8ACF30D85A2C358BF"
-      ) {
+      if (e.Type === "tag" && e.Id.slice(0, 3) !== "zxd") {
         let newtagdata = this.tagdata.find((item) => {
           return item.id == e.Id;
         });
@@ -121,9 +121,7 @@ export default {
         //   }
         // }
       }
-      if (e.Id == "E4021A414121DCB8ACF30D85A2C358BF") {
-        this.$store.commit("showAlarm", true);
-      }
+
       // if(e.Type === "tag")
     },
 
