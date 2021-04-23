@@ -187,10 +187,10 @@ export default {
     opacity: 0.8;
     margin: 10px 0;
     > span:last-of-type {
-      width: 30%;
+      width: 68%;
     }
     > span:first-of-type {
-      width: 65%;
+      width: 30%;
       text-align: right;
     }
   }

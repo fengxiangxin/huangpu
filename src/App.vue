@@ -138,7 +138,7 @@ export default {
         var __fn = fn;
 
         var ws = new WebSocket(url);
-        ws.onopen = function() {
+        ws.onopen = function () {
           this.send(
             JSON.stringify({
               command: 6,
@@ -146,12 +146,12 @@ export default {
             })
           );
         };
-        ws.onmessage = function(event) {
+        ws.onmessage = function (event) {
           var o = JSON.parse(event.data);
           __fn(o);
         };
-        ws.onclose = function() {};
-        ws.onerror = function(event) {};
+        ws.onclose = function () {};
+        ws.onerror = function (event) {};
       } else {
         this.log("Not Support WebSocket!");
       }
@@ -160,7 +160,7 @@ export default {
       // console.log("222");
       let _this = this;
 
-      getMatchServerConfig(HostConfig.MatchServer, function(o) {
+      getMatchServerConfig(HostConfig.MatchServer, function (o) {
         if (o.result == 0) {
           if (withPlayer) {
             console.log("player");
@@ -204,6 +204,10 @@ export default {
 };
 </script>
 <style lang="less">
+/* 特殊方法控制elementui中使用js控制的组件样式，不能使用scoped和deep */
+.el-image-viewer__img {
+  width: 50%;
+}
 .container {
   position: absolute;
 }
