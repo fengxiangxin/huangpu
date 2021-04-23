@@ -9,6 +9,7 @@ export default new Vuex.Store({
     isPlayVideo: false,
     showVideoDialog: false,
     tagdata: {},
+    sheciangIsShow: false,
   },
   mutations: {
     showVideoDialog(state, flag) {

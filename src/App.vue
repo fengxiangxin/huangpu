@@ -57,7 +57,7 @@ export default {
         __g.tools.startPlaneClip(e.MouseClickPoint, [0, 0, 0]);
         this.$store.state.statusPlaneClip = false;
       }
-      if (e.Type == "shapefilelayer" && e.featureId) {
+      if (e.Type == "shapefilelayer" && !e.Fields.建筑物高度) {
         this.$store.commit("showVideoDialog", true);
       }
       if (e.Type === "tag") {
