@@ -313,4 +313,7 @@ export default {
 /deep/.el-slider.is-vertical .el-slider__marks-text {
   left: 70px;
 }
+/deep/.el-slider__stop {
+  background-color: transparent;
+}
 </style>
