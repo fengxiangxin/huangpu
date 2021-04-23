@@ -2,14 +2,19 @@
   <div class="rainpipe">
     <div>
       <span>视频播放</span>
-      <span @click="$emit('close')">关闭</span>
+      <span @click="close">关闭</span>
     </div>
     <div>
       <div class="more">
         <img src="../assets/img/ip_more_bg.png" alt="" />
       </div>
       <div class="video">
-        <video @click="play" ref="video" :src="video"></video>
+        <video
+          autoplay
+          @click="play"
+          ref="video"
+          src="../assets/video/videoDemo.mp4"
+        ></video>
       </div>
     </div>
   </div>
@@ -25,6 +30,9 @@ export default {
   },
   props: ["video"],
   methods: {
+    close() {
+      this.$store.commit("showVideoDialog", false);
+    },
     play() {
       if (this.isPaly === false) {
         this.$refs.video.play().then(() => {
@@ -40,7 +48,7 @@ export default {
 };
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .rainpipe {
   position: absolute;
   right: 27%;

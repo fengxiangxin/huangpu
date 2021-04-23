@@ -301,7 +301,8 @@
     </div>
     <!-- Dialog -->
     <!-- <Dialog /> -->
-    <!-- <VideoDialog /> -->
+    <VideoDialog v-if="showVideoDialog" />
+    <AddTag />
     <div class="fenxi">
       <i
         :class="isShowFenxi && 'active'"
@@ -320,7 +321,8 @@ import Title from "../components/comJoint/Title";
 import Dialog from "../components/Dialog";
 import VideoDialog from "../components/VideoDialog";
 import Footer from "../components/page/Footer";
-
+import AddTag from "./tag";
+import { mapState } from "vuex";
 export default {
   name: "Home",
   components: {
@@ -328,6 +330,7 @@ export default {
     Dialog,
     VideoDialog,
     Footer,
+    AddTag,
   },
   data() {
     return {
@@ -374,6 +377,11 @@ export default {
       ],
       isShowFenxi: false,
     };
+  },
+  computed: {
+    ...mapState({
+      showVideoDialog: (state) => state.showVideoDialog,
+    }),
   },
   created() {
     // this.getdata()

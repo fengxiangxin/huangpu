@@ -43,6 +43,9 @@ export default {
         __g.tools.startPlaneClip(e.MouseClickPoint, [0, 0, 0]);
         this.$store.state.statusPlaneClip = false;
       }
+      if (e.Type == "shapefilelayer" && e.featureId) {
+        this.$store.commit("showVideoDialog", true);
+      }
       if (e.Type === "tag") {
         // if (e.Id === "tag1") {
         //   if (!this.$store.state.isPlayVideo) {
