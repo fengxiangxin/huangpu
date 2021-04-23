@@ -57,19 +57,25 @@ export default {
       this.active = index;
       switch (index) {
         case 1:
+          __g.camera.playAnimation(0);
           break;
         case 2:
+          __g.camera.playAnimation(1);
           break;
         case 3:
+          __g.camera.playAnimation(2);
           break;
         default:
+          __g.camera.stopAnimation();
           break;
       }
     },
   },
   watch: {},
   mounted() {},
-  beforeDestroy() {},
+  beforeDestroy() {
+    __g.camera.stopAnimation();
+  },
   components: {},
 };
 </script>
