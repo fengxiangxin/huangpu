@@ -2,7 +2,7 @@
   <div class="rainpipe">
     <div>
       <span>属性查询</span>
-      <span>关闭</span>
+      <span @click="$emit('close')">关闭</span>
     </div>
     <div>
       <div class="rainpipe-con">
@@ -21,7 +21,12 @@
           src="../assets/img/44011200041320100007.c5579eeb.png"
           alt=""
         />
-        <video v-else src="../assets/video/videoDemo.mp4"></video>
+        <video
+          v-else
+          @click="play"
+          ref="video"
+          src="../assets/video/videoDemo.mp4"
+        ></video>
       </div>
     </div>
     <!-- <div></div> -->
@@ -30,7 +35,7 @@
 
 <script>
 export default {
-  name: "RainPipe",
+  name: "Dialog",
   data() {
     return {
       pipeList: [
@@ -68,9 +73,23 @@ export default {
         },
       ],
       isShowVideo: false,
+      isPaly: false,
     };
   },
   props: ["attrList"],
+  methods: {
+    play() {
+      if (this.isPaly === false) {
+        this.$refs.video.play().then(() => {
+          this.isPaly = true;
+        });
+      }
+      if (this.isPaly) {
+        this.$refs.video.pause();
+        this.isPaly = false;
+      }
+    },
+  },
 };
 </script>
 
