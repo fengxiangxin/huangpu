@@ -99,8 +99,8 @@ export default {
 <style lang='less' scoped>
 .rainpipe {
   position: absolute;
-  left: 63%;
-  top: 400px;
+  left: 67%;
+  top: 300px;
   width: 2000px;
   font-size: 50px;
   color: #fff;

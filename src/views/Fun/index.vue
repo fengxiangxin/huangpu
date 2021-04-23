@@ -55,7 +55,7 @@ export default {
     // __g.tag.delete(["tag1"]);
   },
   components: {
-    PlayVideo,
+    // PlayVideo,
     Dialog,
   },
 };
