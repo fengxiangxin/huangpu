@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import PlayVideo from "../../components/comFun/PlayVideo";
+// import PlayVideo from "../../components/comFun/PlayVideo";
 import Dialog from "../../components/Dialog";
 export default {
   name: "Fun",
@@ -15,25 +15,24 @@ export default {
   },
   methods: {
     async addTag() {
-      __g.tag.clear();
-      let o = new TagData("tag1");
-      o.coordinate = [56867.73828125, 227770.65625, 8.577655792236328];
-      o.imagePath = "";
-      // o.url = "C:Users\fourzeroDesktophuangpuScreensrcassetshtml\video.html";
-      o.url = "";
-      o.imageSize = [58, 58];
-      o.text = "路口监控";
-      o.range = [1, 8000.0];
-      o.textRange = 30000;
-      o.showLine = true;
-      o.textColor = Color.Black;
-      o.textBackgroundColor = Color.White;
-      o.hoverImagePath = "";
-      await __g.tag.add(o, (re) => {
-        console.log(re);
-      });
-      __g.tag.focus(o.id, 200, 0);
-
+      // __g.tag.clear();
+      // let o = new TagData("tag1");
+      // o.coordinate = [56867.73828125, 227770.65625, 8.577655792236328];
+      // o.imagePath = "";
+      // // o.url = "C:Users\fourzeroDesktophuangpuScreensrcassetshtml\video.html";
+      // o.url = "";
+      // o.imageSize = [58, 58];
+      // o.text = "路口监控";
+      // o.range = [1, 8000.0];
+      // o.textRange = 30000;
+      // o.showLine = true;
+      // o.textColor = Color.Black;
+      // o.textBackgroundColor = Color.White;
+      // o.hoverImagePath = "";
+      // await __g.tag.add(o, (re) => {
+      //   console.log(re);
+      // });
+      // __g.tag.focus(o.id, 200, 0);
       // let id = "ct1";
       // let coord = [56867.73828125, 227770.65625, 8.577655792236328];
       // /* 使用相对路径出现错误 */
@@ -53,7 +52,7 @@ export default {
     // this.addTag();
   },
   beforeDestroy() {
-    __g.tag.delete(["tag1"]);
+    // __g.tag.delete(["tag1"]);
   },
   components: {
     PlayVideo,

@@ -16,16 +16,12 @@
         <img src="../assets/img/ip_more_bg.png" alt="" />
       </div>
       <div class="video">
-        <img
-          v-if="isShowVideo"
-          src="../assets/img/44011200041320100007.c5579eeb.png"
-          alt=""
-        />
+        <img v-if="img && !video" :src="img" alt="" />
         <video
-          v-else
+          v-if="video && !img"
           @click="play"
           ref="video"
-          src="../assets/video/videoDemo.mp4"
+          :src="video"
         ></video>
       </div>
     </div>
@@ -39,6 +35,7 @@
  * 点击关闭可以触发自定义时间‘close’
  * 传入参数img显示图片
  * 传入参数video显示视频
+ * img和video只能传入一个
  */
 export default {
   name: "Dialog",
@@ -139,6 +136,7 @@ export default {
       > img {
         position: absolute;
         bottom: 0;
+        width: 100%;
       }
       > span {
         position: absolute;

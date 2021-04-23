@@ -44,13 +44,13 @@ export default {
         this.$store.state.statusPlaneClip = false;
       }
       if (e.Type === "tag") {
-        if (e.Id === "tag1") {
-          if (!this.$store.state.isPlayVideo) {
-            this.$store.state.isPlayVideo = true;
-          } else {
-            this.$store.state.isPlayVideo = false;
-          }
-        }
+        // if (e.Id === "tag1") {
+        //   if (!this.$store.state.isPlayVideo) {
+        //     this.$store.state.isPlayVideo = true;
+        //   } else {
+        //     this.$store.state.isPlayVideo = false;
+        //   }
+        // }
       }
     },
 
