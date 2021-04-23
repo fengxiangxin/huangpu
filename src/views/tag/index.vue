@@ -144,7 +144,7 @@ export default {
               // __g.tag.add(o);
               //
               o.coordinate = coord;
-              o.imagePath = "http://10.140.241.144:8080/mock/社区.png";
+              o.imagePath = "http://10.197.153.176:8082/mock/社区.png";
               o.url = "";
               o.imageSize = [28, 28];
               o.text = item.name;
@@ -153,7 +153,7 @@ export default {
               o.showLine = true;
               o.textColor = Color.Black;
               o.textBackgroundColor = Color.White;
-              o.hoverImagePath = "http://10.140.241.144:8080/mock/社区2.png";
+              o.hoverImagePath = "http://10.197.153.176:8082/mock/社区2.png";
               //   __g.tag.add(o);
               pointPoiArr.push(o);
 
@@ -189,7 +189,7 @@ export default {
               let o = new TagData(item.id);
               _this.poi3IDs.push(item.id);
               o.coordinate = coord;
-              o.imagePath = "http://10.140.241.144:8080/mock/学校.png";
+              o.imagePath = "http://10.197.153.176:8082/mock/学校.png";
               o.url = "";
               o.imageSize = [28, 28];
               o.text = item.name;
@@ -199,7 +199,7 @@ export default {
 
               o.textColor = Color.Black;
               o.textBackgroundColor = Color.White;
-              o.hoverImagePath = "http://10.140.241.144:8080/mock/学校2.png";
+              o.hoverImagePath = "http://10.197.153.176:8082/mock/学校2.png";
               o.UserData = "item";
               //   __g.tag.add(o);
               pointPoiArr.push(o);
@@ -239,7 +239,7 @@ export default {
               let o = new TagData(item.id);
               _this.poi4IDs.push(item.id);
               o.coordinate = coord;
-              o.imagePath = "http://10.140.241.144:8080/mock/医院.png";
+              o.imagePath = "http://10.197.153.176:8082/mock/医院.png";
               o.url = "";
               o.imageSize = [28, 28];
               o.text = item.name;
@@ -248,7 +248,7 @@ export default {
               o.showLine = true;
               o.textColor = Color.Black;
               o.textBackgroundColor = Color.White;
-              o.hoverImagePath = "http://10.140.241.144:8080/mock/医院2.png";
+              o.hoverImagePath = "http://10.197.153.176:8082/mock/医院2.png";
               //   __g.tag.add(o);
               pointPoiArr.push(o);
 
@@ -287,7 +287,7 @@ export default {
               let o = new TagData(item.id);
               _this.poi5IDs.push(item.id);
               o.coordinate = coord;
-              o.imagePath = "http://10.140.241.144:8080/mock/娱乐.png";
+              o.imagePath = "http://10.197.153.176:8082/mock/娱乐.png";
               o.url = "";
               o.imageSize = [28, 28];
               o.text = item.name;
@@ -296,7 +296,7 @@ export default {
               o.showLine = true;
               o.textColor = Color.Black;
               o.textBackgroundColor = Color.White;
-              o.hoverImagePath = "http://10.140.241.144:8080/mock/娱乐2.png";
+              o.hoverImagePath = "http://10.197.153.176:8082/mock/娱乐2.png";
               //   __g.tag.add(o);
               pointPoiArr.push(o);
 

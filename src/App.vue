@@ -141,7 +141,7 @@ export default {
     getMatchServerConfig(host, fn, callbackIndex) {
       if ("WebSocket" in window) {
         var url = `ws://${host}`;
-        var __fn = fn;
+        let __fn = fn;
 
         var ws = new WebSocket(url);
         ws.onopen = function() {
@@ -166,21 +166,23 @@ export default {
       // console.log("222");
       let _this = this;
 
-      getMatchServerConfig(HostConfig.MatchServer, function(o) {
+      this.getMatchServerConfig(HostConfig.MatchServer, function(o) {
         if (o.result == 0) {
           if (withPlayer) {
-            console.log("player");
-            new AirCityPlayer(o.instanceId, "player", HostConfig.Token, true);
+            let acp = new AirCityPlayer(
+              o.instanceId,
+              "player",
+              HostConfig.Token,
+              true
+            );
+            // bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
           }
           if (withInterface) {
             var ace = new AirCityAPI(o.instanceId, _this.onReady, _this.log);
             ace.setEventCallback(_this.onEvent);
-
-            //更新页面显示
           }
         } else {
           if (withPlayer) {
-            console.log("player2");
             let host = HostConfig.instanceId
               ? HostConfig.instanceId
               : HostConfig.AirCityPlayer;
@@ -194,6 +196,7 @@ export default {
             //AirCityPlayer对象增加方法enableAutoAdjustResolution，可以设置启用或关闭视频窗口缩放时
             //自动调整分辨率的功能。这个功能默认是启用的，如果想关闭此功能，可以在初始化的时候调用enableAutoAdjustResolution(false)
             //acp.enableAutoAdjustResolution(false);
+            // bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
           }
           if (withInterface) {
             let host = HostConfig.instanceId

@@ -10,7 +10,7 @@ module.exports = {
       },
     },
   },
-  publicPath: "./",
+  //   publicPath: "./",
 
   css: {
     sourceMap: true, // 开启 CSS source maps

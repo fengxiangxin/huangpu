@@ -324,10 +324,11 @@ function onEvent(data) {
     if (data.eventtype == 'LeftMouseButtonClick') {
         if (data.Type == 'TileLayer') {
             __currentTileLayerActor = {
-                'id': data.ID,
+                'id': data.ID || data.Id,
                 'objectId': data.ObjectID
             };
 
+            /*
             //2021.03.23 经纬度转换
             __g.coord.pcs2gcs(data.MouseClickPoint, function (res) {
                 if (res.coordinates.length > 0) {
@@ -336,6 +337,7 @@ function onEvent(data) {
                     log(`转经纬度坐标：[${posGeo[0]}, ${posGeo[1]}]`);
                 }
             });
+            */
         }
     }
 
@@ -968,6 +970,34 @@ function test_tileLayer_actor_setCollision() {
     checkTileLayerId() &&
         __g.tileLayer.setCollision(__currentTileLayerActor.id, true);
 }
+
+
+function test_tileLayer_modifier_add() {
+
+    let coordinates = [
+        [157.994140625, 16.887773513793945, 7.47857666015625],
+        [177.19297790527344, 15.302080154418945, 7.4785714149475098],
+        [169.92584228515625, 2.7345507144927979, 7.4785714149475098]
+    ];
+
+    checkTileLayerId() &&
+        __g.tileLayer.addModifier('m1', __currentTileLayerActor.id, coordinates, 0);
+}
+
+function test_tileLayer_modifier_update() {
+
+}
+
+function test_tileLayer_modifier_delete() {
+
+    checkTileLayerId() &&
+        __g.tileLayer.deleteModifier('m1', __currentTileLayerActor.id);
+}
+
+function test_tileLayer_modifier_clear() {
+    __g.tileLayer.clearModifier();
+}
+
 
 
 
