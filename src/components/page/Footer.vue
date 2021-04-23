@@ -8,13 +8,21 @@
         @click="updateActive(index)"
       >
         <!-- {{ item }} -->
-        <i v-if="index === 0" class="iconfont icon-hongshui"></i>
-        <i v-if="index === 1" class="iconfont icon-iconishijue"></i>
-        <i v-if="index === 2" class="iconfont icon-poumianfenxi"></i>
-        <i
-          v-if="index === 3"
-          class="iconfont icon-iconfonttubiao_tianjixian"
-        ></i>
+        <el-tooltip
+          class="item"
+          effect="dark"
+          :content="item"
+          placement="left"
+        >
+          <i v-if="index === 0" class="iconfont icon-hongshui"></i>
+          <i v-if="index === 1" class="iconfont icon-iconishijue"></i>
+          <i v-if="index === 2" class="iconfont icon-poumianfenxi"></i>
+          <i
+            v-if="index === 3"
+            class="iconfont icon-iconfonttubiao_tianjixian"
+          ></i>
+          <i v-if="index === 4" class="iconfont icon-relitu"></i>
+        </el-tooltip>
       </div>
     </div>
 
@@ -41,7 +49,7 @@ export default {
   name: "Footer",
   data() {
     return {
-      list: ["水淹分析", "视域分析", "剖面分析", "天际线分析"],
+      list: ["水淹分析", "视域分析", "剖面分析", "天际线分析", "热力图"],
       active: -1,
       value: 0,
     };
@@ -109,13 +117,37 @@ export default {
       };
       __g.tools.startSkylineAnalysis(options);
     },
+    async heatMap() {
+      clearInterval(__tidUpdateHeatMap);
+      await __g.tag.clear();
+      await __g.heatmap.clear();
+
+      let bbox = [1898, 155499, -100, 126413, 337064, 100];
+      let range = [0, 100];
+      let data = [];
+      let tagData = [];
+      for (let i = 0; i < 1000; i++) {
+        let x = getRandNumBetween(bbox[0], bbox[3]); //minX ~ maxX
+        let y = getRandNumBetween(bbox[1], bbox[4]); //minY ~ maxY
+        let z = 0;
+        let coord = [x, y, z]; //热力点的坐标
+        let radius = Math.random() * 800; //热力点影像半径范围
+        let heatValue = Math.random() * 100; //热力值
+        let o = new HeatMapPointData(i, coord, radius, heatValue);
+        data.push(o);
+      }
+
+      __g.heatmap.add("heatmap1", bbox, range, data);
+    },
   },
   watch: {
     active(newVal) {
       __g.dynamicWater.delete("dy1");
       __g.tools.stopViewshedAnalysis();
       __g.tools.stopSkylineAnalysis();
+      this.$store.state.statusPlaneClip = false;
       __g.tools.stopPlaneClip();
+      __g.heatmap.clear();
 
       switch (newVal) {
         case 0:
@@ -130,6 +162,9 @@ export default {
           break;
         case 3:
           this.addSkylineAnalysis();
+          break;
+        case 4:
+          this.heatMap();
           break;
         default:
           break;
@@ -146,7 +181,9 @@ export default {
     __g.dynamicWater.delete("dy1");
     __g.tools.stopViewshedAnalysis();
     __g.tools.stopSkylineAnalysis();
+    this.$store.state.statusPlaneClip = false;
     __g.tools.stopPlaneClip();
+    __g.heatmap.clear();
   },
   components: {},
 };
@@ -159,11 +196,11 @@ export default {
 .footer {
   position: absolute;
   z-index: 10;
-  top: -375px;
+  top: -360px;
   left: 0;
   // transform: translateX(-50%);
-  width: 2000px;
-  height: 150px;
+  // width: 2000px;
+  // height: 150px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -186,7 +223,7 @@ export default {
   position: absolute;
   z-index: 10;
   // top: -1000px;
-  height: 580px;
+  height: 700px;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
