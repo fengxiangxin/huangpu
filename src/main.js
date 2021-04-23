@@ -19,7 +19,7 @@ Vue.config.productionTip = false;
 
 import axios from "axios";
 
-const baseURL11 = "http://localhost:8080/mock/";
+const baseURL11 = "http://10.140.241.144:8080/mock/";
 var baseURL1 = axios.create({
   baseURL: baseURL11,
   timeout: 2000,

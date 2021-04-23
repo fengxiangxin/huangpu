@@ -221,6 +221,17 @@ export default {
       __g.misc.setMousePickMask(0);
       this.$store.commit("goBuildingAlone", false);
       this.$store.commit("BuildingAloneData", {});
+      // 服务器1
+      __g.infoTree.hide("0F33D4BE4C214B0CFF661DBC38025136");
+      __g.infoTree.hide("D391033245B379FE68BCDA8ABD32B408");
+      // 服务器2
+      // __g.infoTree.hide(
+      //   "86FD95C84128288D47EC8392BD45D822",
+      // );
+      // __g.infoTree.hide(
+      //   "FE1F4A8944D9CD52C8D11DB31E7C7FA2",
+      // );
+
       switch (newVal) {
         case 0:
           // this.$router.push("/shuiyan");
@@ -242,7 +253,25 @@ export default {
           this.buildingAlone();
           break;
         case 6:
-          // this.buildingAlone();
+          // 服务器1
+          console.log(111);
+          __g.camera.set(
+            60626.730469,
+            231332.8125,
+            228.59314,
+            -30.617018,
+            -32.494923,
+            0
+          );
+          __g.infoTree.show("0F33D4BE4C214B0CFF661DBC38025136");
+          __g.infoTree.show("D391033245B379FE68BCDA8ABD32B408");
+          // 服务器2
+          // __g.infoTree.show(
+          //   "86FD95C84128288D47EC8392BD45D822",
+          // );
+          // __g.infoTree.show(
+          //   "FE1F4A8944D9CD52C8D11DB31E7C7FA2",
+          // );
           break;
         default:
           break;

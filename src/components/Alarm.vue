@@ -2,7 +2,7 @@
   <div class="rainpipe">
     <div>
       <span>报警信息</span>
-      <span @click="$emit('close')">关闭</span>
+      <span @click="$store.state.showAlarm = false">关闭</span>
     </div>
     <div>
       <div class="rainpipe-con">
@@ -114,7 +114,7 @@ export default {
 };
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .rainpipe {
   position: absolute;
   right: 27%;
