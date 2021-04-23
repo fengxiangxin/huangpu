@@ -19,6 +19,11 @@
 </template>
 
 <script>
+import shop from "./assets/json/商店1";
+import shequ from "./assets/json/社区1";
+import school from "./assets/json/学校1";
+import yiyuan from "./assets/json/医院1";
+import yule from "./assets/json/娱乐1";
 import Header from "../src/components/page/header";
 import Footer from "../src/components/page/Footer";
 export default {
@@ -29,11 +34,20 @@ export default {
   data() {
     return {
       isPlay: false,
+      tagdata: [],
     };
   },
   created() {
     window.addEventListener("load", this.onLoad, true);
     window.addEventListener("resize", this.onResize, true);
+    this.tagdata = [
+      ...shop.pois,
+      ...shequ.pois,
+      ...school.pois,
+      ...yiyuan.pois,
+      ...yule.pois,
+    ];
+    console.log(this.tagdata);
   },
   methods: {
     //监听三维交互的返回事件
@@ -47,6 +61,31 @@ export default {
         this.$store.commit("showVideoDialog", true);
       }
       if (e.Type === "tag") {
+        let newtagdata = this.tagdata.find((item) => {
+          return item.id == e.Id;
+        });
+        let tagarr = {
+          data: {
+            名称: newtagdata.name,
+            类别: newtagdata.type,
+            建筑编号: newtagdata.typecode,
+            地址: newtagdata.address,
+            经纬度: newtagdata.location,
+            电话: newtagdata.tel.length > 0 ? newtagdata.tel : "--",
+            所属区: newtagdata.adname,
+            邮编: newtagdata.adcode ? newtagdata.adcode : "--",
+          },
+          // imgList: newtagdata.photos.length > 0 ? newtagdata.photos : [],
+          imgList:
+            newtagdata.photos.length > 0
+              ? newtagdata.photos.map((item) => {
+                  return item.url;
+                })
+              : [],
+        };
+
+        this.$store.commit("tagdata", tagarr);
+        console.log(tagarr, 9898989);
         // if (e.Id === "tag1") {
         //   if (!this.$store.state.isPlayVideo) {
         //     this.$store.state.isPlayVideo = true;

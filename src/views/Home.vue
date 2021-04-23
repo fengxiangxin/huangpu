@@ -300,7 +300,7 @@
       </div>
     </div>
     <!-- Dialog -->
-    <!-- <Dialog /> -->
+    <Dialog v-if="$store.state.tagdata.data" />
     <VideoDialog v-if="showVideoDialog" />
     <AddTag />
     <div class="fenxi">

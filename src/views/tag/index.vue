@@ -173,9 +173,11 @@ export default {
               o.range = [1, 800000.0];
               o.textRange = 300000;
               o.showLine = true;
+
               o.textColor = Color.Black;
               o.textBackgroundColor = Color.White;
               o.hoverImagePath = "http://10.140.241.98:8080/mock/学校2.png";
+              o.UserData = "item";
               //   __g.tag.add(o);
               pointPoiArr.push(o);
 
@@ -374,6 +376,8 @@ export default {
   }
 }
 /deep/ .el-checkbox-button__inner {
+  font-size: 50px;
+
   text-align: center;
   line-height: 150px;
   display: block;
