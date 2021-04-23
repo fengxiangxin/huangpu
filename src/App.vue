@@ -83,7 +83,7 @@ export default {
         this.$store.commit("BuildingAloneData", BuildingAloneData);
         console.log(BuildingAloneData, 9887877868);
       }
-      if (e.Type === "tag") {
+      if (e.Type === "tag" && e.Id.slice(0, 3) !== "zxd") {
         let newtagdata = this.tagdata.find((item) => {
           return item.id == e.Id;
         });

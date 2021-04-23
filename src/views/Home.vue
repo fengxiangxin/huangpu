@@ -226,7 +226,7 @@
                   </div>
                 </div>
               </div>
-              <div class="sub-title">宏观经济</div>
+              <div @click="addPolygonAndTag" class="sub-title">宏观经济</div>
               <el-carousel
                 :interval="5000"
                 arrow="always"
@@ -300,6 +300,7 @@
       </div>
     </div>
     <!-- Dialog -->
+    <BuildingDialog v-if="$store.state.BuildingAloneData.地址" />
     <Dialog v-if="$store.state.tagdata.data" />
     <VideoDialog v-if="showVideoDialog" />
     <AddTag />
@@ -329,7 +330,9 @@ import Dialog from "../components/Dialog";
 import VideoDialog from "../components/VideoDialog";
 import Footer from "../components/page/Footer";
 import AddTag from "./tag";
+import BuildingDialog from "../components/BuildingDialog";
 import { mapState } from "vuex";
+import polygon from "../assets/json/hpjd";
 export default {
   name: "Home",
   components: {
@@ -338,6 +341,7 @@ export default {
     VideoDialog,
     Footer,
     AddTag,
+    BuildingDialog,
   },
   data() {
     return {
@@ -384,6 +388,9 @@ export default {
       ],
       isShowFenxi: false,
       isHover: false,
+      polygon3D: false,
+      polygon3DIds: [],
+      polygon3DTagIds: [],
     };
   },
   computed: {
@@ -404,6 +411,72 @@ export default {
     });
   },
   methods: {
+    //
+    //  let coords = [[489877.9375, 2493053.5, 6.6659374237060547], [489850.5, 2492181.75, 5.6631250381469727], [488457.03125, 2493013.5, 0]];
+    // let color = [1, 0, 1, 1];   //颜色值
+    // let height = 500;           //3D多边形的高度
+    // let intensity = 4.0;        //亮度
+    // let type = 1;               //3DPolygon的样式
+    // let o = new Polygon3DData('1', type, coords, color, height, intensity);
+    // __g.polygon3d.add(o, fn);
+
+    addPolygonAndTag() {
+      //  polygon3DIds:[],
+      // polygon3DTagIds:[]
+      this.polygon3D = !this.polygon3D;
+      if (this.polygon3D) {
+        if (this.polygon3DTagIds.length === 0) {
+          console.log(polygon);
+          polygon.features.forEach((item, index) => {
+            console.log(item);
+            let tagCoords = [item.properties.X, item.properties.Y, 30];
+            let o = new TagData("zxd" + index);
+            this.polygon3DTagIds.push("zxd" + index);
+            o.coordinate = tagCoords;
+            o.imagePath = "http://10.140.241.98:8080/mock/shop.png";
+            o.url = "";
+            o.imageSize = [28, 28];
+            o.text = item.properties.NAME;
+            o.range = [1, 800000.0];
+            o.textRange = 300000;
+            o.showLine = true;
+            o.textColor = Color.Black;
+            o.textBackgroundColor = Color.White;
+            o.hoverImagePath = "http://10.140.241.98:8080/mock/商店2.png";
+            __g.tag.add(o);
+
+            // // 画面
+            // this.polygon3DIds.push(item.geometry.type + index);
+            // item.geometry.coordinates.forEach((mon) => {
+            //   console.log(mon, 83274892374);
+            //   // mon.forEach((mooon) => {
+            //   //   // mooon = [...mooon, 200];
+            //   //   console.log(mooon);
+            //   // });
+            // });
+            // let coords = [];
+            // let id = item.geometry.type + index;
+            // let color = [1, 0, 1, 1]; //颜色值
+            // let height = 300; //3D多边形的高度
+            // let intensity = 4.0; //亮度
+            // let type = 1; //3DPolygon的样式
+            // let D3o = new Polygon3DData(
+            //   id,
+            //   type,
+            //   coords,
+            //   color,
+            //   height,
+            //   intensity
+            // );
+            // __g.polygon3d.add(D3o);
+          });
+        } else {
+          __g.tag.show(this.polygon3DTagIds);
+        }
+      } else {
+        __g.tag.hide(this.polygon3DTagIds);
+      }
+    },
     // 摄像头
 
     shooting() {
