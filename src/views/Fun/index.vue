@@ -12,7 +12,7 @@
       <el-tooltip
         class="item"
         effect="dark"
-        content="分析功能"
+        content="动画导览"
         placement="left"
       >
         <i
