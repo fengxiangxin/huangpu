@@ -41,32 +41,20 @@ export default {
     return {
       attrList: [
         {
-          key: "",
-          value: "",
+          key: "报警时间",
+          value: "下午02:00",
         },
         {
-          key: "",
-          value: "",
+          key: "报警地点",
+          value: "萝岗荔红小区",
         },
         {
-          key: "",
-          value: "",
+          key: "报警起因",
+          value: "火灾",
         },
         {
-          key: "",
-          value: "",
-        },
-        {
-          key: "",
-          value: "",
-        },
-        {
-          key: "",
-          value: "",
-        },
-        {
-          key: "",
-          value: "",
+          key: "报警人员",
+          value: "住宅小区人员",
         },
       ],
       // pipeList: [
