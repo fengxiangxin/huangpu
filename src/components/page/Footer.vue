@@ -332,9 +332,6 @@ export default {
 /deep/.el-slider.is-vertical .el-slider__bar {
   width: 30px;
 }
-<<<<<<< HEAD
-</style>
-=======
 /deep/.el-slider__marks-text {
   font-size: 40px;
   color: aqua;
@@ -346,4 +343,3 @@ export default {
   background-color: transparent;
 }
 </style>
->>>>>>> ca14efa520483affca59eece39a1be9706c0bd8b

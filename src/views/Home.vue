@@ -332,7 +332,6 @@ import Footer from "../components/page/Footer";
 import AddTag from "./tag";
 import BuildingDialog from "../components/BuildingDialog";
 import { mapState } from "vuex";
-import polygon from "../assets/json/hpjd";
 export default {
   name: "Home",
   components: {
@@ -420,82 +419,28 @@ export default {
     // let o = new Polygon3DData('1', type, coords, color, height, intensity);
     // __g.polygon3d.add(o, fn);
 
-    addPolygonAndTag() {
-      //  polygon3DIds:[],
-      // polygon3DTagIds:[]
-      this.polygon3D = !this.polygon3D;
-      if (this.polygon3D) {
-        if (this.polygon3DTagIds.length === 0) {
-          console.log(polygon);
-          polygon.features.forEach((item, index) => {
-            console.log(item);
-            let tagCoords = [item.properties.X, item.properties.Y, 30];
-            let o = new TagData("zxd" + index);
-            this.polygon3DTagIds.push("zxd" + index);
-            o.coordinate = tagCoords;
-            o.imagePath = "http://10.140.241.98:8080/mock/shop.png";
-            o.url = "";
-            o.imageSize = [28, 28];
-            o.text = item.properties.NAME;
-            o.range = [1, 800000.0];
-            o.textRange = 300000;
-            o.showLine = true;
-            o.textColor = Color.Black;
-            o.textBackgroundColor = Color.White;
-            o.hoverImagePath = "http://10.140.241.98:8080/mock/商店2.png";
-            __g.tag.add(o);
-
-            // // 画面
-            // this.polygon3DIds.push(item.geometry.type + index);
-            // item.geometry.coordinates.forEach((mon) => {
-            //   console.log(mon, 83274892374);
-            //   // mon.forEach((mooon) => {
-            //   //   // mooon = [...mooon, 200];
-            //   //   console.log(mooon);
-            //   // });
-            // });
-            // let coords = [];
-            // let id = item.geometry.type + index;
-            // let color = [1, 0, 1, 1]; //颜色值
-            // let height = 300; //3D多边形的高度
-            // let intensity = 4.0; //亮度
-            // let type = 1; //3DPolygon的样式
-            // let D3o = new Polygon3DData(
-            //   id,
-            //   type,
-            //   coords,
-            //   color,
-            //   height,
-            //   intensity
-            // );
-            // __g.polygon3d.add(D3o);
-          });
-        } else {
-          __g.tag.show(this.polygon3DTagIds);
-        }
-      } else {
-        __g.tag.hide(this.polygon3DTagIds);
-      }
-    },
     // 摄像头
-
     shooting() {
       console.log(123);
       if (this.zhongdian) {
-        __g.infoTree.hide("988B47564FF230961D079D871E3DB86C");
+        // __g.infoTree.hide("988B47564FF230961D079D871E3DB86C");
+        __g.infoTree.hide("171A4A1D43C8043F1CDEC696D7A44CF8");
         this.zhongdian = false;
       } else {
-        __g.infoTree.show("988B47564FF230961D079D871E3DB86C");
+        // __g.infoTree.show("988B47564FF230961D079D871E3DB86C");
+        __g.infoTree.show("171A4A1D43C8043F1CDEC696D7A44CF8");
         this.zhongdian = true;
       }
     },
     // 展示路线
     showluxian() {
       if (this.zhuganxianShow) {
-        __g.infoTree.hide("664CA76441EE56C2853F3CB8DC1E3D96");
+        // __g.infoTree.hide("664CA76441EE56C2853F3CB8DC1E3D96");
+        __g.infoTree.hide("FE3522AD41F0E3C702D00FB7D6D12E82");
         this.zhuganxianShow = false;
       } else {
-        __g.infoTree.show("664CA76441EE56C2853F3CB8DC1E3D96");
+        // __g.infoTree.show("664CA76441EE56C2853F3CB8DC1E3D96");
+        __g.infoTree.show("FE3522AD41F0E3C702D00FB7D6D12E82");
         this.zhuganxianShow = true;
       }
     },
