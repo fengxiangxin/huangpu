@@ -26,6 +26,7 @@ import yiyuan from "./assets/json/医院1";
 import yule from "./assets/json/娱乐1";
 import Header from "../src/components/page/header";
 import Footer from "../src/components/page/Footer";
+import { mapState } from "vuex";
 export default {
   components: {
     Header,
@@ -36,6 +37,11 @@ export default {
       isPlay: false,
       tagdata: [],
     };
+  },
+  computed: {
+    ...mapState({
+      goBuildingAlone: (state) => state.goBuildingAlone,
+    }),
   },
   created() {
     window.addEventListener("load", this.onLoad, true);
@@ -59,6 +65,23 @@ export default {
       }
       if (e.Type == "shapefilelayer" && !e.Fields.建筑物高度) {
         this.$store.commit("showVideoDialog", true);
+      }
+      if (
+        e.Type == "shapefilelayer" &&
+        e.Fields.建筑物高度 &&
+        this.goBuildingAlone
+      ) {
+        let BuildingAloneData = {
+          地址: e.Fields.所在道路,
+          楼层: e.Fields.实际层数,
+          名称: "--",
+          所属区: "黄埔区",
+          邮编: "--",
+          建筑面积: e.Fields.建筑面积,
+          建筑编号: e.Fields.国标要素代,
+        };
+        this.$store.commit("BuildingAloneData", BuildingAloneData);
+        console.log(BuildingAloneData, 9887877868);
       }
       if (e.Type === "tag") {
         let newtagdata = this.tagdata.find((item) => {
