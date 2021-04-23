@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 800px;
+            height: 600px;
+        }
+
+        .video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: fill
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <video class="video" src="../video/videoDemo.mp4"></video>
+    </div>
+    <script>
+        var video = document.querySelector('video')
+        var isPlay = false
+        video.onclick = function () {
+            if (!isPlay) {
+                video.play().then(function () {
+                    isPlay = true
+                })
+            }
+            if (isPlay) {
+                video.pause()
+                isPlay = false
+            }
+        }
+    </script>
+</body>
+
+</html>
