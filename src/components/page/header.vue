@@ -18,7 +18,7 @@
       </div>
       <div class="right-layout">
         <div class="left-flex">
-          <div class="btn">智慧共治</div>
+          <div class="btn" @click="navTo('tree')">智慧共治</div>
           <div class="btn">智慧共享</div>
           <div class="btn">智慧花市</div>
         </div>

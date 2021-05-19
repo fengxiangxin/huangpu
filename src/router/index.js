@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import JointConstruction from "../views/JointConstruction";
 import Fun from "../views/Fun";
+import Tree from "../views/Tree";
 
 Vue.use(VueRouter);
 //获取原型对象上的push函数
@@ -12,8 +13,7 @@ VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch((err) => err);
 };
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "Home",
     component: Home,
@@ -32,6 +32,11 @@ const routes = [
     path: "/wadong",
     name: "Wadong",
     component: () => import("../views/wadongmax"),
+  },
+  {
+    path: "/tree",
+    name: "tree",
+    component: Tree
   },
 ];
 
