@@ -272,4 +272,5 @@ export default {
 .el-tooltip__popper {
   font-size: 50px !important;
 }
+
 </style>

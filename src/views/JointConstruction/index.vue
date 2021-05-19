@@ -1,8 +1,8 @@
 <template>
   <div class="jointconstruction">
     <JointLeft />
-    <div class="btn" @click="show"></div>
-    <Tree />
+    <div class="showbtn" @click="show">Tree</div>
+    <Tree v-if="showBtn" />
     <JointRight />
   </div>
 </template>
@@ -14,7 +14,14 @@ import JointRight from "../../components/comJoint/JointRight";
 export default {
   name: "JointConstruction",
   data() {
-    return {};
+    return {
+        showBtn:false
+    };
+  },
+  methods:{
+      show(){
+          this.showBtn = !this.showBtn
+      }
   },
   components: {
     JointLeft,
@@ -30,5 +37,14 @@ export default {
   color: #fff;
   font-size: 38px;
 }
-
+.showbtn{
+    width:100px;
+    height: 50px;
+    background: blueviolet;
+    position: absolute;
+    left: 900px;
+    top: 150px;
+    zoom: 2;
+    text-align: center;
+}
 </style>

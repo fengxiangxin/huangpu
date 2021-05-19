@@ -9,7 +9,9 @@
             @check-change="handleCheckChange" 
             :default-expand-all="true"
             :render-after-expand="false"
-            :props="defaultProps">
+            :props="defaultProps"
+            :check-on-click-node="true"
+            >      
         </el-tree>
         </div> 
     </div>
@@ -22,6 +24,7 @@
         data: [{
           id: 1,
           label: '城市概览',
+          icon:'el-icon-platform-eleme',
           children: [{
             id: '2',
             label: '烟感器',
@@ -50,12 +53,12 @@
   };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .tree{
     width: 300px;
     height: 100px;
     position: absolute;
-    top: 150px;
+    top: 110px;
     left: 450px;
     zoom: 4;
 }
@@ -68,5 +71,11 @@
     background: black;
     color: #fff;
     font-size: 24px;
+}
+/deep/ .el-icon-caret-right:before{
+    content: '';
+}
+/deep/ .el-tree-node__content:hover{
+    background-color: black;
 }
 </style>
