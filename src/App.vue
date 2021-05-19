@@ -191,7 +191,7 @@ export default {
               HostConfig.Token,
               true
             );
-            bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
+            // bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
           }
           if (withInterface) {
             var ace = new AirCityAPI(o.instanceId, _this.onReady, _this.log);
@@ -212,7 +212,7 @@ export default {
             //AirCityPlayer对象增加方法enableAutoAdjustResolution，可以设置启用或关闭视频窗口缩放时
             //自动调整分辨率的功能。这个功能默认是启用的，如果想关闭此功能，可以在初始化的时候调用enableAutoAdjustResolution(false)
             //acp.enableAutoAdjustResolution(false);
-            bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
+            // bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
           }
           if (withInterface) {
             let host = HostConfig.instanceId
