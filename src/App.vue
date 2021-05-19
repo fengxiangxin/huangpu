@@ -8,13 +8,16 @@
       />
     </div>
     <div id="player"></div>
-    <Header></Header>
-    <!-- <Footer /> -->
-    <!-- <div class="container"> -->
-    <transition name="router">
-      <router-view />
-    </transition>
-    <!-- </div> -->
+
+    <div ref="zoom">
+      <Header></Header>
+      <!-- <Footer /> -->
+      <!-- <div class="container"> -->
+      <transition name="router">
+        <router-view />
+      </transition>
+      <!-- </div> -->
+    </div>
   </div>
 </template>
 
@@ -54,6 +57,18 @@ export default {
       ...yule.pois,
     ];
     console.log(this.tagdata);
+
+    // this.$nextTick(() => {
+    //   const resize = () => {
+    //     const doc = this.$refs.zoom;
+    //     /* 按屏幕高度适配，始终保持一屏展示，如果按宽度适配，则可以将大屏效果等比例缩放 */
+    //     // doc.style.zoom = 1920 / document.body.clientWidth;
+    //     doc.style.zoom = 0.33;
+    //     console.log(document.body.clientWidth);
+    //   };
+    //   resize();
+    //   window.addEventListener("resize", resize);
+    // });
   },
   methods: {
     //监听三维交互的返回事件
@@ -144,7 +159,7 @@ export default {
         let __fn = fn;
 
         var ws = new WebSocket(url);
-        ws.onopen = function() {
+        ws.onopen = function () {
           this.send(
             JSON.stringify({
               command: 6,
@@ -152,12 +167,12 @@ export default {
             })
           );
         };
-        ws.onmessage = function(event) {
+        ws.onmessage = function (event) {
           var o = JSON.parse(event.data);
           __fn(o);
         };
-        ws.onclose = function() {};
-        ws.onerror = function(event) {};
+        ws.onclose = function () {};
+        ws.onerror = function (event) {};
       } else {
         this.log("Not Support WebSocket!");
       }
@@ -165,8 +180,9 @@ export default {
     init(withPlayer, withInterface) {
       // console.log("222");
       let _this = this;
-
-      this.getMatchServerConfig(HostConfig.MatchServer, function(o) {
+      // let bitrate = getQueryVariable("bitrate");
+      // console.log(bitrate);
+      this.getMatchServerConfig(HostConfig.MatchServer, function (o) {
         if (o.result == 0) {
           if (withPlayer) {
             let acp = new AirCityPlayer(
@@ -175,7 +191,7 @@ export default {
               HostConfig.Token,
               true
             );
-            // bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
+            bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
           }
           if (withInterface) {
             var ace = new AirCityAPI(o.instanceId, _this.onReady, _this.log);
@@ -196,7 +212,7 @@ export default {
             //AirCityPlayer对象增加方法enableAutoAdjustResolution，可以设置启用或关闭视频窗口缩放时
             //自动调整分辨率的功能。这个功能默认是启用的，如果想关闭此功能，可以在初始化的时候调用enableAutoAdjustResolution(false)
             //acp.enableAutoAdjustResolution(false);
-            // bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
+            bitrate && acp.setBitrate(bitrate); //2021.04.16 Add 设置码率
           }
           if (withInterface) {
             let host = HostConfig.instanceId

@@ -284,7 +284,7 @@ export default {
     // },
   },
   mounted() {},
-  destroyed() {
+  beforeDestroy() {
     __g.dynamicWater.delete("dy1");
     __g.tools.stopViewshedAnalysis();
     __g.tools.stopSkylineAnalysis();
