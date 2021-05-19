@@ -1,12 +1,15 @@
 <template>
   <div class="jointconstruction">
     <JointLeft />
+    <div class="btn" @click="show"></div>
+    <Tree />
     <JointRight />
   </div>
 </template>
 
 <script>
 import JointLeft from "../../components/comJoint/JointLeft";
+import Tree from "../Tree"
 import JointRight from "../../components/comJoint/JointRight";
 export default {
   name: "JointConstruction",
@@ -16,6 +19,7 @@ export default {
   components: {
     JointLeft,
     JointRight,
+    Tree
   },
 };
 </script>
@@ -26,4 +30,5 @@ export default {
   color: #fff;
   font-size: 38px;
 }
+
 </style>
