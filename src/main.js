@@ -19,6 +19,14 @@ Vue.config.productionTip = false;
 
 import axios from "axios";
 
+
+if (process.env.NODE_ENV === "development") {
+  window.IP = 'http://localhost:8080';
+} else {
+  /* 生产环境下服务器IP */
+  window.IP = ''
+}
+
 const baseURL11 = "http://10.197.153.176:8082/mock/";
 var baseURL1 = axios.create({
   baseURL: baseURL11,
@@ -29,6 +37,18 @@ var baseURL1 = axios.create({
 });
 //本地Mock接口
 Vue.prototype.$http = baseURL1;
+
+
+Vue.prototype.$request = axios.create({
+  baseURL: 'http://10.198.246.32/ebus/gzshpqsjfwpt',
+  headers: {
+    "x-tif-paasid": "{{paasidHeader}}",
+    "x-tif-signature": "{{signatureHeader}}",
+    "x-tif-timestamp": "{{timestampHeader}}",
+    "x-tif-nonce": "{{nonceHeader}}",
+    "Content-Type": "application/json",
+  }
+})
 
 //开启云服务配置
 // router.beforeEach((to, from, next) => {
