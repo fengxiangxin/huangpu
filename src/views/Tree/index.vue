@@ -48,6 +48,7 @@ export default {
         label: "label",
       },
       checkArr: [],
+      poiID2: [],
     };
   },
   methods: {
@@ -55,25 +56,49 @@ export default {
     handleCheckChange(data, isCheck) {
       //   console.log(data, isCheck);
       if (data.children) return;
-      if (isCheck) {
-        this.checkArr.push(data.id);
-        switch (data.id) {
-          case "2":
-            this.$request
-              .post("/v1/service/ygsbwzxxbcxjk", {
-                query: { street_name: "大沙街", duty_date: "2021-03-04" },
-              })
-              .then((res) => {
-                console.log(res);
+      // this.checkArr.push(data.id);
+      switch (data.id) {
+        case "2":
+          if (isCheck) {
+            if (this.poiID2.length > 0) {
+              /* 显示poi */
+              __g.tag.show(this.poiID2);
+              return;
+            }
+            const yangan = require("../../assets/json/yanganqi.json");
+            const poiArr = [];
+            yangan.data.data.forEach((item) => {
+              /* 坐标转换 经-纬 */
+              __g.coord.gcs2pcs([item.LONGITUDE, item.LATITUDE], () => {
+                const coord = [res.coordinates[0][0], res.coordinates[0][1]];
+                console.log(coord);
+                let o = new TagData(item.ID);
+                this.poiID2.push(item.ID);
+                o.coordinate = coord;
+                o.imagePath = IP + "/mock/shop.png";
+                o.url = "";
+                o.imageSize = [28, 28];
+                o.text = item.name;
+                o.range = [1, 800000.1];
+                o.textRange = 300000;
+                o.showLine = true;
+                o.textColor = Color.Black;
+                o.textBackgroundColor = Color.White;
+                o.hoverImagePath = IP + "/mock/商店2.png";
+                poiArr.push(o);
               });
-            break;
-          case "3":
-            break;
-          case "4":
-            break;
-          default:
-            break;
-        }
+            });
+            __g.tag.add(poiArr);
+          } else {
+            __g.tag.hide(this.poiID2);
+          }
+          break;
+        case "3":
+          break;
+        case "4":
+          break;
+        default:
+          break;
       }
     },
   },
