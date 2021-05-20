@@ -47,6 +47,8 @@ export default {
       },
       checkArr: [],
       poiID2: [],
+      poiID3: [],
+      poiID4: [],
     };
   },
   methods: {
