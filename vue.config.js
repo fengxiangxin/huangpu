@@ -4,6 +4,7 @@ module.exports = {
       "/v1": {
         target: "http://10.198.246.32/ebus/gzshpqsjfwpt/",
         changeOrigin: true,
+        ws:true,
         pathRewrite: {
           "^/v1": "/v1",
         },
