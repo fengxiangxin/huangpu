@@ -129,5 +129,7 @@ export default {
 /deep/ .el-tree-node__content:hover{
     background-color: transparent;
 }
-
+/deep/.el-tree-node:focus > .el-tree-node__content {
+    background-color: transparent !important;
+  }
 </style>
