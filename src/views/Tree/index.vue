@@ -1,6 +1,7 @@
 <template>
+
   <div class="tree">
-    <div class="leftTree">
+    
       <el-tree
         :data="data"
         show-checkbox
@@ -9,10 +10,11 @@
         @check-change="handleCheckChange"
         :default-expand-all="true"
         :render-after-expand="false"
+        :check-on-click-node="true"
         :props="defaultProps"
       >
       </el-tree>
-    </div>
+    
   </div>
 </template>
 
@@ -105,23 +107,31 @@ export default {
 };
 </script>
 
-<style scoped>
-.tree {
-  width: 300px;
-  height: 100px;
-  position: absolute;
-  top: 150px;
-  left: 450px;
-  zoom: 4;
+<style lang="less" scoped>
+.tree{
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    top: 130px;
+    left: 450px;
+    zoom: 4;
 }
-.leftTree {
-  width: 300px;
-  height: 100px;
-}
-
 .el-tree {
-  background: black;
+  background-image:url(../../assets/img/frame.60f567eb.png) ;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  background-color: transparent;
   color: #fff;
   font-size: 24px;
 }
+/deep/ .el-icon-caret-right:before{
+    content: '';
+}
+/deep/ .el-tree-node__content:hover{
+    background-color: transparent;
+}
+/deep/.el-tree-node:focus > .el-tree-node__content {
+    background-color: transparent !important;
+  }
 </style>

@@ -4,7 +4,7 @@
       <div
         v-for="(item, index) in list"
         :key="index"
-        :class="active === index && 'active'"
+        
         @click="updateActive(index)"
       >
         <!-- {{ item }} -->

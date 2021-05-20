@@ -38,7 +38,6 @@ var baseURL1 = axios.create({
 //本地Mock接口
 Vue.prototype.$http = baseURL1;
 
-
 Vue.prototype.$request = axios.create({
   baseURL: 'http://10.198.246.32/ebus/gzshpqsjfwpt',
   headers: {
@@ -47,7 +46,7 @@ Vue.prototype.$request = axios.create({
     "x-tif-timestamp": "{{timestampHeader}}",
     "x-tif-nonce": "{{nonceHeader}}",
     "Content-Type": "application/json",
-  }
+  }  
 })
 
 //开启云服务配置
