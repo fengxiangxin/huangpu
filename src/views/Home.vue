@@ -405,7 +405,7 @@ export default {
   },
   mounted() {
     this.$nextTick(function() {
-      console.log(this.$echarts);
+      // console.log(this.$echarts);
       // this.echartsBarInit()
       this.echartsPieInit();
       //this.linenerInit()
