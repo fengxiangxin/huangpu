@@ -44,6 +44,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
+    background: #208ABE;
     opacity:0.6;
     .close{
         font-size:10px;
