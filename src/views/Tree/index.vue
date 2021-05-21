@@ -157,30 +157,30 @@ export default {
     },
   },
   mounted() {
-    console.log(111);
-    __g.tag.clear();
-    __g.coord.gcs2pcs([113.43788454, 23.19030724], (res) => {
-      const coord = [
-        res.coordinates[0][0] + 40000,
-        res.coordinates[0][1] - 2330000,
-        20,
-      ];
-      console.log(coord);
-      let o = new TagData("test");
-      o.coordinate = coord;
-      o.imagePath = IP + "/mock/shop.png";
-      o.url = "";
-      o.imageSize = [28, 28];
-      o.text = "";
-      o.range = [1, 800000.1];
-      o.textRange = 300000;
-      o.showLine = true;
-      o.textColor = Color.Black;
-      o.textBackgroundColor = Color.White;
-      o.hoverImagePath = IP + "/mock/商店2.png";
-      __g.tag.add(o);
-      __g.tag.focus("test", 200, 1);
-    });
+    // console.log(111);
+    // __g.tag.clear();
+    // __g.coord.gcs2pcs([113.43788454, 23.19030724], (res) => {
+    //   const coord = [
+    //     res.coordinates[0][0] + 40000,
+    //     res.coordinates[0][1] - 2330000,
+    //     20,
+    //   ];
+    //   console.log(coord);
+    //   let o = new TagData("test");
+    //   o.coordinate = coord;
+    //   o.imagePath = IP + "/mock/shop.png";
+    //   o.url = "";
+    //   o.imageSize = [28, 28];
+    //   o.text = "";
+    //   o.range = [1, 800000.1];
+    //   o.textRange = 300000;
+    //   o.showLine = true;
+    //   o.textColor = Color.Black;
+    //   o.textBackgroundColor = Color.White;
+    //   o.hoverImagePath = IP + "/mock/商店2.png";
+    //   __g.tag.add(o);
+    //   __g.tag.focus("test", 200, 1);
+    // });
   },
 };
 </script>
