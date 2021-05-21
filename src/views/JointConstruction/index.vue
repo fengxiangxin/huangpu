@@ -6,6 +6,10 @@
         <Tree v-if="showBtn" />
     </transition>
     <JointRight />
+    <div class="search-box">
+    <el-input placeholder = '' v-model="values" style="width:100%" suffix-icon='el-icon-search'         @keydown.enter.native="search"></el-input>
+    </div>
+    <Dialog />
   </div>
 </template>
 
@@ -13,22 +17,31 @@
 import JointLeft from "../../components/comJoint/JointLeft";
 import Tree from "../Tree"
 import JointRight from "../../components/comJoint/JointRight";
+import Dialog from "../Dialog/Dialog"
+
+
 export default {
   name: "JointConstruction",
   data() {
     return {
-        showBtn:false
+        showBtn:false,
+        values:'',
     };
   },
   methods:{
       show(){
           this.showBtn = !this.showBtn
+      },
+      search(){
+          this.$emit("search",['search',this.keyword])
+           this.values = ''
       }
   },
   components: {
     JointLeft,
     JointRight,
-    Tree
+    Tree,
+    Dialog
   },
 };
 </script>
@@ -55,6 +68,27 @@ export default {
     &:hover{
          transform: scale(1.4);
     }
+}
+.search-box{
+    height: 26px;
+    width: 200px;
+    position: absolute;
+    right: 320px;
+    top: 80px;
+    zoom: 4;
+    border-radius: 10px;
+    
+}
+/deep/.el-input__inner{
+    background: transparent !important;
+    border-radius: 46px;
+    border: 1px solid #208ABE;
+    box-shadow: 5px 5px 15px darkblue;
+    color: #fff;
+}
+/deep/.el-input__icon{
+    color: #208ABE;
+    font-size: 24px;
 }
 .fade-enter-to{
     opacity: 1;
