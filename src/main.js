@@ -21,7 +21,7 @@ import axios from "axios";
 
 
 if (process.env.NODE_ENV === "development") {
-  window.IP = 'http://localhost:8080';
+  window.IP = 'http://10.140.241.69:8080';
 } else {
   /* 生产环境下服务器IP */
   window.IP = ''
@@ -46,7 +46,7 @@ Vue.prototype.$request = axios.create({
     "x-tif-timestamp": "{{timestampHeader}}",
     "x-tif-nonce": "{{nonceHeader}}",
     "Content-Type": "application/json",
-  }  
+  }
 })
 
 //开启云服务配置

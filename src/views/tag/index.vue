@@ -71,8 +71,9 @@ export default {
 
             __g.coord.gcs2pcs([newc84[1], newc84[0]], (res) => {
               let aaa = res.coordinates[0];
+              // console.log(aaa);
               let coord = [aaa[0] + 40000, aaa[1] - 2330000, 20];
-              console.log(coord);
+              // console.log(coord);
               let o = new TagData(item.id);
               _this.poi1IDs.push(item.id);
               //   o.coordinate = coord;
