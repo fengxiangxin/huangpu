@@ -47,8 +47,8 @@ export default {
     }),
   },
   created() {
-    window.addEventListener("load", this.onLoad, true);
-    window.addEventListener("resize", this.onResize, true);
+    // window.addEventListener("load", this.onLoad, true);
+    // window.addEventListener("resize", this.onResize, true);
     this.tagdata = [
       ...shop.pois,
       ...shequ.pois,
@@ -56,7 +56,7 @@ export default {
       ...yiyuan.pois,
       ...yule.pois,
     ];
-    // console.log(this.tagdata);
+    console.log(this.tagdata);
 
     // this.$nextTick(() => {
     //   const resize = () => {
