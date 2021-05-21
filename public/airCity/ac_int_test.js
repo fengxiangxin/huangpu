@@ -1,28 +1,3 @@
-
-function onReady() {
-    //此时可以调用接口了
-    __g.camera.get((r) => {
-        var str = `Camera: ${r.x}, ${r.y}, ${r.z}, ${r.pitch}, ${r.yaw}`;
-        //或者这样调用
-        //var str = `Camera: ${r.camera.join(',')}`;
-        log(str);
-    })
-
-    __g.misc.setApiVersionReceived(function () {
-        var spanVer = document.getElementById('spanVer');
-        if (spanVer) {
-            spanVer.innerText = ` S${this.apiVersion}C${this.sdkVersion}`;
-            if (this.apiVersion != this.sdkVersion) {
-                spanVer.innerHTML = ` S${this.apiVersion}<font color=red><b>C${this.sdkVersion}</b></font>`;
-                logWithColor('red', '<b>JS SDK版本和云渲染服务器版本不一致，可能造成接口调用错误，请确认!</b>\n');
-            }
-            else {
-                spanVer.innerHTML = ` S${this.apiVersion}C${this.sdkVersion}`;
-            }
-        }
-    })
-}
-
 var __fn = null;
 var __editor;
 var __currentTileLayerActor = null;     //当前点选的TileLayer Actor
@@ -137,6 +112,77 @@ function checkLogin() {
 }
 
 
+var aircityApi;
+var aircityPlayer;
+
+/**
+ * 初始化接口
+ * @param {boolean} iscloud 是否是在Cloud页面里调用
+ */
+function initInterface(withPlayer, withApi) {
+
+    //AirCityPlayer
+    if (withPlayer) {
+        let options = {
+            'domId': 'player',
+            'token': HostConfig.Token,
+            'showMarker': true,
+            'showStartupInfo': true
+        };
+        aircityPlayer = new AirCityPlayer(HostConfig.instanceId || HostConfig.AirCityPlayer, options);
+
+        let p_bitrate = getQueryVariable('bitrate');    //2021.04.16 Add 从参数中解析码率
+        p_bitrate && aircityPlayer.setBitrate(p_bitrate);
+    }
+
+    //AirCityAPI
+    if (withApi) {
+        aircityApi = new AirCityAPI(HostConfig.instanceId || HostConfig.AirCityAPI, {
+            'onReady': () => {  //此时可以调用接口了
+                __g.camera.get((r) => {
+                    log(`Camera: ${r.x}, ${r.y}, ${r.z}, ${r.pitch}, ${r.yaw}`);
+                })
+            },
+            'onApiVersion': (vNo, vType) => {
+                var spanVer = document.getElementById('spanVer');
+                if (spanVer) {
+                    if (__g.misc.isApiVersionMatched()) {
+                        spanVer.innerHTML = '<font color=green>' + __g.misc.apiVersion + '</font>';
+                    }
+                    else {
+                        spanVer.innerHTML = 's:<font color=red>' + __g.misc.apiVersionServer + '</font>-c:' + __g.misc.apiVersion;
+                        logWithColor('red', '<b>JS SDK版本和云渲染服务器版本不一致，可能造成接口调用错误，请确认!</b>');
+                        log(spanVer.innerHTML);
+                        log('');
+                    }
+                }
+            },
+            'onEvent': (e) => {
+                if (e.eventtype == 'LeftMouseButtonClick' && e.Type == 'TileLayer') {
+                    __currentTileLayerActor = {
+                        'id': e.ID || e.Id,
+                        'objectId': e.ObjectID
+                    };
+                    /*
+                    //2021.03.23 经纬度转换
+                    __g.coord.pcs2gcs(data.MouseClickPoint, function (res) {
+                        if (res.coordinates.length > 0) {
+                            let posGeo = res.coordinates[0];
+                            log(`鼠标点击位置：[${data.MouseClickPoint[0]}, ${data.MouseClickPoint[1]}, ${data.MouseClickPoint[2]}]`)
+                            log(`转经纬度坐标：[${posGeo[0]}, ${posGeo[1]}]`);
+                        }
+                    });
+                    */
+                }
+                log('OnEvent: ' + e.eventtype); //for test
+            },
+            'onLog': log,
+            'useColorLog': true    //仅用于SDK测试页面，二次开发请设置为false
+        });
+    }
+}
+
+
 function init(withPlayer, withInterface) {
 
     //检查用户权限
@@ -152,7 +198,7 @@ function init(withPlayer, withInterface) {
 
     var spanVer = document.getElementById('spanVer');
     if (spanVer)
-        spanVer.innerHTML = ` S300C${AcApiVersion}`;
+        spanVer.innerHTML = AcApiVersion;
 
     ToolTip.init({
         delay: 0,
@@ -206,20 +252,15 @@ function init(withPlayer, withInterface) {
     if (location.search.indexOf('ms') != -1) { //页面地址加参数： http://192.168.1.222/int.html?ms
         getMatchServerConfig(HostConfig.MatchServer, function (o) {
             if (o.result == 0) {
-                if (withPlayer) {
-                    let acp = new AirCityPlayer(o.instanceId, 'player', HostConfig.Token, true);
-                    bitrate && acp.setBitrate(bitrate);  //2021.04.16 Add 设置码率
-                }
-                if (withInterface) {
-                    var ace = new AirCityAPI(o.instanceId, onReady, log);
-                    ace.setEventCallback(onEvent);
 
-                    //更新页面显示
-                    let host = AirCityAPI.getHostFromInstanceId(o.instanceId);
-                    if (host) {
-                        document.getElementById('txtIP').value = host[0];
-                        document.getElementById('txtPort').value = host[1];
-                    }
+                HostConfig.instanceId = o.instanceId;
+                initInterface(withPlayer, withInterface);
+
+                //更新页面显示
+                let host = AirCityAPI.getHostFromInstanceId(o.instanceId);
+                if (host) {
+                    document.getElementById('txtIP') && (document.getElementById('txtIP').value = host[0]);
+                    document.getElementById('txtPort') && (document.getElementById('txtPort').value = host[1]);
                 }
             }
             else {
@@ -228,20 +269,7 @@ function init(withPlayer, withInterface) {
         })
     }
     else {
-        if (withPlayer) {
-            let host = HostConfig.instanceId ? HostConfig.instanceId : HostConfig.AirCityPlayer;
-            let acp = new AirCityPlayer(host, 'player', HostConfig.Token, true, true);
-            //AirCityPlayer对象增加方法enableAutoAdjustResolution，可以设置启用或关闭视频窗口缩放时
-            //自动调整分辨率的功能。这个功能默认是启用的，如果想关闭此功能，可以在初始化的时候调用enableAutoAdjustResolution(false)
-            //acp.enableAutoAdjustResolution(false);
-            bitrate && acp.setBitrate(bitrate);  //2021.04.16 Add 设置码率
-        }
-        if (withInterface) {
-            let host = HostConfig.instanceId ? HostConfig.instanceId : HostConfig.AirCityAPI;
-            var ace = new AirCityAPI(host, onReady, log);
-            ace.useColorLog = true;
-            ace.setEventCallback(onEvent);
-        }
+        initInterface(withPlayer, withInterface);
     }
 
     //2021.03.18 恢复滚动条的位置
@@ -320,32 +348,7 @@ function showAllCommands() {
     e.scrollTop = 0;
 }
 
-function onEvent(data) {
-    if (data.eventtype == 'LeftMouseButtonClick') {
-        if (data.Type == 'TileLayer') {
-            __currentTileLayerActor = {
-                'id': data.ID || data.Id,
-                'objectId': data.ObjectID
-            };
 
-            /*
-            //2021.03.23 经纬度转换
-            __g.coord.pcs2gcs(data.MouseClickPoint, function (res) {
-                if (res.coordinates.length > 0) {
-                    let posGeo = res.coordinates[0];
-                    log(`鼠标点击位置：[${data.MouseClickPoint[0]}, ${data.MouseClickPoint[1]}, ${data.MouseClickPoint[2]}]`)
-                    log(`转经纬度坐标：[${posGeo[0]}, ${posGeo[1]}]`);
-                }
-            });
-            */
-        }
-    }
-
-    //for test
-    let str = 'OnEvent: ' + data.eventtype;
-    log(str);
-
-}
 
 function call(fn) {
 
@@ -837,6 +840,7 @@ function test_cameraTour_add() {
 }
 
 function test_cameraTour_update() {
+    //no test code
 }
 
 function test_cameraTour_play() {
@@ -985,7 +989,14 @@ function test_tileLayer_modifier_add() {
 }
 
 function test_tileLayer_modifier_update() {
+    let coordinates = [
+        [157.994140625, 16.887773513793945, 7.47857666015625],
+        [177.19297790527344, 15.302080154418945, 7.4785714149475098],
+        [169.92584228515625, 2.7345507144927979, 7.4785714149475098]
+    ];
 
+    checkTileLayerId() &&
+        __g.tileLayer.updateModifier('m1', __currentTileLayerActor.id, coordinates, 0);
 }
 
 function test_tileLayer_modifier_delete() {
@@ -1023,6 +1034,8 @@ async function test_tag_add() {
     o.id = 'p2';
     o.text = "招商银行";
     o.coordinate = [495231.93, 2490962.25, 10.0];
+    o.popupPos = [0, 0];
+    o.popupSize = [600, 400];
     __g.tag.add(o);
 }
 
@@ -2093,6 +2106,12 @@ function test_misc_setMainUIVisibility() {
     __g.misc.setMainUIVisibility(__uiVisible);
 }
 
+let __campassVisible = true;
+function test_misc_setCampassVisible() {
+    __campassVisible = !__campassVisible;
+    __g.misc.setCampassVisible(__campassVisible);
+}
+
 
 function test_misc_setMousePickMask() {
     //此处可以用枚举，也可以直接设置数字，数字含义如下：
@@ -2148,6 +2167,16 @@ function test_misc_hideAllFoliages() {
     __g.misc.hideAllFoliages();
 }
 
+async function test_misc_startProcess() {
+    let result = await __g.misc.startProcess('explorer', 'http://www.baidu.com');
+    //let result = await __g.misc.startProcess('notepad', 'd:/TEMP/test.txt');
+    if (result.result == 0) {
+        log(`进程启动成功，进程I： ${result.processId}`);
+    }
+    else {
+        log(`进程启动失败，错误代码：${result.errorCode}`);
+    }
+}
 
 
 
@@ -2745,4 +2774,18 @@ function test_stress_add_update_delete_3dpolygon() {
             test_polygon3d_add(test_polygon3d_update)
         })
     }, 100);
+}
+
+
+//CameraTour添加1000个关键帧
+function test_stress_cameratour_1000_keyframes() {
+    let frames = [];
+
+    let x = 0;
+    let y = 0;
+    for (let i = 0; i < 1000; i++) {
+        frames.push(new CameraTourKeyFrame(i, i, [x + 10, y + 10, 5.5], [-55, -60, 0]));
+    }
+    let o = new CameraTourData('cameraTour1', 'test', frames);
+    __g.cameraTour.add(o);
 }

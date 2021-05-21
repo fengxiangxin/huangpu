@@ -53,90 +53,134 @@ export default {
   methods: {
     handleNodeClick() {},
     handleCheckChange(data, isCheck) {
+      __g.tag.clear();
       if (data.children) return;
       console.log(data.id, isCheck);
-
-      switch (data.id) {
-        case "2":
-          if (isCheck) {
-            if (this.poiID2.length > 0) {
-              /* 显示poi */
-              __g.tag.show(this.poiID2);
-              return;
-            }
-            const yangan = require("../../assets/json/yanganqi.json");
-            const poiArr = [];
-            yangan.data.data.forEach((item) => {
-              /* 坐标转换 经-纬 */
-              __g.coord.gcs2pcs([item.LONGITUDE, item.LATITUDE], () => {
-                const coord = [
-                  res.coordinates[0][0],
-                  res.coordinates[0][1],
-                  20,
-                ];
-                console.log(coord);
-                let o = new TagData("tag1+" + item.ID);
-                this.poiID2.push("tag1+" + item.ID);
-                o.coordinate = coord;
-                o.imagePath = IP + "/mock/shop.png";
-                o.url = "";
-                o.imageSize = [28, 28];
-                o.text = item.name;
-                o.range = [1, 800000.1];
-                o.textRange = 300000;
-                o.showLine = true;
-                o.textColor = Color.Black;
-                o.textBackgroundColor = Color.White;
-                o.hoverImagePath = IP + "/mock/商店2.png";
-                poiArr.push(o);
-              });
-            });
-            __g.tag.add(poiArr);
-          } else {
-            __g.tag.hide(this.poiID2);
-          }
-          break;
-        case "3":
-          if (isCheck) {
-            if (this.poiID3.length > 0) {
-              /* 显示poi */
-              __g.tag.show(this.poiID3);
-              return;
-            }
-            const lajitong = require("../../assets/json/lajitong.json");
-            const poiArr = [];
-            lajitong.data.data.forEach((item) => {
-              /* 坐标转换 经-纬 */
-              __g.coord.gcs2pcs([item.LONGITUDE, item.LATITUDE], () => {
-                const coord = [res.coordinates[0][0], res.coordinates[0][1]];
-                console.log(coord);
-                let o = new TagData("tag+" + item.ID);
-                this.poiID3.push("tag+" + item.ID);
-                o.coordinate = coord;
-                o.imagePath = IP + "/mock/shop.png";
-                o.url = "";
-                o.imageSize = [28, 28];
-                o.text = item.name;
-                o.range = [1, 800000.1];
-                o.textRange = 300000;
-                o.showLine = true;
-                o.textColor = Color.Black;
-                o.textBackgroundColor = Color.White;
-                o.hoverImagePath = IP + "/mock/商店2.png";
-                poiArr.push(o);
-              });
-            });
-            __g.tag.add(poiArr);
-          } else {
-            __g.tag.hide(this.poiID3);
-          }
-          break;
-        case "4":
-          break;
-        default:
-          break;
-      }
+      __g.coord.gcs2pcs([113.43788454, 23.19030724], () => {
+        const coord = [res.coordinates[0][0], res.coordinates[0][1], 20];
+        console.log(coord);
+        let o = new TagData("test");
+        o.coordinate = coord;
+        o.imagePath = IP + "/mock/shop.png";
+        o.url = "";
+        o.imageSize = [28, 28];
+        o.text = item.name;
+        o.range = [1, 800000.1];
+        o.textRange = 300000;
+        o.showLine = true;
+        o.textColor = Color.Black;
+        o.textBackgroundColor = Color.White;
+        o.hoverImagePath = IP + "/mock/商店2.png";
+        __g.tag.add(o);
+        __g.tag.focus("test", 200, 1);
+      });
+      // switch (data.id) {
+      //   case "2":
+      //     if (isCheck) {
+      //       if (this.poiID2.length > 0) {
+      //         /* 显示poi */
+      //         __g.tag.show(this.poiID2);
+      //         return;
+      //       }
+      //       const yangan = require("../../assets/json/yanganqi.json");
+      //       const poiArr = [];
+      //       yangan.data.data.forEach((item) => {
+      //         /* 坐标转换 经-纬 */
+      //         __g.coord.gcs2pcs([item.LONGITUDE, item.LATITUDE], () => {
+      //           const coord = [
+      //             res.coordinates[0][0],
+      //             res.coordinates[0][1],
+      //             20,
+      //           ];
+      //           console.log(coord);
+      //           let o = new TagData("tag1+" + item.ID);
+      //           this.poiID2.push("tag1+" + item.ID);
+      //           o.coordinate = coord;
+      //           o.imagePath = IP + "/mock/shop.png";
+      //           o.url = "";
+      //           o.imageSize = [28, 28];
+      //           o.text = item.name;
+      //           o.range = [1, 800000.1];
+      //           o.textRange = 300000;
+      //           o.showLine = true;
+      //           o.textColor = Color.Black;
+      //           o.textBackgroundColor = Color.White;
+      //           o.hoverImagePath = IP + "/mock/商店2.png";
+      //           poiArr.push(o);
+      //         });
+      //       });
+      //       __g.tag.add(poiArr);
+      //     } else {
+      //       __g.tag.hide(this.poiID2);
+      //     }
+      //     break;
+      //   case "3":
+      //     if (isCheck) {
+      //       if (this.poiID3.length > 0) {
+      //         /* 显示poi */
+      //         __g.tag.show(this.poiID3);
+      //         return;
+      //       }
+      //       const lajitong = require("../../assets/json/lajitong.json");
+      //       const poiArr = [];
+      //       lajitong.data.data.forEach((item) => {
+      //         /* 坐标转换 经-纬 */
+      //         __g.coord.gcs2pcs([item.LONGITUDE, item.LATITUDE], () => {
+      //           const coord = [res.coordinates[0][0], res.coordinates[0][1]];
+      //           console.log(coord);
+      //           let o = new TagData("tag+" + item.ID);
+      //           this.poiID3.push("tag+" + item.ID);
+      //           o.coordinate = coord;
+      //           o.imagePath = IP + "/mock/shop.png";
+      //           o.url = "";
+      //           o.imageSize = [28, 28];
+      //           o.text = item.name;
+      //           o.range = [1, 800000.1];
+      //           o.textRange = 300000;
+      //           o.showLine = true;
+      //           o.textColor = Color.Black;
+      //           o.textBackgroundColor = Color.White;
+      //           o.hoverImagePath = IP + "/mock/商店2.png";
+      //           poiArr.push(o);
+      //         });
+      //       });
+      //       __g.tag.add(poiArr);
+      //     } else {
+      //       __g.tag.hide(this.poiID3);
+      //     }
+      //     break;
+      //   case "4":
+      //     break;
+      //   default:
+      //     break;
+      // }
     },
+  },
+  mounted() {
+    console.log(111);
+    __g.tag.clear();
+    __g.coord.gcs2pcs([113.43788454, 23.19030724], (res) => {
+      const coord = [
+        res.coordinates[0][0] + 40000,
+        res.coordinates[0][1] - 2330000,
+        20,
+      ];
+      console.log(coord);
+      let o = new TagData("test");
+      o.coordinate = coord;
+      o.imagePath = IP + "/mock/shop.png";
+      o.url = "";
+      o.imageSize = [28, 28];
+      o.text = "";
+      o.range = [1, 800000.1];
+      o.textRange = 300000;
+      o.showLine = true;
+      o.textColor = Color.Black;
+      o.textBackgroundColor = Color.White;
+      o.hoverImagePath = IP + "/mock/商店2.png";
+      __g.tag.add(o);
+      __g.tag.focus("test", 200, 1);
+    });
   },
 };
 </script>
