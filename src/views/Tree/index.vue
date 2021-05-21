@@ -69,7 +69,11 @@ export default {
             yangan.data.data.forEach((item) => {
               /* 坐标转换 经-纬 */
               __g.coord.gcs2pcs([item.LONGITUDE, item.LATITUDE], () => {
-                const coord = [res.coordinates[0][0], res.coordinates[0][1]];
+                const coord = [
+                  res.coordinates[0][0],
+                  res.coordinates[0][1],
+                  20,
+                ];
                 console.log(coord);
                 let o = new TagData("tag1+" + item.ID);
                 this.poiID2.push("tag1+" + item.ID);
