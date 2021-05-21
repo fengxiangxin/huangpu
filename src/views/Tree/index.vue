@@ -208,7 +208,7 @@ export default {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
-  background-color: transparent;
+  background-color: #208ABE;
   color: #fff;
   font-size: 24px;
 }

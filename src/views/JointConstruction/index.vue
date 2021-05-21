@@ -80,11 +80,12 @@ export default {
     
 }
 /deep/.el-input__inner{
-    background: transparent !important;
+    background: #208ABE !important;
     border-radius: 46px;
     border: 1px solid #208ABE;
     box-shadow: 5px 5px 15px darkblue;
     color: #fff;
+    opacity: 0.5;
 }
 /deep/.el-input__icon{
     color: #208ABE;

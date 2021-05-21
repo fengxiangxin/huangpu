@@ -1,5 +1,5 @@
 <template>
-    <div class="right">
+    <div class="right" v-if="show">
         <div class="close" @click="close"><i class="el-icon-close"></i></div>
         <div class="content">
             <div v-for="(value,key,index) in dataList" :key="index">
@@ -13,6 +13,7 @@
 export default {
     data(){
         return{
+            show:fasle,
             dataList:
                 {
                     '名字':'洪恩医疗财团法人洪恩综合医院',
@@ -44,6 +45,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
+    background: #208ABE;
     opacity:0.6;
     .close{
         font-size:10px;
