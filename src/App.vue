@@ -47,8 +47,8 @@ export default {
     }),
   },
   created() {
-    // window.addEventListener("load", this.onLoad, true);
-    // window.addEventListener("resize", this.onResize, true);
+    window.addEventListener("load", this.onLoad, true);
+    window.addEventListener("resize", this.onResize, true);
     this.tagdata = [
       ...shop.pois,
       ...shequ.pois,
@@ -56,7 +56,7 @@ export default {
       ...yiyuan.pois,
       ...yule.pois,
     ];
-    console.log(this.tagdata);
+    // console.log(this.tagdata);
 
     // this.$nextTick(() => {
     //   const resize = () => {
@@ -74,6 +74,62 @@ export default {
     //监听三维交互的返回事件
     onEvent(e) {
       console.log(e);
+
+      /*  */
+      if (e.Type === "tag") {
+        // __g.tag.showPopupWindow(e.Id);
+        let data = [];
+        let ID = "";
+        if (e.Id.slice(0, 4) === "tag1") {
+          ID = e.Id.split("+")[1];
+          data = require("./assets/json/yanganqi.json").data.data.filter(
+            (item, index) => {
+              if (index < 200) return true;
+            }
+          );
+        }
+        if (e.Id.slice(0, 4) === "tag2") {
+          ID = e.Id.split("+")[1];
+          data = require("./assets/json/lajitong.json").data.data.filter(
+            (item, index) => {
+              if (index < 200) return true;
+            }
+          );
+        }
+        if (e.Id.slice(0, 4) === "tag3") {
+          ID = e.Id.split("+")[1];
+          data = require("./assets/json/jiucun.json").data.data.filter(
+            (item, index) => {
+              if (index < 200) return true;
+            }
+          );
+        }
+        /* 查找数据 */
+        const one = data.find((item) => {
+          if (item.ID === ID) {
+            return true;
+          }
+        });
+        const tempObj = {};
+        one.CREATE_TIME && (tempObj["时间"] = one.CREATE_TIME);
+        one.DEVICE_POSITION && (tempObj["地点"] = one.DEVICE_POSITION);
+        one.LONGITUDE &&
+          (tempObj["坐标"] = one.LONGITUDE + "   " + one.LATITUDE);
+        one.PEOPLE_STATUS && (tempObj["重点人员"] = one.PEOPLE_STATUS);
+        one.PROBLEM && (tempObj["名称"] = one.PROBLEM);
+        one.PROJ_AREA && (tempObj["建筑范围"] = one.PROJ_AREA);
+        one.STREET && (tempObj["所属街道"] = one.STREET);
+        one.WORK_MEASURE && (tempObj["问题"] = one.WORK_MEASURE);
+        console.log(e.Id);
+        __g.tag.showPopupWindow(e.Id);
+        __g.tag.setURL(e.Id, "http://10.140.241.36:81/int_popup.html");
+
+        // console.log(tempObj);
+        // this.$store.state.oneTag = tempObj;
+        // console.log(this.$store.state.oneTag);
+      }
+      /*  */
+
       if (e.Id == "E4021A414121DCB8ACF30D85A2C358BF") {
         this.$store.commit("showAlarm", true);
         return;
@@ -106,28 +162,30 @@ export default {
         let newtagdata = this.tagdata.find((item) => {
           return item.id == e.Id;
         });
-        let tagarr = {
-          data: {
-            名称: newtagdata.name,
-            类别: newtagdata.type,
-            建筑编号: newtagdata.typecode,
-            地址: newtagdata.address,
-            经纬度: newtagdata.location,
-            电话: newtagdata.tel.length > 0 ? newtagdata.tel : "--",
-            所属区: newtagdata.adname,
-            邮编: newtagdata.adcode ? newtagdata.adcode : "--",
-          },
-          // imgList: newtagdata.photos.length > 0 ? newtagdata.photos : [],
-          imgList:
-            newtagdata.photos.length > 0
-              ? newtagdata.photos.map((item) => {
-                  return item.url;
-                })
-              : [],
-        };
+        let tagarr;
+        newtagdata &&
+          (tagarr = {
+            data: {
+              名称: newtagdata.name || "",
+              类别: newtagdata.type,
+              建筑编号: newtagdata.typecode,
+              地址: newtagdata.address,
+              经纬度: newtagdata.location,
+              电话: newtagdata.tel.length > 0 ? newtagdata.tel : "--",
+              所属区: newtagdata.adname,
+              邮编: newtagdata.adcode ? newtagdata.adcode : "--",
+            },
+            // imgList: newtagdata.photos.length > 0 ? newtagdata.photos : [],
+            imgList:
+              newtagdata.photos.length > 0
+                ? newtagdata.photos.map((item) => {
+                    return item.url;
+                  })
+                : [],
+          });
 
         this.$store.commit("tagdata", tagarr);
-        console.log(tagarr, 9898989);
+        // console.log(tagarr, 9898989);
         // if (e.Id === "tag1") {
         //   if (!this.$store.state.isPlayVideo) {
         //     this.$store.state.isPlayVideo = true;
@@ -272,5 +330,4 @@ export default {
 .el-tooltip__popper {
   font-size: 50px !important;
 }
-
 </style>

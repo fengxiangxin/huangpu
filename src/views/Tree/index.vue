@@ -86,12 +86,12 @@ export default {
                   this.poiID2.push("tag1+" + item.ID);
                   o.coordinate = coord;
                   o.imagePath = IP + "/mock/shop.png";
-                  o.url = "";
+                  o.url = "http://10.140.241.36:81/int_popup.html";
                   o.imageSize = [28, 28];
                   o.text = item.name;
                   o.range = [1, 800000.1];
                   o.textRange = 300000;
-                  o.showLine = true;
+                  o.showLine = false;
                   o.textColor = Color.Black;
                   o.textBackgroundColor = Color.White;
                   o.hoverImagePath = IP + "/mock/商店2.png";
@@ -108,7 +108,7 @@ export default {
           break;
         case "3":
           if (isCheck) {
-            console.log(333333333);
+            // console.log(333333333);
             if (this.poiID3.length > 0) {
               /* 显示poi */
               __g.tag.show(this.poiID3);
@@ -136,19 +136,19 @@ export default {
                   this.poiID3.push("tag2+" + item.ID);
                   o.coordinate = coord;
                   o.imagePath = IP + "/mock/社区.png";
-                  o.url = "";
+                  o.url = "http://10.140.241.69:8080/mock/diag.html";
                   o.imageSize = [28, 28];
                   o.text = item.name;
                   o.range = [1, 800000.1];
                   o.textRange = 300000;
-                  o.showLine = true;
+                  o.showLine = false;
                   o.textColor = Color.Black;
                   o.textBackgroundColor = Color.White;
-                  o.hoverImagePath ='';
-                  console.log(o);
+                  o.hoverImagePath = "";
+                  // console.log(o);
                   poiArr.push(o);
                   if (index >= 199) {
-                    console.log(poiArr);
+                    // console.log(poiArr);
                     __g.tag.add(poiArr);
                   }
                 }
@@ -159,38 +159,65 @@ export default {
           }
           break;
         case "4":
+          if (isCheck) {
+            // console.log(444);
+            if (this.poiID4.length > 0) {
+              /* 显示poi */
+              __g.tag.show(this.poiID4);
+              return;
+            }
+            const jiucun = require("../../assets/json/jiucun.json");
+            const poiArr = [];
+            const temp = jiucun.data.data.filter((item, index) => {
+              if (index < 200) {
+                return true;
+              }
+            });
+            temp.forEach(async (item, index) => {
+              /* 坐标转换 经-纬 */
+              await __g.coord.gcs2pcs(
+                [parseFloat(item.LATITUDE), parseFloat(item.LONGITUDE)],
+                (res) => {
+                  const coord = [
+                    res.coordinates[0][0] + 40000,
+                    res.coordinates[0][1] - 2330000,
+                    20,
+                  ];
+                  // console.log(coord);
+                  let o = new TagData("tag3+" + item.ID);
+                  this.poiID4.push("tag3+" + item.ID);
+                  o.coordinate = coord;
+                  o.imagePath = IP + "/mock/娱乐.png";
+                  o.url = "";
+                  o.imageSize = [28, 28];
+                  o.text = item.name;
+                  o.range = [1, 800000.1];
+                  o.textRange = 300000;
+                  o.showLine = false;
+                  o.textColor = Color.Black;
+                  o.textBackgroundColor = Color.White;
+                  o.hoverImagePath = "";
+                  // console.log(o);
+                  poiArr.push(o);
+                  if (index >= temp.length - 1) {
+                    // console.log(poiArr);
+                    __g.tag.add(poiArr);
+                  }
+                }
+              );
+            });
+          } else {
+            __g.tag.hide(this.poiID4);
+          }
           break;
         default:
           break;
       }
     },
   },
-  // mounted() {
-  //   console.log(111);
-  //   __g.tag.clear();
-  //   __g.coord.gcs2pcs([23.19030724, 113.43788454], (res) => {
-  //     const coord = [
-  //       res.coordinates[0][0] + 40000,
-  //       res.coordinates[0][1] - 2330000,
-  //       20,
-  //     ];
-  //     console.log(coord);
-  //     let o = new TagData("test");
-  //     o.coordinate = coord;
-  //     o.imagePath = "http://10.140.241.69:8080/mock/shop.png";
-  //     o.url = "";
-  //     o.imageSize = [28, 28];
-  //     o.text = "1111";
-  //     o.range = [1, 800000.1];
-  //     o.textRange = 300000;
-  //     o.showLine = true;
-  //     o.textColor = Color.Black;
-  //     o.textBackgroundColor = Color.White;
-  //     o.hoverImagePath = IP + "/mock/商店2.png";
-  //     __g.tag.add(o);
-  //     __g.tag.focus("test", 200, 1);
-  //   });
-  // },
+  mounted() {
+    __g.tag.clear();
+  },
 };
 </script>
 
@@ -208,7 +235,7 @@ export default {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
-  background-color: #208ABE;
+  background-color: #208abe;
   color: #fff;
   font-size: 24px;
 }
