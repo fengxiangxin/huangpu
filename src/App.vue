@@ -77,7 +77,7 @@ export default {
 
       /*  */
       if (e.Type === "tag") {
-        // __g.tag.showPopupWindow(e.Id);
+        __g.tag.focus(e.Id, 200, 0.5);
         let data = [];
         let ID = "";
         if (e.Id.slice(0, 4) === "tag1") {
@@ -120,9 +120,8 @@ export default {
         one.PROJ_AREA && (tempObj["建筑范围"] = one.PROJ_AREA);
         one.STREET && (tempObj["所属街道"] = one.STREET);
         one.WORK_MEASURE && (tempObj["问题"] = one.WORK_MEASURE);
-        console.log(e.Id);
-        __g.tag.showPopupWindow(e.Id);
-        __g.tag.setURL(e.Id, "http://10.140.241.36:81/int_popup.html");
+        localStorage.setItem("key", JSON.stringify(tempObj));
+        __g.tag.setURL(e.Id, IP + "/mock/diag.html");
 
         // console.log(tempObj);
         // this.$store.state.oneTag = tempObj;

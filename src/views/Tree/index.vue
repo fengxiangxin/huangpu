@@ -86,9 +86,9 @@ export default {
                   this.poiID2.push("tag1+" + item.ID);
                   o.coordinate = coord;
                   o.imagePath = IP + "/mock/shop.png";
-                  o.url = "http://10.140.241.36:81/int_popup.html";
+                  o.url = "";
                   o.imageSize = [28, 28];
-                  o.text = item.name;
+                  o.text = "";
                   o.range = [1, 800000.1];
                   o.textRange = 300000;
                   o.showLine = false;
@@ -96,7 +96,9 @@ export default {
                   o.textBackgroundColor = Color.White;
                   o.hoverImagePath = IP + "/mock/商店2.png";
                   poiArr.push(o);
+                  console.log(o);
                   if (index >= 199) {
+                    console.log("添加");
                     __g.tag.add(poiArr);
                   }
                 }
@@ -217,6 +219,20 @@ export default {
   },
   mounted() {
     __g.tag.clear();
+    // let o = new TagData("test");
+    // o.coordinate = [23.19030724 + 40000, 113.43788454 - 2330000];
+    // o.imagePath = IP + "/mock/shop.png";
+    // o.url = IP + "/mock/diag.html?a=1&b=2";
+    // o.imageSize = [28, 28];
+    // o.text = "";
+    // o.range = [1, 800000.1];
+    // o.textRange = 300000;
+    // o.showLine = false;
+    // o.textColor = Color.Black;
+    // o.textBackgroundColor = Color.White;
+    // o.hoverImagePath = IP + "/mock/商店2.png";
+    // __g.tag.add(o);
+    // __g.tag.focus("test");
   },
 };
 </script>

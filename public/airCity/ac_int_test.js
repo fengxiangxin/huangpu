@@ -2334,6 +2334,12 @@ function test_settings_setOceanColor() {
     __g.settings.setOceanColor(Color.Blue);
 }
 
+var __bEnableInteract = true;
+function test_settings_setEnableInteract() {
+    __bEnableInteract = !__bEnableInteract;
+    __g.settings.setEnableInteract(__bEnableInteract);
+
+}
 
 
 
