@@ -86,7 +86,7 @@ export default {
                   this.poiID2.push("tag1+" + item.ID);
                   o.coordinate = coord;
                   o.imagePath = IP + "/mock/shop.png";
-                  o.url = "";
+                  o.url = "http://10.140.241.36:81/int_popup.html";
                   o.imageSize = [28, 28];
                   o.text = item.name;
                   o.range = [1, 800000.1];
@@ -108,7 +108,7 @@ export default {
           break;
         case "3":
           if (isCheck) {
-            console.log(333333333);
+            // console.log(333333333);
             if (this.poiID3.length > 0) {
               /* 显示poi */
               __g.tag.show(this.poiID3);
@@ -136,7 +136,7 @@ export default {
                   this.poiID3.push("tag2+" + item.ID);
                   o.coordinate = coord;
                   o.imagePath = IP + "/mock/社区.png";
-                  o.url = "";
+                  o.url = "http://10.140.241.69:8080/mock/diag.html";
                   o.imageSize = [28, 28];
                   o.text = item.name;
                   o.range = [1, 800000.1];
@@ -160,7 +160,7 @@ export default {
           break;
         case "4":
           if (isCheck) {
-            console.log(444);
+            // console.log(444);
             if (this.poiID4.length > 0) {
               /* 显示poi */
               __g.tag.show(this.poiID4);
@@ -215,7 +215,9 @@ export default {
       }
     },
   },
-  mounted() {},
+  mounted() {
+    __g.tag.clear();
+  },
 };
 </script>
 

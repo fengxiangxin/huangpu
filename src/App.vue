@@ -47,8 +47,8 @@ export default {
     }),
   },
   created() {
-    // window.addEventListener("load", this.onLoad, true);
-    // window.addEventListener("resize", this.onResize, true);
+    window.addEventListener("load", this.onLoad, true);
+    window.addEventListener("resize", this.onResize, true);
     this.tagdata = [
       ...shop.pois,
       ...shequ.pois,
@@ -56,7 +56,7 @@ export default {
       ...yiyuan.pois,
       ...yule.pois,
     ];
-    console.log(this.tagdata);
+    // console.log(this.tagdata);
 
     // this.$nextTick(() => {
     //   const resize = () => {
@@ -77,6 +77,7 @@ export default {
 
       /*  */
       if (e.Type === "tag") {
+        // __g.tag.showPopupWindow(e.Id);
         let data = [];
         let ID = "";
         if (e.Id.slice(0, 4) === "tag1") {
@@ -119,7 +120,10 @@ export default {
         one.PROJ_AREA && (tempObj["建筑范围"] = one.PROJ_AREA);
         one.STREET && (tempObj["所属街道"] = one.STREET);
         one.WORK_MEASURE && (tempObj["问题"] = one.WORK_MEASURE);
-        __g.tag.setURL(e.Id, IP + "/mock/dialog.html?" + "a=2&b=3");
+        console.log(e.Id);
+        __g.tag.showPopupWindow(e.Id);
+        __g.tag.setURL(e.Id, "http://10.140.241.36:81/int_popup.html");
+
         // console.log(tempObj);
         // this.$store.state.oneTag = tempObj;
         // console.log(this.$store.state.oneTag);
