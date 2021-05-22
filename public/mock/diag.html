@@ -6,35 +6,143 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <!-- <script src="../../src/assets/json/yanganqi.json"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
 </head>
 
 <body>
-    <div class="box" id="box">
-        1111111111111111111111111
+    <div class="right">
+        <div class="close">
+            <i class="el-icon-close"></i>
+        </div>
+        <div class="content" id="content">
+            <!-- <div v-for="(value, key, index) in oneTag" :key="index">
+                <span>{{ key }} : {{ value }}</span>
+            </div> -->
+        </div>
     </div>
 </body>
-<script language="javascript">
-    function getQueryVariable(variable) {
-        console.log('fsdfdsfdsf')
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        console.log(query, vars, 'qu')
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split("=");
-            if (pair[0] == variable) { return pair[1]; }
-        }
-        return (false);
+<script language="javascript" type="module">
+    // var oneTag = JSON.parse(localStorage.getItem('key'))
+    // import aa from './yanganqi.json'
+    // console.log(aa);
+
+
+    var query = decodeURI(window.location.search.substring(1));
+
+    var oneTag = {};
+    query.split('&').forEach((item) => {
+        var temp = item.split('=')
+        oneTag[temp[0]] = temp[1]
+    })
+    var path
+    var ID = oneTag.id.split('+')[1]
+    if (oneTag.id.slice(0, 4) === "tag1") {
+        path = './yanganqi.json'
     }
-    getQueryVariable();
+    if (oneTag.id.slice(0, 4) === "tag2") {
+        path = './lajitong.json'
+    }
+    if (oneTag.id.slice(0, 4) === "tag3") {
+        path = './jiucun.json'
+    }
+    var data
+    var one
+    $.getJSON(path, res => {
+        data = res.data.data.filter((item, index) => {
+            if (index < 200) {
+                return true
+            }
+        })
+        console.log(data);
+        /* 查找数据 */
+        one = data.find(item => {
+            if (item.ID === ID) {
+                return true;
+            }
+        });
+
+
+        var tempObj = {};
+        one.CREATE_TIME && (tempObj["时间"] = one.CREATE_TIME);
+        one.DEVICE_POSITION && (tempObj["地点"] = one.DEVICE_POSITION);
+        one.LONGITUDE &&
+            (tempObj["坐标"] = one.LONGITUDE + "   " + one.LATITUDE);
+        one.PEOPLE_STATUS && (tempObj["重点人员"] = one.PEOPLE_STATUS);
+        one.PROBLEM && (tempObj["名称"] = one.PROBLEM);
+        one.PROJ_AREA && (tempObj["建筑范围"] = one.PROJ_AREA);
+        one.STREET && (tempObj["所属街道"] = one.STREET);
+        one.WORK_MEASURE && (tempObj["问题"] = one.WORK_MEASURE);
+
+        var content = document.getElementById('content')
+
+        for (const key in tempObj) {
+            var el = document.createElement('div')
+            var span = document.createElement('span')
+            span.innerText = key + ':' + tempObj[key]
+            el.appendChild(span)
+
+            content.appendChild(el)
+        }
+
+    })
+
+
+
+
+    // if (oneTag) {
+    //     box.innerText = '1233131'
+    // }
+
+
+    // function getQueryVariable(variable) {
+    //     console.log('fsdfdsfdsf')
+    //     var query = window.location.search.substring(1);
+    //     var vars = query.split("&");
+    //     console.log(query, vars, 'qu')
+    //     for (var i = 0; i < vars.length; i++) {
+    //         var pair = vars[i].split("=");
+    //         if (pair[0] == variable) { return pair[1]; }
+    //     }
+
+    //     return (false);
+    // }
+    // getQueryVariable();
 </script>
 <style>
-    .box {
-        width: 300px;
-        height: 300px;
-        border: 1px solid red;
-        position: relative;
-        z-index: 99;
+    .right {
+        width: 350px;
+        border: 1px solid #208abe;
+        /* position: absolute; */
+        right: 320px;
+        top: 300px;
+        zoom: 4;
+        box-shadow: 5px 5px 15px #208abe;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+        background: #208abe;
+        opacity: 0.6;
+
+
+    }
+
+    .close {
+        font-size: 10px;
+        float: right;
+        cursor: pointer;
+        color: #ffffff;
+    }
+
+    .content {
+        padding: 0 10px 10px 10px;
+        clear: both;
+
+    }
+
+    .content span {
+        font-size: 10px;
+        display: block;
     }
 </style>
 

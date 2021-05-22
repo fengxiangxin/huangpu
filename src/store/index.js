@@ -12,7 +12,8 @@ export default new Vuex.Store({
     goBuildingAlone: false,
     BuildingAloneData: {},
     showAlarm: false,
-    oneTag: {}
+    oneTag: {},
+    positonPOI: {}
   },
   mutations: {
     showVideoDialog(state, flag) {
