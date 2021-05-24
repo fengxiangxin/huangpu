@@ -11,5 +11,5 @@ var HostConfig = {
   AirCityPlayer: ip + ":8082",
   AirCityAPI: ip + ":4324",
   Token: "",
-  Path: "C:\\AirCityCloud2021.0423_Trunk\\SDK",
+  Path: "C:/Users/飞渡02/Desktop/AirCityCloud2021.0514_Release4.3/SDK/images",
 };

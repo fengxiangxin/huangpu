@@ -78,41 +78,33 @@ export default {
 
       /*  */
       if (e.Type === "tag") {
-        __g.tag.focus(e.Id, 500, 0, async () => {
-          let data = [];
-          let ID = "";
-          if (e.Id.slice(0, 4) === "tag1") {
-            ID = e.Id.split("+")[1];
-            data = require("./assets/json/yanganqi.json").data.data.filter(
-              (item, index) => {
-                if (index < 200) return true;
-              }
-            );
-            this.$store.state.header = "烟感器";
-          }
-          if (e.Id.slice(0, 4) === "tag2") {
-            ID = e.Id.split("+")[1];
-            data = require("./assets/json/lajitong.json").data.data.filter(
-              (item, index) => {
-                if (index < 200) return true;
-              }
-            );
-            this.$store.state.header = "智能垃圾桶";
-          }
-          if (e.Id.slice(0, 4) === "tag3") {
-            ID = e.Id.split("+")[1];
-            data = require("./assets/json/jiucun.json").data.data.filter(
-              (item, index) => {
-                if (index < 200) return true;
-              }
-            );
-            this.$store.state.header = "重点旧村改造";
-          }
-          /* 查找数据 */
-          const one = data.find((item) => {
-            if (item.ID === ID) {
-              return true;
+       await __g.tag.focus(e.Id, 500, 0.5);
+        let data = [];
+        let ID = "";
+        if (e.Id.slice(0, 4) === "tag1") {
+          ID = e.Id.split("+")[1];
+          data = require("./assets/json/yanganqi.json").data.data.filter(
+            (item, index) => {
+              if (index < 200) return true;
             }
+          );
+          this.$store.state.header = '烟感器'
+        }
+        if (e.Id.slice(0, 4) === "tag2") {
+          ID = e.Id.split("+")[1];
+          data = require("./assets/json/lajitong.json").data.data.filter(
+            (item, index) => {
+              if (index < 200) return true;
+            }
+          );
+          this.$store.state.header = '智能垃圾桶'
+        }
+        if (e.Id.slice(0, 4) === "tag3") {
+          ID = e.Id.split("+")[1];
+          data = require("./assets/json/jiucun.json").data.data.filter(
+            (item, index) => {
+              if (index < 200) return true;
+            // }
           });
           const tempObj = {};
           one.CREATE_TIME && (tempObj["时间"] = one.CREATE_TIME);
@@ -150,7 +142,7 @@ export default {
             left: res.screenPosition[0],
             top: res.screenPosition[1],
           };
-        });
+        // });
       }
       /*  */
 

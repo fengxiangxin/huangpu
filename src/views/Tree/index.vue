@@ -74,7 +74,7 @@ export default {
             });
             temp.forEach(async (item, index, arr) => {
               /* 坐标转换 经-纬 */
-              await __g.coord.gcs2pcs(
+              __g.coord.gcs2pcs(
                 [parseFloat(item.LATITUDE), parseFloat(item.LONGITUDE)],
                 (res) => {
                   const coord = [
@@ -86,7 +86,9 @@ export default {
                   let o = new TagData("tag1+" + item.ID);
                   this.poiID2.push("tag1+" + item.ID);
                   o.coordinate = coord;
-                  o.imagePath = IP + "/mock/shop.png";
+                //   o.imagePath = IP + "/mock/shop.png";
+                  o.imagePath = HostConfig.Path + '/烟感器.png';
+                  console.log(o.imagePath,'image')
                   o.url = "";
                   o.imageSize = [28, 28];
                   o.text = "";
@@ -139,7 +141,7 @@ export default {
                   this.poiID3.push("tag2+" + item.ID);
                   o.coordinate = coord;
                   o.imagePath = IP + "/mock/社区.png";
-                  o.url = "http://10.140.241.69:8080/mock/diag.html";
+                  o.url = "";
                   o.imageSize = [28, 28];
                   o.text = item.name;
                   o.range = [1, 800000.1];
@@ -178,7 +180,7 @@ export default {
             });
             temp.forEach(async (item, index) => {
               /* 坐标转换 经-纬 */
-              await __g.coord.gcs2pcs(
+               __g.coord.gcs2pcs(
                 [parseFloat(item.LATITUDE), parseFloat(item.LONGITUDE)],
                 (res) => {
                   const coord = [
