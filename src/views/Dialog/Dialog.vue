@@ -36,17 +36,17 @@ export default {
 <style lang="less" scoped>
 .right {
   width: 350px;
-  border: 1px solid #208abe;
+  border: 1px solid rgba(2, 15, 43, 0.7);
   position: absolute;
   right: 320px;
   top: 300px;
   zoom: 4;
-  box-shadow: 5px 5px 15px #208abe;
+  box-shadow: 5px 5px 15px rgba(2, 15, 43, 0.7);
   // background-image:url(../../assets/img/frame.60f567eb.png) ;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
-  background: #208abe;
+  background: rgba(2, 15, 43, 0.7);
   opacity: 0.6;
   .close {
     font-size: 10px;

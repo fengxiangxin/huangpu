@@ -250,11 +250,11 @@ export default {
   zoom: 4;
 }
 .el-tree {
-  background-image: url(../../assets/img/frame.60f567eb.png);
+//   background-image: url(../../assets/img/frame.60f567eb.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
-  background-color: #208abe;
+  background-color: rgba(2, 15, 43, 0.7);
   color: #fff;
   font-size: 24px;
 }
@@ -262,9 +262,9 @@ export default {
   content: "";
 }
 /deep/ .el-tree-node__content:hover {
-  background-color: transparent;
+  background-color:rgba(2, 15, 43, 0.7);
 }
 /deep/.el-tree-node:focus > .el-tree-node__content {
-  background-color: transparent !important;
+  background-color: rgba(2, 15, 43, 0.7) !important;
 }
 </style>
