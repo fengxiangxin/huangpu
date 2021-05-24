@@ -17,7 +17,6 @@
 
 <script>
 import axios from "axios";
-const IP = "http://10.140.241.41:8080/"
 export default {
   data() {
     return {
