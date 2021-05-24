@@ -15,7 +15,12 @@
         @keydown.enter.native="search"
       ></el-input>
     </div>
-    <Dialog v-if="oneTag['坐标']" :oneTag="oneTag" @close="close" />
+    <Dialog
+      v-if="oneTag['坐标']"
+      :oneTag="oneTag"
+      @close="close"
+      :positonPOI="positonPOI"
+    />
   </div>
 </template>
 
@@ -35,7 +40,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["oneTag"]),
+    ...mapState(["oneTag", "positonPOI"]),
   },
   methods: {
     show() {
@@ -91,12 +96,12 @@ export default {
   border-radius: 10px;
 }
 /deep/.el-input__inner {
-  background: #208abe !important;
+  background: rgba(2, 15, 43, 0.7)!important;
   border-radius: 46px;
-  border: 1px solid #208abe;
-  box-shadow: 5px 5px 15px darkblue;
+  border: 1px solid rgba(2, 15, 43, 0.7);
+  box-shadow: 5px 5px 15px rgba(2, 15, 43, 0.7);
   color: #fff;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 /deep/.el-input__icon {
   color: #208abe;
