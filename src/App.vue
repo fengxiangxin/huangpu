@@ -88,6 +88,7 @@ export default {
               if (index < 200) return true;
             }
           );
+          this.$store.state.header = '烟感器'
         }
         if (e.Id.slice(0, 4) === "tag2") {
           ID = e.Id.split("+")[1];
@@ -96,6 +97,7 @@ export default {
               if (index < 200) return true;
             }
           );
+          this.$store.state.header = '智能垃圾桶'
         }
         if (e.Id.slice(0, 4) === "tag3") {
           ID = e.Id.split("+")[1];
@@ -104,6 +106,7 @@ export default {
               if (index < 200) return true;
             }
           );
+          this.$store.state.header = '重点旧村改造'
         }
         /* 查找数据 */
         const one = data.find((item) => {

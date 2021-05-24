@@ -7,7 +7,7 @@
     <div class="close" @click="$emit('close')">
       <i class="el-icon-close"></i>
     </div>
-    <div class="header">重点旧村改造</div>
+    <div class="header">{{$store.state.header}}</div>
     <div class="content">
       <div v-for="(value, key, index) in oneTag" :key="index">
         <span>{{ key }} : {{ value }}</span>
@@ -47,10 +47,10 @@ export default {
   right: 320px;
   top: 300px;
   zoom: 4;
-  box-shadow: 0px 0.5px 0.5px 0.5px #3377E0,
-            -0.5px 0px 0.5px 0.5px #3377E0,
-            0.5px 0px 0.5px 0.5px #3377E0,
-            0px -0.5px 0.5px 0.5px #3377E0;
+  box-shadow: 0px 0.5px 0.5px 1px #3377E0,
+            -0.5px 0px 0.5px 1px #3377E0,
+            0.5px 0px 0.5px 1px #3377E0,
+            0px -0.5px 0.5px 1px #3377E0;
 //   background: url("../../assets/img/traffic_map_video_bg1.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;

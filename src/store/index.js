@@ -13,7 +13,8 @@ export default new Vuex.Store({
     BuildingAloneData: {},
     showAlarm: false,
     oneTag: {},
-    positonPOI: {}
+    positonPOI: {},
+    header:'',
   },
   mutations: {
     showVideoDialog(state, flag) {
