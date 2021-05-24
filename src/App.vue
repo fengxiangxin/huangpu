@@ -70,6 +70,7 @@ export default {
     //   window.addEventListener("resize", resize);
     // });
   },
+  
   methods: {
     //监听三维交互的返回事件
     async onEvent(e) {
@@ -134,8 +135,9 @@ export default {
         this.$store.state.oneTag = tempObj;
         // console.log(this.$store.state.oneTag);
         console.log(1111111);
-        const res = await __g.coord.world2Screen(e.MouseClickPoint);
-        console.log(res.screenPosition);
+        const res = await __g.coord.world2Screen(e.MouseClickPoint[0],e.MouseClickPoint[1]);
+    //   const res = await __g.coord.world2Screen(65098.971781,230293.31815799978);
+        console.log(res,'456989898989898');
       }
       /*  */
 

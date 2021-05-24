@@ -1,4 +1,4 @@
-var ip = '10.140.241.36'
+var ip = '10.140.241.41'
 // var HostConfig = {
 //   MatchServer: "10.197.153.176:82",
 //   AirCityPlayer: "10.197.153.176:8081",
@@ -8,8 +8,8 @@ var ip = '10.140.241.36'
 // };
 var HostConfig = {
   MatchServer: ip + ":82",
-  AirCityPlayer: ip + ":8085",
-  AirCityAPI: ip + ":4321",
+  AirCityPlayer: ip + ":8082",
+  AirCityAPI: ip + ":4324",
   Token: "",
   Path: "C:\\AirCityCloud2021.0423_Trunk\\SDK",
 };

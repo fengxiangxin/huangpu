@@ -217,7 +217,10 @@ export default {
       }
     },
   },
-  mounted() {
+  async mounted() {
+     
+      
+
     __g.tag.clear();
     // let o = new TagData("test");
     // o.coordinate = [23.19030724 + 40000, 113.43788454 - 2330000];
