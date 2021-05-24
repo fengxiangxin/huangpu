@@ -98,7 +98,7 @@ export default {
     // =======================AirCityExplorer配置====================//
     initWebSocket() {
       //初始化weosocket
-      const wsuri = "127.0.0.1:4321"; //映射本机端口
+      const wsuri = "127.0.0.1:4321"; //映射本机端口d
       this.websock = new AirCityAPI(wsuri, this.onReady, this.log);
       this.websock.setEventCallback(this.onEvent);
     },
