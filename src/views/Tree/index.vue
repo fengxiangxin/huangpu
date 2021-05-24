@@ -54,6 +54,7 @@ export default {
     handleNodeClick() {},
     handleCheckChange(data, isCheck) {
       // __g.tag.clear();
+      console.log(data,'data')
       if (data.children) return;
       console.log(data.id, isCheck);
       switch (data.id) {
