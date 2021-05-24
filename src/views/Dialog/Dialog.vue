@@ -1,5 +1,8 @@
 <template>
-  <div class="right">
+  <div
+    class="right"
+    :style="{ left: positonPOI.left + 'px', top: positonPOI.top + 'px' }"
+  >
     <div class="close" @click="$emit('close')">
       <i class="el-icon-close"></i>
     </div>
@@ -24,7 +27,7 @@ export default {
       },
     };
   },
-  props: ["oneTag"],
+  props: ["oneTag", "positonPOI"],
   methods: {
     // close() {
     //   console.log(1111);
