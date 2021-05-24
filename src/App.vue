@@ -78,7 +78,7 @@ export default {
 
       /*  */
       if (e.Type === "tag") {
-       await __g.tag.focus(e.Id, 200, 0.5);
+       await __g.tag.focus(e.Id, 500, 0.5);
         let data = [];
         let ID = "";
         if (e.Id.slice(0, 4) === "tag1") {
