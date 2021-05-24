@@ -33,18 +33,18 @@ import { mapState } from "vuex";
 export default {
   components: {
     Header,
-    Footer
+    Footer,
   },
   data() {
     return {
       isPlay: false,
-      tagdata: []
+      tagdata: [],
     };
   },
   computed: {
     ...mapState({
-      goBuildingAlone: state => state.goBuildingAlone
-    })
+      goBuildingAlone: (state) => state.goBuildingAlone,
+    }),
   },
   created() {
     window.addEventListener("load", this.onLoad, true);
@@ -54,7 +54,7 @@ export default {
       ...shequ.pois,
       ...school.pois,
       ...yiyuan.pois,
-      ...yule.pois
+      ...yule.pois,
     ];
     // console.log(this.tagdata);
 
@@ -70,7 +70,7 @@ export default {
     //   window.addEventListener("resize", resize);
     // });
   },
-  
+
   methods: {
     //监听三维交互的返回事件
     async onEvent(e) {
@@ -78,7 +78,7 @@ export default {
 
       /*  */
       if (e.Type === "tag") {
-        __g.tag.focus(e.Id, 200, 0.5);
+       await __g.tag.focus(e.Id, 200, 0.5);
         let data = [];
         let ID = "";
         if (e.Id.slice(0, 4) === "tag1") {
@@ -106,7 +106,7 @@ export default {
           );
         }
         /* 查找数据 */
-        const one = data.find(item => {
+        const one = data.find((item) => {
           if (item.ID === ID) {
             return true;
           }
@@ -135,9 +135,16 @@ export default {
         this.$store.state.oneTag = tempObj;
         // console.log(this.$store.state.oneTag);
         console.log(1111111);
-        const res = await __g.coord.world2Screen(e.MouseClickPoint[0],e.MouseClickPoint[1]);
-    //   const res = await __g.coord.world2Screen(65098.971781,230293.31815799978);
-        console.log(res,'456989898989898');
+        const res = await __g.coord.world2Screen(
+          e.MouseClickPoint[0],
+          e.MouseClickPoint[1]
+        );
+        //   const res = await __g.coord.world2Screen(65098.971781,230293.31815799978);
+        console.log(res, "456989898989898");
+        this.$store.state.positonPOI = {
+          left: res.screenPosition[0],
+          top: res.screenPosition[1],
+        };
       }
       /*  */
 
@@ -164,13 +171,13 @@ export default {
           所属区: "黄埔区",
           邮编: "--",
           建筑面积: e.Fields.建筑面积,
-          建筑编号: e.Fields.国标要素代
+          建筑编号: e.Fields.国标要素代,
         };
         this.$store.commit("BuildingAloneData", BuildingAloneData);
         console.log(BuildingAloneData, 9887877868);
       }
       if (e.Type === "tag" && e.Id.slice(0, 3) !== "zxd") {
-        let newtagdata = this.tagdata.find(item => {
+        let newtagdata = this.tagdata.find((item) => {
           return item.id == e.Id;
         });
         let tagarr;
@@ -184,15 +191,15 @@ export default {
               经纬度: newtagdata.location,
               电话: newtagdata.tel.length > 0 ? newtagdata.tel : "--",
               所属区: newtagdata.adname,
-              邮编: newtagdata.adcode ? newtagdata.adcode : "--"
+              邮编: newtagdata.adcode ? newtagdata.adcode : "--",
             },
             // imgList: newtagdata.photos.length > 0 ? newtagdata.photos : [],
             imgList:
               newtagdata.photos.length > 0
-                ? newtagdata.photos.map(item => {
+                ? newtagdata.photos.map((item) => {
                     return item.url;
                   })
-                : []
+                : [],
           });
 
         this.$store.commit("tagdata", tagarr);
@@ -228,20 +235,20 @@ export default {
         let __fn = fn;
 
         var ws = new WebSocket(url);
-        ws.onopen = function() {
+        ws.onopen = function () {
           this.send(
             JSON.stringify({
               command: 6,
-              callbackIndex: callbackIndex
+              callbackIndex: callbackIndex,
             })
           );
         };
-        ws.onmessage = function(event) {
+        ws.onmessage = function (event) {
           var o = JSON.parse(event.data);
           __fn(o);
         };
-        ws.onclose = function() {};
-        ws.onerror = function(event) {};
+        ws.onclose = function () {};
+        ws.onerror = function (event) {};
       } else {
         this.log("Not Support WebSocket!");
       }
@@ -251,7 +258,7 @@ export default {
       let _this = this;
       // let bitrate = getQueryVariable("bitrate");
       // console.log(bitrate);
-      this.getMatchServerConfig(HostConfig.MatchServer, function(o) {
+      this.getMatchServerConfig(HostConfig.MatchServer, function (o) {
         if (o.result == 0) {
           if (withPlayer) {
             let acp = new AirCityPlayer(
@@ -293,8 +300,8 @@ export default {
           }
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less">

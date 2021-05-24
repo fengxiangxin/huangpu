@@ -15,7 +15,12 @@
         @keydown.enter.native="search"
       ></el-input>
     </div>
-    <Dialog v-if="oneTag['坐标']" :oneTag="oneTag" @close="close" />
+    <Dialog
+      v-if="oneTag['坐标']"
+      :oneTag="oneTag"
+      @close="close"
+      :positonPOI="positonPOI"
+    />
   </div>
 </template>
 
@@ -35,7 +40,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["oneTag"]),
+    ...mapState(["oneTag", "positonPOI"]),
   },
   methods: {
     show() {
