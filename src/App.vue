@@ -106,6 +106,7 @@ export default {
               if (index < 200) return true;
             // }
           });
+        }
           const tempObj = {};
           one.CREATE_TIME && (tempObj["时间"] = one.CREATE_TIME);
           one.DEVICE_POSITION && (tempObj["地点"] = one.DEVICE_POSITION);
@@ -300,7 +301,6 @@ export default {
       });
     },
   },
-  mounted() {},
 };
 </script>
 <style lang="less">
