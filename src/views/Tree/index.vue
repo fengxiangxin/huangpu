@@ -54,7 +54,7 @@ export default {
     handleNodeClick() {},
     handleCheckChange(data, isCheck) {
       // __g.tag.clear();
-      console.log(data,'data')
+      console.log(data, "data");
       if (data.children) return;
       console.log(data.id, isCheck);
       switch (data.id) {
@@ -72,7 +72,7 @@ export default {
                 return true;
               }
             });
-            temp.forEach(async (item, index) => {
+            temp.forEach(async (item, index, arr) => {
               /* 坐标转换 经-纬 */
               await __g.coord.gcs2pcs(
                 [parseFloat(item.LATITUDE), parseFloat(item.LONGITUDE)],
@@ -82,7 +82,7 @@ export default {
                     res.coordinates[0][1] - 2330000,
                     20,
                   ];
-                  console.log(coord);
+                  console.log(parseInt((index / (arr.length - 1)) * 100) + "%");
                   let o = new TagData("tag1+" + item.ID);
                   this.poiID2.push("tag1+" + item.ID);
                   o.coordinate = coord;
@@ -97,7 +97,7 @@ export default {
                   o.textBackgroundColor = Color.White;
                   o.hoverImagePath = IP + "/mock/商店2.png";
                   poiArr.push(o);
-                  console.log(o);
+                  // console.log(o);
                   if (index >= 199) {
                     console.log("添加");
                     __g.tag.add(poiArr);
@@ -126,7 +126,7 @@ export default {
             });
             temp.forEach(async (item, index) => {
               /* 坐标转换 经-纬 */
-              await __g.coord.gcs2pcs(
+               __g.coord.gcs2pcs(
                 [parseFloat(item.LATITUDE), parseFloat(item.LONGITUDE)],
                 (res) => {
                   const coord = [
@@ -219,9 +219,6 @@ export default {
     },
   },
   async mounted() {
-     
-      
-
     __g.tag.clear();
     // let o = new TagData("test");
     // o.coordinate = [23.19030724 + 40000, 113.43788454 - 2330000];
@@ -251,7 +248,7 @@ export default {
   zoom: 4;
 }
 .el-tree {
-//   background-image: url(../../assets/img/frame.60f567eb.png);
+  //   background-image: url(../../assets/img/frame.60f567eb.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
@@ -263,7 +260,7 @@ export default {
   content: "";
 }
 /deep/ .el-tree-node__content:hover {
-  background-color:rgba(2, 15, 43, 0.7);
+  background-color: rgba(2, 15, 43, 0.7);
 }
 /deep/.el-tree-node:focus > .el-tree-node__content {
   background-color: rgba(2, 15, 43, 0.7) !important;

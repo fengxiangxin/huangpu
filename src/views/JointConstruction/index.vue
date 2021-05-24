@@ -54,6 +54,13 @@ export default {
       this.$store.state.oneTag = {};
     },
   },
+  mounted() {
+    // console.log(__g);
+    let o = new TagData("p1");
+    console.log(o);
+    o.id = "010101";
+    console.log(o);
+  },
   components: {
     JointLeft,
     JointRight,
@@ -96,7 +103,7 @@ export default {
   border-radius: 10px;
 }
 /deep/.el-input__inner {
-  background: rgba(2, 15, 43, 0.7)!important;
+  background: rgba(2, 15, 43, 0.7) !important;
   border-radius: 46px;
   border: 1px solid rgba(2, 15, 43, 0.7);
   box-shadow: 5px 5px 15px rgba(2, 15, 43, 0.7);

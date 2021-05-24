@@ -78,76 +78,79 @@ export default {
 
       /*  */
       if (e.Type === "tag") {
-       await __g.tag.focus(e.Id, 200, 0.5);
-        let data = [];
-        let ID = "";
-        if (e.Id.slice(0, 4) === "tag1") {
-          ID = e.Id.split("+")[1];
-          data = require("./assets/json/yanganqi.json").data.data.filter(
-            (item, index) => {
-              if (index < 200) return true;
-            }
-          );
-          this.$store.state.header = '烟感器'
-        }
-        if (e.Id.slice(0, 4) === "tag2") {
-          ID = e.Id.split("+")[1];
-          data = require("./assets/json/lajitong.json").data.data.filter(
-            (item, index) => {
-              if (index < 200) return true;
-            }
-          );
-          this.$store.state.header = '智能垃圾桶'
-        }
-        if (e.Id.slice(0, 4) === "tag3") {
-          ID = e.Id.split("+")[1];
-          data = require("./assets/json/jiucun.json").data.data.filter(
-            (item, index) => {
-              if (index < 200) return true;
-            }
-          );
-          this.$store.state.header = '重点旧村改造'
-        }
-        /* 查找数据 */
-        const one = data.find((item) => {
-          if (item.ID === ID) {
-            return true;
+        __g.tag.focus(e.Id, 500, 0, async () => {
+          let data = [];
+          let ID = "";
+          if (e.Id.slice(0, 4) === "tag1") {
+            ID = e.Id.split("+")[1];
+            data = require("./assets/json/yanganqi.json").data.data.filter(
+              (item, index) => {
+                if (index < 200) return true;
+              }
+            );
+            this.$store.state.header = "烟感器";
           }
-        });
-        const tempObj = {};
-        one.CREATE_TIME && (tempObj["时间"] = one.CREATE_TIME);
-        one.DEVICE_POSITION && (tempObj["地点"] = one.DEVICE_POSITION);
-        one.LONGITUDE &&
-          (tempObj["坐标"] = one.LONGITUDE + "   " + one.LATITUDE);
-        // one.PEOPLE_STATUS && (tempObj["重点人员"] = one.PEOPLE_STATUS);
-        one.PROBLEM && (tempObj["名称"] = one.PROBLEM);
-        one.PROJ_AREA && (tempObj["建筑范围"] = one.PROJ_AREA);
-        one.STREET && (tempObj["所属街道"] = one.STREET);
-        // one.WORK_MEASURE && (tempObj["问题"] = one.WORK_MEASURE);
-        // localStorage.setItem("key", JSON.stringify(tempObj));
-        const arr = [];
-        for (const key in tempObj) {
-          const str = key + "=" + tempObj[key];
-          arr.push(str);
-        }
-        // console.log(arr.join("&"));
-        // __g.tag.setURL(e.Id, IP + "/mock/diag.html?" + "id=" + e.Id);
+          if (e.Id.slice(0, 4) === "tag2") {
+            ID = e.Id.split("+")[1];
+            data = require("./assets/json/lajitong.json").data.data.filter(
+              (item, index) => {
+                if (index < 200) return true;
+              }
+            );
+            this.$store.state.header = "智能垃圾桶";
+          }
+          if (e.Id.slice(0, 4) === "tag3") {
+            ID = e.Id.split("+")[1];
+            data = require("./assets/json/jiucun.json").data.data.filter(
+              (item, index) => {
+                if (index < 200) return true;
+              }
+            );
+            this.$store.state.header = "重点旧村改造";
+          }
+          /* 查找数据 */
+          const one = data.find((item) => {
+            if (item.ID === ID) {
+              return true;
+            }
+          });
+          const tempObj = {};
+          one.CREATE_TIME && (tempObj["时间"] = one.CREATE_TIME);
+          one.DEVICE_POSITION && (tempObj["地点"] = one.DEVICE_POSITION);
+          one.LONGITUDE &&
+            (tempObj["坐标"] = one.LONGITUDE + "   " + one.LATITUDE);
+          one.PEOPLE_STATUS && (tempObj["重点人员"] = one.PEOPLE_STATUS);
+          one.PROBLEM && (tempObj["名称"] = one.PROBLEM);
+          one.PROJ_AREA && (tempObj["建筑范围"] = one.PROJ_AREA);
+          one.STREET && (tempObj["所属街道"] = one.STREET);
+          one.WORK_MEASURE && (tempObj["问题"] = one.WORK_MEASURE);
+          // localStorage.setItem("key", JSON.stringify(tempObj));
+          const arr = [];
+          for (const key in tempObj) {
+            const str = key + "=" + tempObj[key];
+            arr.push(str);
+          }
+          // console.log(arr.join("&"));
+          // __g.tag.setURL(e.Id, IP + "/mock/diag.html?" + "id=" + e.Id);
 
-        // console.log(IP + "/mock/diag.html?" + "id=" + e.Id);
-        // console.log(tempObj);
-        this.$store.state.oneTag = tempObj;
-        // console.log(this.$store.state.oneTag);
-        console.log(1111111);
-        const res = await __g.coord.world2Screen(
-          e.MouseClickPoint[0],
-          e.MouseClickPoint[1]
-        );
-        //   const res = await __g.coord.world2Screen(65098.971781,230293.31815799978);
-        console.log(res, "456989898989898");
-        this.$store.state.positonPOI = {
-          left: res.screenPosition[0],
-          top: res.screenPosition[1],
-        };
+          // console.log(IP + "/mock/diag.html?" + "id=" + e.Id);
+          // console.log(tempObj);
+          setTimeout(() => {
+            this.$store.state.oneTag = tempObj;
+          }, 1000);
+          // console.log(this.$store.state.oneTag);
+          // console.log(1111111);
+          const res = await __g.coord.world2Screen(
+            e.MouseClickPoint[0],
+            e.MouseClickPoint[1]
+          );
+          //   const res = await __g.coord.world2Screen(65098.971781,230293.31815799978);
+          console.log(res, "456989898989898");
+          this.$store.state.positonPOI = {
+            left: res.screenPosition[0],
+            top: res.screenPosition[1],
+          };
+        });
       }
       /*  */
 
@@ -305,6 +308,7 @@ export default {
       });
     },
   },
+  mounted() {},
 };
 </script>
 <style lang="less">
