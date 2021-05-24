@@ -51,7 +51,7 @@ export default {
     };
   },
   mounted(){
-    console.log(IP,'IPIPIPIPIP')
+    
   },
   methods: {
     handleNodeClick() {},

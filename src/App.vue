@@ -7,7 +7,7 @@
         height="2400px"
       />
     </div>
-    <div id="player"></div>
+    <!-- <div id="player"></div> -->
 
     <div ref="zoom">
       <Header></Header>
@@ -38,7 +38,8 @@ export default {
   data() {
     return {
       isPlay: false,
-      tagdata: []
+      tagdata: [],
+      cameraHight:0
     };
   },
   computed: {
@@ -46,9 +47,19 @@ export default {
       goBuildingAlone: state => state.goBuildingAlone
     })
   },
+  watch:{
+     cameraHight(val, newval) {
+        if (val < 50000) {
+            __g.infoTree.hide(['52552A2A498D6EC759F33F83FAD731F9']);
+          }else{
+            __g.infoTree.show(['52552A2A498D6EC759F33F83FAD731F9']);
+          }
+    }
+  },
+  
   created() {
-    window.addEventListener("load", this.onLoad, true);
-    window.addEventListener("resize", this.onResize, true);
+    // window.addEventListener("load", this.onLoad, true);
+    // window.addEventListener("resize", this.onResize, true);
     this.tagdata = [
       ...shop.pois,
       ...shequ.pois,
@@ -69,6 +80,10 @@ export default {
     //   resize();
     //   window.addEventListener("resize", resize);
     // });
+  },
+  mounted(){
+    this.initWebSocket()
+    this.timer = setInterval(this.getCamera, 1000);
   },
   methods: {
     //监听三维交互的返回事件
@@ -207,9 +222,27 @@ export default {
       // if(e.Type === "tag")
     },
 
+    //获取相机高度
+   async getCamera() {
+      if (__g.camera) {
+      await __g.camera.get((res => {
+        this.cameraHight = res.z
+        console.log(this.cameraHight,'=============')
+       }))
+      }
+    },
+
+    // =======================AirCityExplorer配置====================//
+    initWebSocket() {
+      //初始化weosocket
+      const wsuri = "127.0.0.1:4321"; //映射本机端口
+      this.websock = new AirCityAPI(wsuri, this.onReady, this.log);
+      this.websock.setEventCallback(this.onEvent);
+    },
+
+
     onLoad() {
       this.onResize();
-
       this.init(true, true);
     },
     onResize() {
