@@ -27,7 +27,7 @@
         class="item"
         effect="dark"
         content="编辑功能"
-        placement="left"
+        placement="top"
       >
         <i
           :class="isShowFenxi && 'active'"
@@ -35,15 +35,15 @@
         ></i>
       </el-tooltip>
     </div>
-    <div class="editor" v-if="isShowFenxi" @click="updateActive(index)">
-        <div class="editor-item">
-            <el-tooltip  content="多边形查询" placement="left" effect="dark">
+    <div class="editor" v-if="isShowFenxi">
+        <div  class="editor-item">
+            <el-tooltip  content="多边形查询" placement="top" effect="dark">
                 <i class="el-icon-crop" ></i>
             </el-tooltip>
         </div>
-        <div class="editor-item">
-            <el-tooltip  content="多边形查询" placement="left" effect="dark">
-                <i class="el-icon-crop"></i>
+        <div  class="editor-item">
+            <el-tooltip  content="画圆查询" placement="top" effect="dark">
+                <i class="el-icon-circle-plus-outline"></i>
             </el-tooltip>
         </div>
         
@@ -66,6 +66,7 @@ export default {
       showBtn: false,
       values: "",
       isShowFenxi:false,
+    
     };
   },
   computed: {
