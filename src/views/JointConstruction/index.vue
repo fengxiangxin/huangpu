@@ -22,7 +22,7 @@
       :positonPOI="positonPOI"
     />
 
-    <div class="fenxi">
+    <div class="fenxi"  @click="isShowFenxi = !isShowFenxi" >
       <el-tooltip
         class="item"
         effect="dark"
@@ -31,15 +31,12 @@
       >
         <i
           :class="isShowFenxi && 'active'"
-          @click="isShowFenxi = !isShowFenxi"
           class="el-icon-edit"
         ></i>
       </el-tooltip>
-      <transition name="fenxi">
-        <div>
-            
-        </div>
-      </transition>
+    </div>
+    <div class="editor" v-if="isShowFenxi">
+
     </div>
 
   </div>
@@ -172,5 +169,14 @@ export default {
   > .active {
     color: #4f9efd;
   }
+}
+.editor{
+    position: absolute;
+  left: 1950px;
+  bottom: 70px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid white;
+    background: white;
 }
 </style>
