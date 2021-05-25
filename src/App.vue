@@ -48,7 +48,7 @@ export default {
   },
   watch: {
     cameraHight(val, newval) {
-     //高度少于1000隐藏全部线和面
+     //高度少于1000隐藏全部线和面a
       if (val <= 1000) {
         __g.infoTree.hide([
           "87887F19491218E491B38A973D381E06",
