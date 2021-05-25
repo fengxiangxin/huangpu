@@ -21,6 +21,27 @@
       @close="close"
       :positonPOI="positonPOI"
     />
+
+    <div class="fenxi">
+      <el-tooltip
+        class="item"
+        effect="dark"
+        content="编辑功能"
+        placement="left"
+      >
+        <i
+          :class="isShowFenxi && 'active'"
+          @click="isShowFenxi = !isShowFenxi"
+          class="el-icon-edit"
+        ></i>
+      </el-tooltip>
+      <transition name="fenxi">
+        <div>
+            
+        </div>
+      </transition>
+    </div>
+
   </div>
 </template>
 
@@ -37,6 +58,7 @@ export default {
     return {
       showBtn: false,
       values: "",
+      isShowFenxi:false,
     };
   },
   computed: {
@@ -126,5 +148,29 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.fenxi{
+  position: absolute;
+  left: 1800px;
+  bottom: 70px;
+  font-size: 44px;
+  // width: 400px;
+  // height: 109px;
+  color: #fff;
+  z-index: 9;
+  cursor: pointer;
+  background-color: rgba(2, 15, 43, 0.7);
+  padding: 20px 40px;
+  border-radius: 20px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .iconfont {
+    font-size: 70px;
+  }
+  > .active {
+    color: #4f9efd;
+  }
 }
 </style>

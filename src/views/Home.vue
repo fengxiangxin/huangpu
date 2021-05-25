@@ -313,8 +313,6 @@
         placement="left"
       >
         <i
-          :class="isShowFenxi && 'active'"
-          @click="isShowFenxi = !isShowFenxi"
           class="iconfont icon-fenxi"
         ></i>
       </el-tooltip>
