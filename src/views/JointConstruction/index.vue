@@ -35,8 +35,18 @@
         ></i>
       </el-tooltip>
     </div>
-    <div class="editor" v-if="isShowFenxi">
-
+    <div class="editor" v-if="isShowFenxi" @click="updateActive(index)">
+        <div class="editor-item">
+            <el-tooltip  content="多边形查询" placement="left" effect="dark">
+                <i class="el-icon-crop" ></i>
+            </el-tooltip>
+        </div>
+        <div class="editor-item">
+            <el-tooltip  content="多边形查询" placement="left" effect="dark">
+                <i class="el-icon-crop"></i>
+            </el-tooltip>
+        </div>
+        
     </div>
 
   </div>
@@ -151,8 +161,6 @@ export default {
   left: 1800px;
   bottom: 70px;
   font-size: 44px;
-  // width: 400px;
-  // height: 109px;
   color: #fff;
   z-index: 9;
   cursor: pointer;
@@ -174,9 +182,20 @@ export default {
     position: absolute;
   left: 1950px;
   bottom: 70px;
-    width: 100px;
-    height: 100px;
-    border: 1px solid white;
-    background: white;
+    // width: 100px;
+    color: #fff;
+  z-index: 9;
+  cursor: pointer;
+//   background-color: rgba(2, 15, 43, 0.7);
+  display: flex;
+  justify-content: space-between;
+  .editor-item{
+      border: 1px solid rgba(2, 15, 43, 0.7);
+      background:rgba(2, 15, 43, 0.7) ;
+      border-radius: 10px;
+      align-items: center;
+      padding: 15px 40px;
+      margin-right: 10px;
+  }
 }
 </style>
