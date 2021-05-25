@@ -113,10 +113,10 @@ export default {
   },
   mounted() {
     // console.log(__g);
-    let o = new TagData("p1");
-    console.log(o);
-    o.id = "010101";
-    console.log(o);
+    // let o = new TagData("p1");
+    // console.log(o);
+    // o.id = "010101";
+    // console.log(o);
   },
   components: {
     JointLeft,
@@ -193,7 +193,7 @@ export default {
   z-index: 9;
   cursor: pointer;
   background-color: rgba(2, 15, 43, 0.7);
-  padding: 20px 40px;
+  padding: 30px 50px;
   border-radius: 20px;
   user-select: none;
   display: flex;
@@ -225,8 +225,8 @@ export default {
     background: rgba(2, 15, 43, 0.7);
     border-radius: 10px;
     align-items: center;
-    padding: 15px 40px;
-    margin-right: 10px;
+    padding: 25px 50px;
+    margin-left: 20px;
   }
 }
 .enter{
