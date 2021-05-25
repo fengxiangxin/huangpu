@@ -80,7 +80,7 @@ export default {
             if (__g.camera) {
                 await __g.camera.get(res => {
                     this.cameraHight = res.z
-                    console.log(this.cameraHight, '=============')
+                    // console.log(this.cameraHight, '=============')
                 })
             }
         },
@@ -124,6 +124,8 @@ export default {
                     })
                 }
 
+                console.log(ID,'id');
+                console.log(data,'data')
                 const one = data.find(item => {
                     if (item.ID === ID) {
                         return true
@@ -139,6 +141,8 @@ export default {
                 one.PROJ_AREA && (tempObj['建筑范围'] = one.PROJ_AREA)
                 one.STREET && (tempObj['所属街道'] = one.STREET)
                 one.WORK_MEASURE && (tempObj['问题'] = one.WORK_MEASURE)
+                one.POSITION && (tempObj['地点'] = one.POSITION)
+                one.DATA_DEPT && (tempObj['名字'] = one.DATA_DEPT)
                 // localStorage.setItem("key", JSON.stringify(tempObj));
                 const arr = []
                 for (const key in tempObj) {

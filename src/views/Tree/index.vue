@@ -153,13 +153,14 @@ export default {
                         const ids = temp0.map((item, index) => {
                             return item.ID
                         })
+                        // console.log(temp,'temp')
                          __g.coord.gcs2pcs(temp, res => {
-                            // console.log(res.coordinates)
+                            // console.log(res)
                             res.coordinates.forEach((item, index, arr) => {
                                 const coord = [item[0] + 40000, item[1] - 2330000, 20]
                                 // console.log(coord);
-                                let o = new TagData('tag1+' + ids[index])
-                                this.poiID2.push('tag1+' + ids[index])
+                                let o = new TagData('tag2+' + ids[index])
+                                this.poiID3.push('tag2+' + ids[index])
                                 o.coordinate = coord
                                 //   o.imagePath = IP + "/mock/shop.png";
                                 o.imagePath = HostConfig.Path + '/智能垃圾桶.png'
@@ -210,6 +211,7 @@ export default {
                         __g.tag.hide(this.poiID3)
                     }
                     break
+                    
                 case '4':
                     if (isCheck) {
                         // console.log(444);
@@ -226,18 +228,21 @@ export default {
                             }
                         })
                         const temp = temp0.map((item, index) => {
-                            return [parseFloat(item.LATITUDE), parseFloat(item.LONGITUDE)]
+                            return [parseFloat(item.LATITUDE),parseFloat(item.LONGITUDE)]
                         })
                         const ids = temp0.map((item, index) => {
                             return item.ID
                         })
+                        console.log(temp,'temp')
+                        // console.log(ids,'ids')
+                       
                          __g.coord.gcs2pcs(temp, res => {
-                            // console.log(res.coordinates)
+                            console.log(res)
                             res.coordinates.forEach((item, index, arr) => {
                                 const coord = [item[0] + 40000, item[1] - 2330000, 20]
                                 // console.log(coord);
-                                let o = new TagData('tag1+' + ids[index])
-                                this.poiID2.push('tag1+' + ids[index])
+                                let o = new TagData('tag3+' + ids[index])
+                                this.poiID4.push('tag3+' + ids[index])
                                 o.coordinate = coord
                                 //   o.imagePath = IP + "/mock/shop.png";
                                 o.imagePath = HostConfig.Path + '/重点旧村改造.png'
@@ -258,6 +263,8 @@ export default {
                                 }
                             })
                         })
+
+                        
                         // temp.forEach(async (item, index) => {
                         //     /* 坐标转换 经-纬 */
                         //     __g.coord.gcs2pcs([parseFloat(item.LATITUDE), parseFloat(item.LONGITUDE)], res => {

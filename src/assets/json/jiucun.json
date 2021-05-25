@@ -492,24 +492,6 @@
                 "WORK_MEASURE": "1、村民最关注安置资金到位情况、安置房的复建建设与回迁时间。\n2、房屋产权证问题。"
             },
             {
-                "ID": "39",
-                "LATITUDE": "",
-                "LOCATION_TYPE": "WGS84",
-                "LONGITUDE": "无",
-                "PEOPLE_NUM": "6435/1462",
-                "PEOPLE_STATUS": "暂无",
-                "POLICE_STATION_NAME": "联和所",
-                "PROBLEM": "广州市国营黄陂公司",
-                "PROJ_AREA": "91.49公顷",
-                "PROJ_NAME": "黄陂公司",
-                "REMOVE_DATA": "2029栋、89.94万平方米",
-                "SIGN_RATE": "0",
-                "STREET": "",
-                "STREET_CODE": "",
-                "TRANSFORM_COMPANY": "",
-                "WORK_MEASURE": "1．项目复建量未核算明确，实施方案未正式审议\n2．参与周边村拆迁标准，复建量存在较大缺口"
-            },
-            {
                 "ID": "37",
                 "LATITUDE": "23.200108",
                 "LOCATION_TYPE": "WGS84",
@@ -580,24 +562,6 @@
                 "STREET_CODE": "440112012000",
                 "TRANSFORM_COMPANY": "",
                 "WORK_MEASURE": "正在推进筹备中"
-            },
-            {
-                "ID": "34",
-                "LATITUDE": "113.456965",
-                "LOCATION_TYPE": "WGS84",
-                "LONGITUDE": "113.456965",
-                "PEOPLE_NUM": "4132人/1492户",
-                "PEOPLE_STATUS": "暂无",
-                "POLICE_STATION_NAME": "联和所",
-                "PROBLEM": "暹岗大壮投资有限公司",
-                "PROJ_AREA": "42.92万平方",
-                "PROJ_NAME": "暹岗",
-                "REMOVE_DATA": "53.29万平米",
-                "SIGN_RATE": "0.8",
-                "STREET": "",
-                "STREET_CODE": "",
-                "TRANSFORM_COMPANY": "",
-                "WORK_MEASURE": "个别村民觉得拆迁补偿不符合其标准"
             },
             {
                 "ID": "36",
