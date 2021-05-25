@@ -118,7 +118,7 @@ export default {
       this.websock.setEventCallback(this.onEvent);
     },
 
-    //==================监听三维交互的返回事件===================//
+    //监听三维交互的返回事件
     async onEvent(e) {
       console.log(e);
       //街道点击事件
@@ -159,6 +159,7 @@ export default {
               // }
             }
           );
+          this.$store.state.header = "重点旧村改造";
         }
 
         console.log(ID, "id");
@@ -192,9 +193,9 @@ export default {
 
         // console.log(IP + "/mock/diag.html?" + "id=" + e.Id);
         // console.log(tempObj);
-        setTimeout(() => {
-          this.$store.state.oneTag = tempObj;
-        }, 1000);
+        // setTimeout(() => {
+        this.$store.state.oneTag = tempObj;
+        // }, 1000)
         // console.log(this.$store.state.oneTag);
         // console.log(1111111);
         const res = await __g.coord.world2Screen(
@@ -202,10 +203,25 @@ export default {
           e.MouseClickPoint[1]
         );
         //   const res = await __g.coord.world2Screen(65098.971781,230293.31815799978);
-        console.log(res, "456989898989898");
+        // console.log(res, '456989898989898')
+        let left = res.screenPosition[0];
+        let top = res.screenPosition[1];
+        if (left <= 444) {
+          left = 444;
+        }
+        if (left >= 932) {
+          left = 932;
+        }
+        if (top < 64) {
+          top = 64;
+        }
+        if (top >= 470) {
+          top = 470;
+        }
+
         this.$store.state.positonPOI = {
-          left: res.screenPosition[0],
-          top: res.screenPosition[1],
+          left,
+          top,
         };
         // });
       }

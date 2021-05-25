@@ -22,26 +22,31 @@
       :positonPOI="positonPOI"
     />
 
-    <div class="fenxi">
-      <el-tooltip
-        class="item"
-        effect="dark"
-        content="编辑功能"
-        placement="left"
-      >
-        <i
-          :class="isShowFenxi && 'active'"
-          @click="isShowFenxi = !isShowFenxi"
-          class="el-icon-edit"
-        ></i>
+    <div class="fenxi" @click="isShowFenxi = !isShowFenxi">
+      <el-tooltip class="item" effect="dark" content="编辑功能" placement="top">
+        <i :class="isShowFenxi && 'active'" class="el-icon-edit"></i>
       </el-tooltip>
-      <transition name="fenxi">
-        <div>
-            
-        </div>
-      </transition>
     </div>
-
+    <transition name="fenxi">
+      <div class="editor" v-if="isShowFenxi">
+        <div class="editor-item" @click="editQuery(1)">
+          <el-tooltip content="多边形查询" placement="top" effect="dark">
+            <i class="el-icon-crop" :class="active === 1 && 'active'"></i>
+          </el-tooltip>
+        </div>
+        <div class="editor-item" @click="editQuery(2)">
+          <el-tooltip content="画圆查询" placement="top" effect="dark">
+            <i
+              class="el-icon-circle-plus-outline"
+              :class="active === 2 && 'active'"
+            ></i>
+          </el-tooltip>
+        </div>
+      </div>
+    </transition>
+    <div class="enter" v-if="active === 1">
+        <span>确定</span>
+    </div>
   </div>
 </template>
 
@@ -58,7 +63,8 @@ export default {
     return {
       showBtn: false,
       values: "",
-      isShowFenxi:false,
+      isShowFenxi: false,
+      active: 0,
     };
   },
   computed: {
@@ -74,6 +80,35 @@ export default {
     },
     close() {
       this.$store.state.oneTag = {};
+    },
+    editQuery(index) {
+      if (this.active === index) {
+        this.active = 0;
+        return;
+      }
+      this.active = index;
+      switch (index) {
+        case 1:
+          /* 多边形查询 */
+          let lineType = 0; //0：直线，1：曲线
+          let buildType = 1; //0：画多点线段， 1：画多边形
+          let drawType = 1; //0：线  1：平面
+          let color = Color.Red; //绘制颜色
+          let drawThickness = 10.0; //当DrawType为线时设置无效
+          __g.editHelper.setParam(
+            lineType,
+            buildType,
+            drawType,
+            color,
+            drawThickness
+          );
+          __g.editHelper.start();
+          break;
+        case 2:
+          break;
+        default:
+          break;
+      }
     },
   },
   mounted() {
@@ -149,13 +184,11 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-.fenxi{
+.fenxi {
   position: absolute;
   left: 1800px;
   bottom: 70px;
   font-size: 44px;
-  // width: 400px;
-  // height: 109px;
   color: #fff;
   z-index: 9;
   cursor: pointer;
@@ -172,5 +205,38 @@ export default {
   > .active {
     color: #4f9efd;
   }
+}
+.active {
+  color: #4f9efd;
+}
+.editor {
+  position: absolute;
+  left: 1950px;
+  bottom: 70px;
+  // width: 100px;
+  color: #fff;
+  z-index: 9;
+  cursor: pointer;
+  //   background-color: rgba(2, 15, 43, 0.7);
+  display: flex;
+  justify-content: space-between;
+  .editor-item {
+    border: 1px solid rgba(2, 15, 43, 0.7);
+    background: rgba(2, 15, 43, 0.7);
+    border-radius: 10px;
+    align-items: center;
+    padding: 15px 40px;
+    margin-right: 10px;
+  }
+}
+.enter{
+    // width: 200px;
+    // height: 200px;
+    // background: red;
+    padding: 20px 50px;
+    background: rgba(2, 15, 43, 0.7);
+    position: absolute;
+    left: 1950px;
+    bottom: 170px;
 }
 </style>
