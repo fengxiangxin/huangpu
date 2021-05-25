@@ -48,10 +48,24 @@ export default {
   },
   watch: {
     cameraHight(val, newval) {
-      if (val < 50000) {
-        __g.infoTree.hide(["52552A2A498D6EC759F33F83FAD731F9"]);
+      //高度少于1000隐藏全部线和面a
+      if (val <= 1000) {
+        __g.infoTree.hide(["87887F19491218E491B38A973D381E06"]);
+        __g.infoTree.hide(["7C9EC78F4D5851621520DBB59D4912B8"]);
+        __g.infoTree.hide(["213449954FE142A4D96686AA0F2FCB99"]);
+        return;
       } else {
-        __g.infoTree.show(["52552A2A498D6EC759F33F83FAD731F9"]);
+        __g.infoTree.show(["213449954FE142A4D96686AA0F2FCB99"]);
+      }
+
+      if (val <= 45000) {
+        //街道面
+        __g.infoTree.hide(["87887F19491218E491B38A973D381E06"]);
+        //社区线
+        __g.infoTree.show(["7C9EC78F4D5851621520DBB59D4912B8"]);
+      } else {
+        __g.infoTree.show(["87887F19491218E491B38A973D381E06"]);
+        __g.infoTree.hide(["7C9EC78F4D5851621520DBB59D4912B8"]);
       }
     },
   },
@@ -357,6 +371,24 @@ export default {
           }
         }
       });
+    },
+
+    //街道点击事件
+    communityClick(e) {
+      let pointCamera = e.MouseClickPoint;
+      __g.camera.get(function (res) {
+        console.log(res, "res=============");
+      });
+      let camera = [
+        56255.792969,
+        225782.515625,
+        10000,
+        -85.999626,
+        -123.442863,
+        0,
+      ];
+      __g.camera.set(camera);
+      console.log(e, "街道点击事件");
     },
   },
 };
