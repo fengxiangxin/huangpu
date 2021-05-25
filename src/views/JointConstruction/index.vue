@@ -35,6 +35,7 @@
         ></i>
       </el-tooltip>
     </div>
+    <transition name="fenxi">
     <div class="editor" v-if="isShowFenxi">
         <div  class="editor-item">
             <el-tooltip  content="多边形查询" placement="top" effect="dark">
@@ -46,9 +47,8 @@
                 <i class="el-icon-circle-plus-outline"></i>
             </el-tooltip>
         </div>
-        
     </div>
-
+    </transition>
   </div>
 </template>
 
