@@ -122,6 +122,7 @@ export default {
                         if (index < 200) return true
                         // }
                     })
+                    this.$store.state.header = '重点旧村改造'
                 }
 
                 console.log(ID,'id');
