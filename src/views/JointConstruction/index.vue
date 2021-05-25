@@ -44,6 +44,9 @@
         </div>
       </div>
     </transition>
+    <div class="enter" v-if="active === 1">
+        <span>确定</span>
+    </div>
   </div>
 </template>
 
@@ -225,5 +228,15 @@ export default {
     padding: 15px 40px;
     margin-right: 10px;
   }
+}
+.enter{
+    // width: 200px;
+    // height: 200px;
+    // background: red;
+    padding: 20px 50px;
+    background: rgba(2, 15, 43, 0.7);
+    position: absolute;
+    left: 1950px;
+    bottom: 170px;
 }
 </style>
