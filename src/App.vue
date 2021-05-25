@@ -72,8 +72,8 @@ export default {
   },
 
   created() {
-    // window.addEventListener('load', this.onLoad, true)
-    // window.addEventListener('resize', this.onResize, true)
+    window.addEventListener('load', this.onLoad, true)
+    window.addEventListener('resize', this.onResize, true)
     this.tagdata = [
       ...shop.pois,
       ...shequ.pois,
@@ -96,7 +96,7 @@ export default {
     // });
   },
   mounted() {
-    this.initWebSocket();
+    // this.initWebSocket();
     this.timer = setInterval(this.getCamera, 1000);
   },
   methods: {
