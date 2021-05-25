@@ -84,7 +84,7 @@ export default {
                                 o.imagePath = HostConfig.Path + '/烟感器.png'
                                 //   console.log(o.imagePath,'image')
                                 o.url = ''
-                                o.imageSize = [28, 28]
+                                o.imageSize = [56, 56]
                                 o.text = ''
                                 o.range = [1, 800000.1]
                                 o.textRange = 300000
@@ -166,7 +166,7 @@ export default {
                                 o.imagePath = HostConfig.Path + '/智能垃圾桶.png'
                                 //   console.log(o.imagePath,'image')
                                 o.url = ''
-                                o.imageSize = [28, 28]
+                                o.imageSize = [56, 56]
                                 o.text = ''
                                 o.range = [1, 800000.1]
                                 o.textRange = 300000
@@ -248,7 +248,7 @@ export default {
                                 o.imagePath = HostConfig.Path + '/重点旧村改造.png'
                                 //   console.log(o.imagePath,'image')
                                 o.url = ''
-                                o.imageSize = [28, 28]
+                                o.imageSize = [56, 56]
                                 o.text = ''
                                 o.range = [1, 800000.1]
                                 o.textRange = 300000

@@ -85,6 +85,7 @@ export default {
       if (this.active === index) {
         this.active = 0;
         __g.polygon.clear();
+        __g.editHelper.cancel();
         return;
       }
       this.active = index;
@@ -143,6 +144,7 @@ export default {
   },
   destroyed() {
     __g.polygon.clear();
+    __g.editHelper.cancel();
   },
   components: {
     JointLeft,
