@@ -199,22 +199,22 @@ export default {
         // console.log(res, '456989898989898')
         let left = res.screenPosition[0];
         let top = res.screenPosition[1];
-        if (left <= 1777) {
-          left = 1777;
+        if (left <= 444) {
+          left = 444;
         }
-        if (left >= 5152) {
-          left = 5152;
+        if (left >= 932) {
+          left = 932;
         }
-        if (top < 0) {
-          top = 0;
+        if (top < 64) {
+          top = 64;
         }
-        if (top >= 2400) {
-          top = 2400;
+        if (top >= 470) {
+          top = 470;
         }
 
         this.$store.state.positonPOI = {
-          left: res.screenPosition[0],
-          top: res.screenPosition[1],
+          left,
+          top,
         };
         // });
       }
