@@ -44,8 +44,8 @@
         </div>
       </div>
     </transition>
-    <div class="enter" v-if="active === 1">
-        <span>确定</span>
+    <div class="enter" v-if="active === 1" @click="stopEdit">
+      <span>确定</span>
     </div>
   </div>
 </template>
@@ -84,6 +84,7 @@ export default {
     editQuery(index) {
       if (this.active === index) {
         this.active = 0;
+        __g.polygon.clear();
         return;
       }
       this.active = index;
@@ -110,13 +111,38 @@ export default {
           break;
       }
     },
+    async stopEdit() {
+      let res = await __g.editHelper.finish(true);
+      console.log(res);
+      const { buildType, resultMessage, coordinates } = res;
+      if (resultMessage !== "OK") {
+        console.log();
+        return;
+      }
+      if (buildType === 1) {
+        let color = Color.Blue; //多边形的填充颜色
+        let frameColor = Color.Red;
+        let frameThickness = 1;
+        let o = new PolygonData(
+          Math.random(),
+          color,
+          res.coordinates,
+          frameColor,
+          frameThickness
+        );
+        __g.polygon.add(o);
+      }
+    },
   },
   mounted() {
     // console.log(__g);
-    let o = new TagData("p1");
-    console.log(o);
-    o.id = "010101";
-    console.log(o);
+    // let o = new TagData("p1");
+    // console.log(o);
+    // o.id = "010101";
+    // console.log(o);
+  },
+  destroyed() {
+    __g.polygon.clear();
   },
   components: {
     JointLeft,
@@ -193,7 +219,7 @@ export default {
   z-index: 9;
   cursor: pointer;
   background-color: rgba(2, 15, 43, 0.7);
-  padding: 20px 40px;
+  padding: 30px 50px;
   border-radius: 20px;
   user-select: none;
   display: flex;
@@ -225,18 +251,19 @@ export default {
     background: rgba(2, 15, 43, 0.7);
     border-radius: 10px;
     align-items: center;
-    padding: 15px 40px;
-    margin-right: 10px;
+    padding: 25px 50px;
+    margin-left: 20px;
   }
 }
-.enter{
-    // width: 200px;
-    // height: 200px;
-    // background: red;
-    padding: 20px 50px;
-    background: rgba(2, 15, 43, 0.7);
-    position: absolute;
-    left: 1950px;
-    bottom: 170px;
+.enter {
+  // width: 200px;
+  // height: 200px;
+  // background: red;
+  padding: 20px 50px;
+  background: rgba(2, 15, 43, 0.7);
+  position: absolute;
+  left: 1950px;
+  bottom: 170px;
+  cursor: pointer;
 }
 </style>
