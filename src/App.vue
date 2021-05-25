@@ -26,6 +26,7 @@ import shequ from "./assets/json/社区1";
 import school from "./assets/json/学校1";
 import yiyuan from "./assets/json/医院1";
 import yule from "./assets/json/娱乐1";
+import jiedaoList from "./assets/json/jiedaoList.json";
 import Header from "../src/components/page/header";
 import Footer from "../src/components/page/Footer";
 import { mapState } from "vuex";
@@ -71,8 +72,8 @@ export default {
   },
 
   created() {
-    window.addEventListener('load', this.onLoad, true)
-    window.addEventListener('resize', this.onResize, true)
+    // window.addEventListener('load', this.onLoad, true)
+    // window.addEventListener('resize', this.onResize, true)
     this.tagdata = [
       ...shop.pois,
       ...shequ.pois,
@@ -95,7 +96,7 @@ export default {
     // });
   },
   mounted() {
-    // this.initWebSocket();
+    this.initWebSocket();
     this.timer = setInterval(this.getCamera, 1000);
   },
   methods: {
@@ -104,7 +105,7 @@ export default {
       if (__g.camera) {
         await __g.camera.get((res) => {
           this.cameraHight = res.z;
-          console.log(this.cameraHight, "=============");
+          //   console.log(this.cameraHight, "=============");
         });
       }
     },
@@ -123,7 +124,7 @@ export default {
       //街道点击事件
       if (
         e.Type == "shapefilelayer" &&
-        e.Id == "69337115449ACECC51116DA246BBFC77"
+      (  e.Id == "69337115449ACECC51116DA246BBFC77" || e.Id == "87887F19491218E491B38A973D381E06")
       ) {
         this.communityClick(e);
       }
@@ -365,20 +366,11 @@ export default {
 
     //街道点击事件
     communityClick(e) {
-      let pointCamera = e.MouseClickPoint;
-      __g.camera.get(function (res) {
-        console.log(res, "res=============");
+      jiedaoList.cameraList.forEach((item) => {
+        if (item.name == e.Fields.NAME) {
+          __g.camera.set(item.camera);
+        }
       });
-      let camera = [
-        56255.792969,
-        225782.515625,
-        10000,
-        -85.999626,
-        -123.442863,
-        0,
-      ];
-      __g.camera.set(camera);
-      console.log(e, "街道点击事件");
     },
   },
 };
