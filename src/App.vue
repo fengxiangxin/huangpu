@@ -162,30 +162,33 @@ export default {
           );
         }
 
-        const one = data.find((item) => {
-          if (item.ID === ID) {
-            return true;
-          }
-        });
+                console.log(ID,'id');
+                console.log(data,'data')
+                const one = data.find(item => {
+                    if (item.ID === ID) {
+                        return true
+                    }
+                })
 
-        const tempObj = {};
-        one.CREATE_TIME && (tempObj["时间"] = one.CREATE_TIME);
-        one.DEVICE_POSITION && (tempObj["地点"] = one.DEVICE_POSITION);
-        one.LONGITUDE &&
-          (tempObj["坐标"] = one.LONGITUDE + "   " + one.LATITUDE);
-        one.PEOPLE_STATUS && (tempObj["重点人员"] = one.PEOPLE_STATUS);
-        one.PROBLEM && (tempObj["名称"] = one.PROBLEM);
-        one.PROJ_AREA && (tempObj["建筑范围"] = one.PROJ_AREA);
-        one.STREET && (tempObj["所属街道"] = one.STREET);
-        one.WORK_MEASURE && (tempObj["问题"] = one.WORK_MEASURE);
-        // localStorage.setItem("key", JSON.stringify(tempObj));
-        const arr = [];
-        for (const key in tempObj) {
-          const str = key + "=" + tempObj[key];
-          arr.push(str);
-        }
-        // console.log(arr.join("&"));
-        // __g.tag.setURL(e.Id, IP + "/mock/diag.html?" + "id=" + e.Id);
+                const tempObj = {}
+                one.CREATE_TIME && (tempObj['时间'] = one.CREATE_TIME)
+                one.DEVICE_POSITION && (tempObj['地点'] = one.DEVICE_POSITION)
+                one.LONGITUDE && (tempObj['坐标'] = one.LONGITUDE + '   ' + one.LATITUDE)
+                one.PEOPLE_STATUS && (tempObj['重点人员'] = one.PEOPLE_STATUS)
+                one.PROBLEM && (tempObj['名称'] = one.PROBLEM)
+                one.PROJ_AREA && (tempObj['建筑范围'] = one.PROJ_AREA)
+                one.STREET && (tempObj['所属街道'] = one.STREET)
+                one.WORK_MEASURE && (tempObj['问题'] = one.WORK_MEASURE)
+                one.POSITION && (tempObj['地点'] = one.POSITION)
+                one.DATA_DEPT && (tempObj['名字'] = one.DATA_DEPT)
+                // localStorage.setItem("key", JSON.stringify(tempObj));
+                const arr = []
+                for (const key in tempObj) {
+                    const str = key + '=' + tempObj[key]
+                    arr.push(str)
+                }
+                // console.log(arr.join("&"));
+                // __g.tag.setURL(e.Id, IP + "/mock/diag.html?" + "id=" + e.Id);
 
         // console.log(IP + "/mock/diag.html?" + "id=" + e.Id);
         // console.log(tempObj);
