@@ -48,33 +48,31 @@ export default {
   },
   watch: {
     cameraHight(val, newval) {
-     //高度少于1000隐藏全部线和面a
+      //高度少于1000隐藏全部线和面a
       if (val <= 1000) {
-        __g.infoTree.hide([
-          "87887F19491218E491B38A973D381E06",
-          "B553B6AC4107C0B6FBBB528544B00DEF",
-          "0F3683F54E70777AF222C8920238E451",
-        ]);
+        __g.infoTree.hide(["87887F19491218E491B38A973D381E06"]);
+        __g.infoTree.hide(["7C9EC78F4D5851621520DBB59D4912B8"]);
+        __g.infoTree.hide(["213449954FE142A4D96686AA0F2FCB99"]);
         return;
       } else {
-        __g.infoTree.show(["0F3683F54E70777AF222C8920238E451"]);
+        __g.infoTree.show(["213449954FE142A4D96686AA0F2FCB99"]);
       }
 
       if (val <= 45000) {
         //街道面
         __g.infoTree.hide(["87887F19491218E491B38A973D381E06"]);
         //社区线
-        __g.infoTree.show(["B553B6AC4107C0B6FBBB528544B00DEF"]);
+        __g.infoTree.show(["7C9EC78F4D5851621520DBB59D4912B8"]);
       } else {
         __g.infoTree.show(["87887F19491218E491B38A973D381E06"]);
-        __g.infoTree.hide(["B553B6AC4107C0B6FBBB528544B00DEF"]);
+        __g.infoTree.hide(["7C9EC78F4D5851621520DBB59D4912B8"]);
       }
     },
   },
 
   created() {
-    // window.addEventListener('load', this.onLoad, true)
-    // window.addEventListener('resize', this.onResize, true)
+    window.addEventListener('load', this.onLoad, true)
+    window.addEventListener('resize', this.onResize, true)
     this.tagdata = [
       ...shop.pois,
       ...shequ.pois,
@@ -97,7 +95,7 @@ export default {
     // });
   },
   mounted() {
-    this.initWebSocket();
+    // this.initWebSocket();
     this.timer = setInterval(this.getCamera, 1000);
   },
   methods: {
@@ -162,33 +160,34 @@ export default {
           );
         }
 
-                console.log(ID,'id');
-                console.log(data,'data')
-                const one = data.find(item => {
-                    if (item.ID === ID) {
-                        return true
-                    }
-                })
+        console.log(ID, "id");
+        console.log(data, "data");
+        const one = data.find((item) => {
+          if (item.ID === ID) {
+            return true;
+          }
+        });
 
-                const tempObj = {}
-                one.CREATE_TIME && (tempObj['时间'] = one.CREATE_TIME)
-                one.DEVICE_POSITION && (tempObj['地点'] = one.DEVICE_POSITION)
-                one.LONGITUDE && (tempObj['坐标'] = one.LONGITUDE + '   ' + one.LATITUDE)
-                one.PEOPLE_STATUS && (tempObj['重点人员'] = one.PEOPLE_STATUS)
-                one.PROBLEM && (tempObj['名称'] = one.PROBLEM)
-                one.PROJ_AREA && (tempObj['建筑范围'] = one.PROJ_AREA)
-                one.STREET && (tempObj['所属街道'] = one.STREET)
-                one.WORK_MEASURE && (tempObj['问题'] = one.WORK_MEASURE)
-                one.POSITION && (tempObj['地点'] = one.POSITION)
-                one.DATA_DEPT && (tempObj['名字'] = one.DATA_DEPT)
-                // localStorage.setItem("key", JSON.stringify(tempObj));
-                const arr = []
-                for (const key in tempObj) {
-                    const str = key + '=' + tempObj[key]
-                    arr.push(str)
-                }
-                // console.log(arr.join("&"));
-                // __g.tag.setURL(e.Id, IP + "/mock/diag.html?" + "id=" + e.Id);
+        const tempObj = {};
+        one.CREATE_TIME && (tempObj["时间"] = one.CREATE_TIME);
+        one.DEVICE_POSITION && (tempObj["地点"] = one.DEVICE_POSITION);
+        one.LONGITUDE &&
+          (tempObj["坐标"] = one.LONGITUDE + "   " + one.LATITUDE);
+        one.PEOPLE_STATUS && (tempObj["重点人员"] = one.PEOPLE_STATUS);
+        one.PROBLEM && (tempObj["名称"] = one.PROBLEM);
+        one.PROJ_AREA && (tempObj["建筑范围"] = one.PROJ_AREA);
+        one.STREET && (tempObj["所属街道"] = one.STREET);
+        one.WORK_MEASURE && (tempObj["问题"] = one.WORK_MEASURE);
+        one.POSITION && (tempObj["地点"] = one.POSITION);
+        one.DATA_DEPT && (tempObj["名字"] = one.DATA_DEPT);
+        // localStorage.setItem("key", JSON.stringify(tempObj));
+        const arr = [];
+        for (const key in tempObj) {
+          const str = key + "=" + tempObj[key];
+          arr.push(str);
+        }
+        // console.log(arr.join("&"));
+        // __g.tag.setURL(e.Id, IP + "/mock/diag.html?" + "id=" + e.Id);
 
         // console.log(IP + "/mock/diag.html?" + "id=" + e.Id);
         // console.log(tempObj);
