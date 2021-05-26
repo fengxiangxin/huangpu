@@ -7,17 +7,26 @@
     </transition>
     <JointRight />
     <div class="rightTree">
-        <el-tree :data="data" show-checkbox node-key="id" @node-click="handleNodeClick" @check-change="handleCheckChange"  :render-after-expand="false" :check-on-click-node="true">
-        <template #default="{ node}">
-        <span class="custom-tree-node">
-          <span style="font-size:16px;line-height:46px">{{ node.label }}</span>
-          <span style="font-size:16px;padding-left:60px;color:#00AAED">
-            <a>31</a>
+      <el-tree
+        :data="data"
+        show-checkbox
+        node-key="id"
+        @check-change="handleCheckChange"
+        :render-after-expand="false"
+        :check-on-click-node="true"
+        v-if="coordList.length"
+      >
+        <template #default="{ node }">
+          <span class="custom-tree-node">
+            <span style="font-size: 16px; line-height: 46px">{{
+              node.label
+            }}</span>
+            <span style="font-size: 16px; padding-left: 60px; color: #00aaed">
+              <a>{{ coordList.length }}</a>
+            </span>
           </span>
-        </span>
-      </template>
-        </el-tree>
-       
+        </template>
+      </el-tree>
     </div>
     <Dialog
       v-if="oneTag['坐标']"
@@ -98,6 +107,9 @@ export default {
         this.active = 0;
         __g.polygon.clear();
         __g.editHelper.cancel();
+        /* 删除poi */
+        __g.tag.delete(this.pioIdList);
+        this.coordList = [];
         return;
       }
       this.active = index;
