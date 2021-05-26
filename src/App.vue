@@ -72,8 +72,8 @@ export default {
   },
 
   created() {
-    window.addEventListener('load', this.onLoad, true)
-    window.addEventListener('resize', this.onResize, true)
+    window.addEventListener("load", this.onLoad, true);
+    window.addEventListener("resize", this.onResize, true);
     this.tagdata = [
       ...shop.pois,
       ...shequ.pois,
@@ -96,13 +96,13 @@ export default {
     // });
   },
   mounted() {
-    // this.initWebSocket();  
+    // this.initWebSocket();
     this.timer = setInterval(this.getCamera, 1000);
   },
   methods: {
     //获取相机高度
     async getCamera() {
-      if (__g.camera) {
+      if (__g) {
         await __g.camera.get((res) => {
           this.cameraHight = res.z;
           //   console.log(this.cameraHight, "=============");
@@ -124,7 +124,8 @@ export default {
       //街道点击事件
       if (
         e.Type == "shapefilelayer" &&
-      (  e.Id == "69337115449ACECC51116DA246BBFC77" || e.Id == "87887F19491218E491B38A973D381E06")
+        (e.Id == "69337115449ACECC51116DA246BBFC77" ||
+          e.Id == "87887F19491218E491B38A973D381E06")
       ) {
         this.communityClick(e);
       }
@@ -162,8 +163,8 @@ export default {
           this.$store.state.header = "重点旧村改造";
         }
 
-        console.log(ID, "id");
-        console.log(data, "data");
+        // console.log(ID, "id");
+        // console.log(data, "data");
         const one = data.find((item) => {
           if (item.ID === ID) {
             return true;
