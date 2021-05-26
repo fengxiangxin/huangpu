@@ -135,12 +135,30 @@ export default {
       }
     },
   },
-  mounted() {
-    // console.log(__g);
-    // let o = new TagData("p1");
-    // console.log(o);
-    // o.id = "010101";
-    // console.log(o);
+  async mounted() {
+    const res = await this.$geoserver.get("HPCIM/ows", {
+      params: {
+        service: "WFS",
+        version: "1.0.0",
+        request: "GetFeature",
+        typeName: "HPCIM:ldpoins",
+        maxFeatures: "50",
+        outputFormat: "application/json",
+        filter: `<Filter xmlns="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml"> 
+                    <Intersects> 
+                      <PropertyName>the_geom</PropertyName>
+                      <gml:Polygon>
+                        <gml:outerBoundaryIs>
+                          <gml:LinearRing>
+                            <gml:coordinates>604264,4919992 604340,4913350 611059,4915487 604264,4919992</gml:coordinates>
+                          </gml:LinearRing>
+                        </gml:outerBoundaryIs>
+                      </gml:Polygon>
+                    </Intersects> 
+                 </Filter>`,
+      },
+    });
+    console.log(res);
   },
   destroyed() {
     __g.polygon.clear();

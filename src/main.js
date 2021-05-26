@@ -14,10 +14,12 @@ import "./assets/font/iconfont.css";
 //vue-awesome-swiper'
 //import 'swiper/dist/css/swiper.css'
 
+import axios from "axios";
+
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
-import axios from "axios";
+
 
 
 if (process.env.NODE_ENV === "development") {
@@ -37,6 +39,16 @@ var baseURL1 = axios.create({
 });
 //本地Mock接口
 Vue.prototype.$http = baseURL1;
+
+const baseURL33 = 'http://10.140.241.69:8088/geoserver/'
+var baseURL3 = axios.create({
+  baseURL: baseURL33,
+  timeout: 10000,
+  headers: {
+    'X-Custom-Header': 'foobar'
+  }
+})
+Vue.prototype.$geoserver = baseURL3
 
 Vue.prototype.$request = axios.create({
   baseURL: 'http://10.198.246.32/ebus/gzshpqsjfwpt',

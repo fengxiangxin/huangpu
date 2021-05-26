@@ -1,4 +1,4 @@
-var ip = '10.140.241.63'
+var ip = '10.140.241.69'
 // var HostConfig = {
 //   MatchServer: "10.197.153.176:82",
 //   AirCityPlayer: "10.197.153.176:8081",
