@@ -6,14 +6,10 @@
       <Tree v-if="showBtn" />
     </transition>
     <JointRight />
-    <div class="search-box">
-      <el-input
-        placeholder=""
-        v-model="values"
-        style="width: 100%"
-        suffix-icon="el-icon-search"
-        @keydown.enter.native="search"
-      ></el-input>
+    <div class="rightTree">
+        <el-tree :data="data" show-checkbox node-key="id" @node-click="handleNodeClick" @check-change="handleCheckChange"  :render-after-expand="false" :check-on-click-node="true">
+        </el-tree>
+        
     </div>
     <Dialog
       v-if="oneTag['坐标']"
@@ -66,6 +62,12 @@ export default {
       isShowFenxi: false,
       active: 0,
       pioIdList: [],
+      data:[
+          {
+              id:1,
+              label:'显示/隐藏'
+          }
+      ]
     };
   },
   computed: {
@@ -177,7 +179,7 @@ export default {
           service: "WFS",
           version: "1.0.0",
           request: "GetFeature",
-          typeName: "HPCIM:HP_ld_poins",
+          typeName: "HPCIM:HP_ld_points ",
           maxFeatures: "50",
           outputFormat: "application/json",
           filter: `<Filter xmlns="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml">  
@@ -259,15 +261,7 @@ export default {
     transform: scale(1.4);
   }
 }
-.search-box {
-  height: 26px;
-  width: 200px;
-  position: absolute;
-  right: 320px;
-  top: 80px;
-  zoom: 4;
-  border-radius: 10px;
-}
+
 /deep/.el-input__inner {
   background: rgba(2, 15, 43, 0.7) !important;
   border-radius: 46px;
@@ -339,14 +333,39 @@ export default {
   }
 }
 .enter {
-  // width: 200px;
-  // height: 200px;
-  // background: red;
-  padding: 20px 50px;
-  background: rgba(2, 15, 43, 0.7);
-  position: absolute;
-  left: 1950px;
-  bottom: 170px;
-  cursor: pointer;
+    // width: 200px;
+    // height: 200px;
+    // background: red;
+    padding: 20px 50px;
+    background: rgba(2, 15, 43, 0.7);
+    position: absolute;
+    left: 1950px;
+    bottom: 205px;
+    cursor: pointer;
+}
+.rightTree{
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 100px;
+    left: 1080px;
+    zoom: 4;
+}
+.el-tree {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    background-color: rgba(2, 15, 43, 0.7);
+    color: #fff;
+    font-size: 24px;
+}
+/deep/ .el-icon-caret-right:before {
+    content: '';
+}
+/deep/ .el-tree-node__content:hover {
+    background-color: rgba(2, 15, 43, 0.7);
+}
+/deep/.el-tree-node:focus > .el-tree-node__content {
+    background-color: rgba(2, 15, 43, 0.7) !important;
 }
 </style>
