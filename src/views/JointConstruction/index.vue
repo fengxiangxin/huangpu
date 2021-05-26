@@ -109,31 +109,6 @@ export default {
             }
         },
     },
-    async mounted() {
-        const { data: res } = await this.$geoserver.get('HPCIM/ows', {
-            params: {
-                service: 'WFS',
-                version: '1.0.0',
-                request: 'GetFeature',
-                typeName: 'HPCIM:ldpoins',
-                maxFeatures: '50',
-                outputFormat: 'application/json',
-                filter: '<Filter xmlns="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml"> <Within> <PropertyName>geom</PropertyName><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:coordinates>' + '60928,226515 66807,226210 66616,220903 59974,221438 60928,226515' + '</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></Within> </Filter>',
-            },
-        })
-        console.log(res, 'res')
-    },
-    destroyed() {
-        __g.polygon.clear()
-        __g.editHelper.cancel()
-    },
-    components: {
-        JointLeft,
-        JointRight,
-        Tree,
-        Dialog,
-    },
-  
   async mounted() {
     const res = await this.$geoserver.get("HPCIM/ows", {
       params: {

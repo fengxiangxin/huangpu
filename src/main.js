@@ -38,13 +38,13 @@ var baseURL1 = axios.create({
     },
 });
 
-const baseURL33 = 'http://10.140.241.69:8088/geoserver/'
-var baseURL3 = axios.create({
-    baseURL: baseURL33,
-    timeout: 10000,
-    headers: { 'X-Custom-Header': 'foobar' }
-})
-Vue.prototype.$geoserver = baseURL3
+// const baseURL33 = 'http://10.140.241.69:8088/geoserver/'
+// var baseURL3 = axios.create({
+//     baseURL: baseURL33,
+//     timeout: 10000,
+//     headers: { 'X-Custom-Header': 'foobar' }
+// })
+// Vue.prototype.$geoserver = baseURL3
 //本地Mock接口
 Vue.prototype.$http = baseURL1;
 
