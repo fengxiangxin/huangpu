@@ -258,7 +258,7 @@ export default {
     background: rgba(2, 15, 43, 0.7);
     position: absolute;
     left: 1950px;
-    bottom: 170px;
+    bottom: 205px;
     cursor: pointer;
 }
 </style>
