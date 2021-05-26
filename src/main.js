@@ -21,32 +21,40 @@ import axios from "axios";
 
 
 if (process.env.NODE_ENV === "development") {
-  window.IP = 'http://10.140.241.41:8080/';
+    window.IP = 'http://10.140.241.41:8080/';
 } else {
-  /* 生产环境下服务器IP */
-  window.IP = ''
+    /* 生产环境下服务器IP */
+    window.IP = ''
 }
 
 const baseURL11 = "http://10.197.153.176:8082/mock/";
 var baseURL1 = axios.create({
-  baseURL: baseURL11,
-  timeout: 2000,
-  headers: {
-    "X-Custom-Header": "foobar",
-  },
+    baseURL: baseURL11,
+    timeout: 2000,
+    headers: {
+        "X-Custom-Header": "foobar",
+    },
 });
+
+const baseURL33 = 'http://10.140.241.69:8088/geoserver/'
+var baseURL3 = axios.create({
+    baseURL: baseURL33,
+    timeout: 10000,
+    headers: { 'X-Custom-Header': 'foobar' }
+})
+Vue.prototype.$geoserver = baseURL3
 //本地Mock接口
 Vue.prototype.$http = baseURL1;
 
 Vue.prototype.$request = axios.create({
-  baseURL: 'http://10.198.246.32/ebus/gzshpqsjfwpt',
-  headers: {
-    "x-tif-paasid": "{{paasidHeader}}",
-    "x-tif-signature": "{{signatureHeader}}",
-    "x-tif-timestamp": "{{timestampHeader}}",
-    "x-tif-nonce": "{{nonceHeader}}",
-    "Content-Type": "application/json",
-  }
+    baseURL: 'http://10.198.246.32/ebus/gzshpqsjfwpt',
+    headers: {
+        "x-tif-paasid": "{{paasidHeader}}",
+        "x-tif-signature": "{{signatureHeader}}",
+        "x-tif-timestamp": "{{timestampHeader}}",
+        "x-tif-nonce": "{{nonceHeader}}",
+        "Content-Type": "application/json",
+    }
 })
 
 //开启云服务配置
@@ -64,7 +72,7 @@ Vue.prototype.$echarts = echarts;
 // doc.style.zoom = 1920 / 6400
 
 new Vue({
-  router,
-  store,
-  render: (h) => h(App),
+    router,
+    store,
+    render: (h) => h(App),
 }).$mount("#app");
