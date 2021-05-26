@@ -6,10 +6,16 @@
       <Tree v-if="showBtn" />
     </transition>
     <JointRight />
-    <div class="rightTree">
-        <el-tree :data="data" show-checkbox node-key="id" @node-click="handleNodeClick" @check-change="handleCheckChange"  :render-after-expand="false" :check-on-click-node="true">
-        </el-tree>
-        
+    <div class="rightTree" v-if="coordList.length">
+      <el-tree
+        :data="data"
+        show-checkbox
+        node-key="id"
+        @check-change="handleCheckChange"
+        :render-after-expand="false"
+        :check-on-click-node="true"
+      >
+      </el-tree>
     </div>
     <Dialog
       v-if="oneTag['坐标']"
@@ -62,12 +68,13 @@ export default {
       isShowFenxi: false,
       active: 0,
       pioIdList: [],
-      data:[
-          {
-              id:1,
-              label:'显示/隐藏'
-          }
-      ]
+      data: [
+        {
+          id: 1,
+          label: `显示/隐藏`,
+        },
+      ],
+      coordList: [],
     };
   },
   computed: {
@@ -138,34 +145,12 @@ export default {
         __g.polygon.add(o);
       }
 
-      const data = this.requestGeo(res.coordinates);
+      const data = await this.requestGeo(res.coordinates);
+      // console.log(data);
       const coordList = data.map((item) => {
         return item.geometry.coordinates;
       });
-      if (this.pioIdList.length) {
-        __g.tag.show(this.pioIdList);
-      } else {
-        coordList.forEach((item, index, arr) => {
-          let o = new TagData(data[index]);
-          this.poiID4.push(data[index]);
-          o.coordinate = coord;
-          o.imagePath = HostConfig.Path + "/重点旧村改造.png";
-          o.url = "";
-          o.imageSize = [56, 56];
-          o.text = "";
-          o.range = [1, 800000.1];
-          o.textRange = 300000;
-          o.showLine = false;
-          o.textColor = Color.Black;
-          o.textBackgroundColor = Color.White;
-          o.hoverImagePath = "";
-          poiArr.push(o);
-          if (index >= arr.length - 1) {
-            console.log("添加");
-            __g.tag.add(poiArr);
-          }
-        });
-      }
+      this.coordList = coordList;
     },
     async requestGeo(coords) {
       // console.log(coords);
@@ -198,6 +183,40 @@ export default {
       });
       console.log(res.features, "res");
       return res.features;
+    },
+    handleCheckChange(data, isCheck) {
+      if (isCheck) {
+        /* 添加 */
+        if (this.pioIdList.length) {
+          __g.tag.show(this.pioIdList);
+          return;
+        }
+        const poiArr = [];
+        this.coordList.forEach((item, index, arr) => {
+          const id = Math.random();
+          let o = new TagData(id);
+          this.pioIdList.push(id);
+          o.coordinate = item;
+          o.imagePath = HostConfig.Path + "/监控点.png";
+          o.url = "";
+          o.imageSize = [56, 56];
+          o.text = "";
+          o.range = [1, 800000.1];
+          o.textRange = 300000;
+          o.showLine = false;
+          o.textColor = Color.Black;
+          o.textBackgroundColor = Color.White;
+          o.hoverImagePath = "";
+          poiArr.push(o);
+          if (index >= arr.length - 1) {
+            console.log("添加");
+            __g.tag.add(poiArr);
+          }
+        });
+      } else {
+        /* 隐藏 */
+        __g.tag.hide(this.pioIdList);
+      }
     },
   },
   async mounted() {
@@ -333,39 +352,39 @@ export default {
   }
 }
 .enter {
-    // width: 200px;
-    // height: 200px;
-    // background: red;
-    padding: 20px 50px;
-    background: rgba(2, 15, 43, 0.7);
-    position: absolute;
-    left: 1950px;
-    bottom: 205px;
-    cursor: pointer;
+  // width: 200px;
+  // height: 200px;
+  // background: red;
+  padding: 20px 50px;
+  background: rgba(2, 15, 43, 0.7);
+  position: absolute;
+  left: 1950px;
+  bottom: 205px;
+  cursor: pointer;
 }
-.rightTree{
-    width: 200px;
-    height: 100px;
-    position: absolute;
-    top: 100px;
-    left: 1080px;
-    zoom: 4;
+.rightTree {
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  top: 100px;
+  left: 1080px;
+  zoom: 4;
 }
 .el-tree {
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: center;
-    background-color: rgba(2, 15, 43, 0.7);
-    color: #fff;
-    font-size: 24px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  background-color: rgba(2, 15, 43, 0.7);
+  color: #fff;
+  font-size: 24px;
 }
 /deep/ .el-icon-caret-right:before {
-    content: '';
+  content: "";
 }
 /deep/ .el-tree-node__content:hover {
-    background-color: rgba(2, 15, 43, 0.7);
+  background-color: rgba(2, 15, 43, 0.7);
 }
 /deep/.el-tree-node:focus > .el-tree-node__content {
-    background-color: rgba(2, 15, 43, 0.7) !important;
+  background-color: rgba(2, 15, 43, 0.7) !important;
 }
 </style>
