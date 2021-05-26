@@ -109,6 +109,7 @@ export default {
         __g.editHelper.cancel();
         /* 删除poi */
         __g.tag.delete(this.pioIdList);
+        this.pioIdList = [];
         this.coordList = [];
         return;
       }
@@ -261,6 +262,9 @@ export default {
   destroyed() {
     __g.polygon.clear();
     __g.editHelper.cancel();
+    __g.tag.delete(this.pioIdList);
+    this.pioIdList = [];
+    this.coordList = [];
   },
   components: {
     JointLeft,
