@@ -138,11 +138,11 @@ export default {
       this.requestGeo(res.coordinates);
     },
     async requestGeo(coords) {
-      console.log(11);
+      // console.log(coords);
       let str = coords.reduce((p, c) => {
         return (p = p + " " + c[0] + "," + c[1]);
       }, "");
-      str += str + " " + coords[0][0] + "," + coords[0][1];
+      str += " " + coords[0][0] + "," + coords[0][1];
       console.log(str);
       const { data: res } = await this.$geoserver.get("HPCIM/ows", {
         params: {
