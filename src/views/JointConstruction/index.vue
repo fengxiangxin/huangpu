@@ -84,6 +84,7 @@ export default {
                     let color = Color.Red //绘制颜色
                     let drawThickness = 10.0 //当DrawType为线时设置无效
                     __g.editHelper.setParam(lineType, buildType, drawType, color, drawThickness)
+                    console.log(11111111111);
                     __g.editHelper.start()
                     break
                 case 2:
@@ -118,7 +119,18 @@ export default {
                 typeName: 'HPCIM:ldpoins',
                 maxFeatures: '50',
                 outputFormat: 'application/json',
-                filter: '<Filter xmlns="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml"> <Within> <PropertyName>geom</PropertyName><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:coordinates>' + '60928,226515 66807,226210 66616,220903 59974,221438 60928,226515' + '</gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></Within> </Filter>',
+                filter: `<Filter xmlns="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml">  
+                    <Within>
+	                    <PropertyName>the_geom</PropertyName>
+	                        <gml:Polygon>  
+                                <gml:outerBoundaryIs> 
+	                                <gml:LinearRing>   
+                                        <gml:coordinates>61141.398438,228731.609375 65404.644531, 228022.09375 65778.820313, 234537.296875 62120.984375, 234735.109375 61141.398438,228731.609375</gml:coordinates> 
+                                    </gml:LinearRing> 
+                                </gml:outerBoundaryIs> 
+                            </gml:Polygon>		
+                    </Within>
+                </Filter>`,
             },
         })
         console.log(res, 'res')
