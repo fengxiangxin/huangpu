@@ -65,6 +65,7 @@ export default {
       values: "",
       isShowFenxi: false,
       active: 0,
+      pioIdList: [],
     };
   },
   computed: {
@@ -135,7 +136,34 @@ export default {
         __g.polygon.add(o);
       }
 
-      this.requestGeo(res.coordinates);
+      const data = this.requestGeo(res.coordinates);
+      const coordList = data.map((item) => {
+        return item.geometry.coordinates;
+      });
+      if (this.pioIdList.length) {
+        __g.tag.show(this.pioIdList);
+      } else {
+        coordList.forEach((item, index, arr) => {
+          let o = new TagData(data[index]);
+          this.poiID4.push(data[index]);
+          o.coordinate = coord;
+          o.imagePath = HostConfig.Path + "/重点旧村改造.png";
+          o.url = "";
+          o.imageSize = [56, 56];
+          o.text = "";
+          o.range = [1, 800000.1];
+          o.textRange = 300000;
+          o.showLine = false;
+          o.textColor = Color.Black;
+          o.textBackgroundColor = Color.White;
+          o.hoverImagePath = "";
+          poiArr.push(o);
+          if (index >= arr.length - 1) {
+            console.log("添加");
+            __g.tag.add(poiArr);
+          }
+        });
+      }
     },
     async requestGeo(coords) {
       // console.log(coords);
@@ -149,7 +177,7 @@ export default {
           service: "WFS",
           version: "1.0.0",
           request: "GetFeature",
-          typeName: "HPCIM:ldpoins",
+          typeName: "HPCIM:HP_ld_poins",
           maxFeatures: "50",
           outputFormat: "application/json",
           filter: `<Filter xmlns="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml">  
@@ -167,6 +195,7 @@ export default {
         },
       });
       console.log(res.features, "res");
+      return res.features;
     },
   },
   async mounted() {
