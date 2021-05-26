@@ -96,7 +96,7 @@ export default {
     // });
   },
   mounted() {
-    this.initWebSocket();
+    // this.initWebSocket();
     this.timer = setInterval(this.getCamera, 1000);
   },
   methods: {
