@@ -9,7 +9,7 @@ var ip = '10.140.241.69'
 var HostConfig = {
   MatchServer: ip + ":82",
   AirCityPlayer: ip + ":8082",
-  AirCityAPI: ip + ":4321",
+  AirCityAPI: ip + ":4324",
   Token: "",
   Path: "C:/Users/飞渡02/Desktop/AirCityCloud2021.0514_Release4.3/SDK/images",
 };
