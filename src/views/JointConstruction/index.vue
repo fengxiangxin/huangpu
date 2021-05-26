@@ -14,7 +14,7 @@
         @check-change="handleCheckChange"
         :render-after-expand="false"
         :check-on-click-node="true"
-        v-if="coordList.length"
+        v-if="rightTreeFlag"
       >
         <template #default="{ node }">
           <span class="custom-tree-node">
@@ -86,6 +86,7 @@ export default {
         },
       ],
       coordList: [],
+      rightTreeFlag: false,
     };
   },
   computed: {
@@ -111,6 +112,7 @@ export default {
         __g.tag.delete(this.pioIdList);
         this.pioIdList = [];
         this.coordList = [];
+        this.rightTreeFlag = false;
         return;
       }
       this.active = index;
@@ -166,6 +168,7 @@ export default {
         return item.geometry.coordinates;
       });
       this.coordList = coordList;
+      this.rightTreeFlag = true;
     },
     async requestGeo(coords) {
       // console.log(coords);
@@ -265,6 +268,7 @@ export default {
     __g.tag.delete(this.pioIdList);
     this.pioIdList = [];
     this.coordList = [];
+    this.rightTreeFlag = false;
   },
   components: {
     JointLeft,
