@@ -105,7 +105,7 @@ export default {
       if (__g) {
         await __g.camera.get((res) => {
           this.cameraHight = res.z;
-          //   console.log(this.cameraHight, "=============");
+            // console.log(this.cameraHight, "=============");
         });
       }
     },

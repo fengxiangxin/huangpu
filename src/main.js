@@ -23,7 +23,7 @@ Vue.config.productionTip = false;
 
 
 if (process.env.NODE_ENV === "development") {
-    window.IP = 'http://10.140.241.41:8080/';
+    window.IP = 'http://10.140.241.88:8080/';
 } else {
     /* 生产环境下服务器IP */
     window.IP = ''
