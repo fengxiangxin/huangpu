@@ -233,8 +233,8 @@ export default {
       // __g.infoTree.hide("0F33D4BE4C214B0CFF661DBC38025136");
       // __g.infoTree.hide("D391033245B379FE68BCDA8ABD32B408");
       // 服务器2
-      __g.infoTree.hide("86FD95C84128288D47EC8392BD45D822");
-      __g.infoTree.hide("FE1F4A8944D9CD52C8D11DB31E7C7FA2");
+      __g.infoTree.hide("982D957C4C9D2D08C4497A9B03CA6DAF");
+      __g.infoTree.hide("D58383344838EC41182430967AD3ECA0");
 
       switch (newVal) {
         case 0:
@@ -270,8 +270,8 @@ export default {
           // __g.infoTree.show("0F33D4BE4C214B0CFF661DBC38025136");
           // __g.infoTree.show("D391033245B379FE68BCDA8ABD32B408");
           // 服务器2
-          __g.infoTree.show("86FD95C84128288D47EC8392BD45D822");
-          __g.infoTree.show("FE1F4A8944D9CD52C8D11DB31E7C7FA2");
+          __g.infoTree.show("982D957C4C9D2D08C4497A9B03CA6DAF");
+          __g.infoTree.show("D58383344838EC41182430967AD3ECA0");
           break;
         default:
           break;
