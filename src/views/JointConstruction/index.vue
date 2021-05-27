@@ -157,7 +157,8 @@ export default {
           color,
           res.coordinates,
           frameColor,
-          frameThickness
+          frameThickness,
+          false,
         );
         __g.polygon.add(o);
       }
@@ -408,5 +409,5 @@ export default {
 }
 /deep/.el-tree-node:focus > .el-tree-node__content {
   background-color: rgba(2, 15, 43, 0.7) !important;
-}
+ }
 </style>
