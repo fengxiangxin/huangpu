@@ -35,13 +35,13 @@
       :positonPOI="positonPOI"
     />
 
-    <div class="fenxi" @click="isShowFenxi = !isShowFenxi">
+    <div class="fx" @click="isShowFX = !isShowFX">
       <el-tooltip class="item" effect="dark" content="编辑功能" placement="top">
-        <i :class="isShowFenxi && 'active'" class="el-icon-edit"></i>
+        <i :class="isShowFX && 'active'" class="el-icon-edit"></i>
       </el-tooltip>
     </div>
-    <transition name="fenxi">
-      <div class="editor" v-if="isShowFenxi">
+    <transition name="fade">
+      <div class="editor" v-if="isShowFX">
         <div class="editor-item" @click="editQuery(1)">
           <el-tooltip content="多边形查询" placement="top" effect="dark">
             <i class="el-icon-crop" :class="active === 1 && 'active'"></i>
@@ -60,6 +60,25 @@
     <div class="enter" v-if="active === 1" @click="stopEdit">
       <span>确定</span>
     </div>
+
+    <!-- fenxi -->
+    <div class="fenxi">
+      <el-tooltip
+        class="item"
+        effect="dark"
+        content="分析功能"
+        placement="left"
+      >
+        <i
+        :class="isShowFenxi && 'active'"
+          @click="isShowFenxi = !isShowFenxi"
+          class="iconfont icon-fenxi"
+        ></i>
+      </el-tooltip>
+      <transition name="fade">
+        <Footer v-if="isShowFenxi" />
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -68,6 +87,7 @@ import JointLeft from "../../components/comJoint/JointLeft";
 import Tree from "../Tree";
 import JointRight from "../../components/comJoint/JointRight";
 import Dialog from "../Dialog/Dialog";
+import Footer from "../../components/page/Footer";
 import { mapState } from "vuex";
 
 export default {
@@ -77,6 +97,7 @@ export default {
       showBtn: false,
       values: "",
       isShowFenxi: false,
+      isShowFX:false,
       active: 0,
       pioIdList: [],
       data: [
@@ -276,6 +297,7 @@ export default {
     JointRight,
     Tree,
     Dialog,
+    Footer
   },
 };
 </script>
@@ -329,7 +351,7 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-.fenxi {
+.fx {
   position: absolute;
   left: 1800px;
   bottom: 70px;
@@ -400,6 +422,30 @@ export default {
   background-color: rgba(2, 15, 43, 0.7);
   color: #fff;
   font-size: 24px;
+}
+.fenxi {
+  position: absolute;
+  right: 1280px;
+  bottom: 70px;
+  font-size: 44px;
+  // width: 400px;
+  // height: 109px;
+  color: #fff;
+  z-index: 9;
+  cursor: pointer;
+  background-color: rgba(2, 15, 43, 0.7);
+  padding: 20px 40px;
+  border-radius: 20px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .iconfont {
+    font-size: 70px;
+  }
+  > .active {
+    color: #4f9efd;
+  }
 }
 /deep/ .el-icon-caret-right:before {
   content: "";

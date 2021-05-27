@@ -313,7 +313,7 @@
         placement="left"
       >
         <i
-         :class="isShowFenxi && 'active'"
+        :class="isShowFenxi && 'active'"
           @click="isShowFenxi = !isShowFenxi"
           class="iconfont icon-fenxi"
         ></i>
