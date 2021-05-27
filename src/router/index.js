@@ -14,13 +14,13 @@ VueRouter.prototype.push = function push(location) {
 };
 
 const routes = [{
-    path: "/",
-    name: "Home",
+    path: "/jointconstruction",
+    name: "JointConstruction",
     component: Home,
   },
   {
-    path: "/jointconstruction",
-    name: "JointConstruction",
+    path: "/",
+    name: "Home",
     component: JointConstruction,
   },
   {
@@ -33,11 +33,7 @@ const routes = [{
     name: "Wadong",
     component: () => import("../views/wadongmax"),
   },
-  {
-    path: "/tree",
-    name: "tree",
-    component: Tree
-  },
+  
 ];
 
 const router = new VueRouter({
